@@ -12,6 +12,7 @@ class Herbier(db.Model):
     nom_latin2 = db.Column(db.String(50))
     nom_commun3 = db.Column(db.String(50))
     nom_latin3 = db.Column(db.String(50))
+    famille2 = db.Column(db.String(20))
     nom_commun4 = db.Column(db.String(50))
     nom_latin4 = db.Column(db.String(50))
     commentaire = db.Column(db.Text)

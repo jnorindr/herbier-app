@@ -9,3 +9,4 @@ class Config():
     API_KEY = os.environ.get("API_KEY")
     PROJECT = os.environ.get("PROJECT")
     SQLALCHEMY_DATABASE_URI = os.environ.get("SQLALCHEMY_DATABASE_URI")
+    ILLU_PER_PAGE = int(os.environ.get("ILLU_PER_PAGE"))

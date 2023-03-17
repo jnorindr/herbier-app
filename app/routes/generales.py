@@ -4,9 +4,15 @@ from ..models.iiif_api import IIIF
 from ..models.database import Herbier
 import json, requests
 
+# Route renvoyant la liste des illustrations botaniques
+@app.route("/herbier")
+@app.route("/herbier/<int:page>")
+def herbier(page=1):
+    return render_template("pages/herbier.html",
+        donnees= Herbier.query.paginate(page=page, per_page=app.config["ILLU_PER_PAGE"]))
+
 # Route pour les pages individuelles des illustations de  plantes
 @app.route("/herbier/<string:folio>", methods=["POST", "GET"])
-
 # Définition de la fonction permettant d'identifier la plante et d'ajouter ces données à la base
 def identification(folio):
     try:
