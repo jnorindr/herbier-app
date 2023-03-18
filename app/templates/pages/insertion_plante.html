@@ -1,0 +1,24 @@
+<html>
+    <body>
+        <form action="{{url_for('insertion_plante', folio=folio)}}" method="post" name="insertion_plante">
+        {{ form.hidden_tag() }}
+
+            <div>
+                <label for="famille2">Famille botanique</label>
+                {{ form.famille2(class_="form-control", placeholder_="Famille") }}
+                <small id="famille2">Sélectionner la famille de la plante identifiée.</small>
+                <label for="nom_commun4">Nom commun</label>
+                {{ form.nom_commun4(class_="form-control", placeholder_="Nom commun") }}
+                <small id="nom_commun4">Entrer le(s) nom(s) commun(s) de la plante.</small>
+                <label for="nom_latin4">Nom latin</label>
+                {{ form.nom_latin4(class_="form-control", placeholder_="Nom latin") }}
+                <small id="nom_latin4">Entrer le nom latin de la plante.</small>
+                <label for="commentaire">Commentaire</label>
+                {{ form.commentaire(class_="form-control", placeholder_="Commentaire") }}
+            </div>
+            <p>
+                <input type="submit" value="Envoyer mon identification">
+            </p>
+        </form>
+    </body>
+</html>

@@ -23,14 +23,3 @@ class IIIF(object):
             del response
         # Ajout d'un return filename pour renvoyer le chemin du fichier créé en prévision de l'identification
         return filename
-
-    @staticmethod
-    def metadata(id):
-        METADATA_BASEURL = 'https://gallica.bnf.fr/iiif/ark:/'
-        req_url = "".join([METADATA_BASEURL, id, '/info.json'])
-    
-        print(req_url)
-    
-        r = requests.get(req_url)
-        r.raise_for_status()
-        return r.json()

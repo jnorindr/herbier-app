@@ -19,12 +19,37 @@
                                 <!-- Appel des données ajoutées à la base via la route -->
                                 <li>Identifiant : {{donnees.id}}</li>
                                 <li>Famille : {{donnees.famille}}</li>
-                                <li>Nom latin 1 : {{donnees.nom_latin1}}</li>
-                                <li>Nom commun 1 : {{donnees.nom_commun1}}</li>
-                                <li>Nom latin 2 : {{donnees.nom_latin2}}</li>
-                                <li>Nom commun 2 : {{donnees.nom_commun2}}</li>
-                                <li>Nom latin 3 : {{donnees.nom_latin3}}</li>
-                                <li>Nom commun 3 : {{donnees.nom_commun3}}</li>
+                                {% if donnees.nom_latin1 %}
+                                    <li>Nom latin 1 : {{donnees.nom_latin1}}</li>
+                                {% endif %}
+                                {% if donnees.nom_commun1 %}
+                                    <li>Nom commun 1 : {{donnees.nom_commun1}}</li>
+                                {% endif %}
+                                {% if donnees.nom_latin2 %}
+                                    <li>Nom latin 2 : {{donnees.nom_latin2}}</li>
+                                {% endif %}
+                                {% if donnees.nom_commun2 %}
+                                    <li>Nom commun 2 : {{donnees.nom_commun2}}</li>
+                                {% endif %}
+                                {% if donnees.nom_latin3 %}
+                                    <li>Nom latin 3 : {{donnees.nom_latin3}}</li>
+                                {% endif %}
+                                {% if donnees.nom_commun3 %}
+                                    <li>Nom commun 3 : {{donnees.nom_commun3}}</li>
+                                {% endif %}
+                            </ul>
+                            <ul>
+                                {% if donnees.famille2 %}
+                                <h4>Mon identification</h4>
+                                <li>Famille : {{donnees.famille2}}</li>
+                                <li>Nom commun : {{donnees.nom_commun4}}</li>
+                                <li>Nom latin : {{donnees.nom_latin4}}</li>
+                                <li>Commentaire : {{donnees.commentaire}}</li>
+
+                                {% else %}
+                                <a href="{{ url_for('insertion_plante', folio=donnees.id) }}">Proposer mon identification</a>
+
+                                {% endif %}
                             </ul>
                         </td>
                     </tr>

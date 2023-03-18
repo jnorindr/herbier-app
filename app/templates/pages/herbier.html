@@ -1,90 +1,65 @@
 <html>
     <body>
-        <h1>Liste des illustrations</h1>
+        <h1>Liste des planches botaniques</h1>
         <br>
-        <div class="row">
-            <div class="col-4">
-                <div class="list-group" id="list-tab" role="tablist">
-                    {%if donnees.prev_num %}
-                    <a class="list-group-item list-group-item-action" id="list-list-prev" 
-                         href="{{ url_for('herbier', page=donnees.prev_num) }}" class="btn btn-outline-dark 
-                        {% if donnees.page == 1 %}disabled{% endif %}">
+            <div>
+                {%if donnees.prev_num %}
+                    <a href="{{ url_for('herbier', page=donnees.prev_num) }}" class="{% if donnees.page == 1 %}disabled{% endif %}">
                             &laquo;
                     </a>
-                    {% endif %}
+                {% endif %}
     
-                    {% for folio in donnees.items %}
+                {% for folio in donnees.items %}
                     {% if (donnees.items).index(folio) == 0 %}
-                    <a class="list-group-item list-group-item-action active" id="list-{{folio.id}}-list" data-toggle="list"
-                        href="#list-{{folio.id}}" role="tab" aria-controls="{{folio.id}}">{{folio.id}}</a>
+                    <a id="list-{{folio.id}}-list" data-toggle="list" href="#list-{{folio.id}}" role="tab" aria-controls="{{folio.id}}">{{folio.id}}</a>
                     {% else %}
-                    <a class="list-group-item list-group-item-action" id="list-{{folio.id}}-list" data-toggle="list"
+                    <a id="list-{{folio.id}}-list" data-toggle="list"
                         href="#list-{{folio.id}}" role="tab" aria-controls="{{folio.id}}">{{folio.id}}</a>
                     {% endif %}
-                    {% endfor %}
+                {% endfor %}
     
-                    {%if donnees.next_num %}
-                    <a class="list-group-item list-group-item-action" id="list-list-next" 
-                        href="{{ url_for('herbier', page=donnees.next_num) }}" class="btn btn-outline-dark 
-                            {% if donnees.page == donnees.pages %}disabled{% endif %}">
+                {%if donnees.next_num %}
+                    <a id="list-list-next" href="{{ url_for('herbier', page=donnees.next_num) }}" class="{% if donnees.page == donnees.pages %}disabled{% endif %}">
                         &raquo;
                     </a>
-                    {% endif %}
-                </div>
+                {% endif %}
             </div>
-            <div class="col-8">
-                <div class="tab-content" id="nav-tabContent">
-                    {% for folio in donnees.items %}
+            <div>
+                {% for folio in donnees.items %}
                     {% if (donnees.items).index(folio) == 0 %}
-                    <div class="tab-pane fade show active" id="list-{{folio.id}}" role="tabpanel"
-                        aria-labelledby="list-{{folio.id}}-list">
+                    <div id="list-{{folio.id}}" role="tabpanel" aria-labelledby="list-{{folio.id}}-list">
                         <a href="{{ url_for('identification', folio=folio.id) }}"> Voir les données de {{folio.id}}</a>
                         <br>
                         {{folio.id_poeme}}
                     </div>
                     {% else %}
-                    <div class="tab-pane fade " id="list-{{folio.id}}" role="tabpanel"
-                        aria-labelledby="list-{{folio.id}}-list">
+                    <div id="list-{{folio.id}}" role="tabpanel" aria-labelledby="list-{{folio.id}}-list">
                         <a href="{{ url_for('identification', folio=folio.id) }}"> Voir les données de {{folio.id}}</a>
                         <br>
                         {{folio.id_poeme}}
                     </div>
                     {% endif %}
-    
-                    {% endfor %}
-                </div>
+                {% endfor %}
             </div>
-        </div>
-    </div>
-    <br>
-    <div class="row">
-        <div class="col-sm-4"></div>
-        <div class="col-sm-5">
-            <a href="{{ url_for('herbier', page=donnees.prev_num) }}" class="btn btn-outline-dark 
-                   {% if donnees.page == 1 %}disabled{% endif %}">
+        <br>
+        <div>
+            <a href="{{ url_for('herbier', page=donnees.prev_num) }}" class="{% if donnees.page == 1 %}disabled{% endif %}">
                 &laquo;
             </a>
             {% for page_num in donnees.iter_pages() %}
-            {% if page_num %}
-            {% if donnees.page == page_num %}
-            <a href="{{ url_for('herbier', page=page_num) }}" class="btn btn-dark">
-                {{ page_num }}
-            </a>
-            {% else %}
-            <a href="{{ url_for('herbier', page=page_num) }}" class="btn btn-outline-dark">
-                {{ page_num }}
-            </a>
-            {% endif %}
-            {% else %}
-            ...
-            {% endif %}
+                {% if page_num %}
+                    {% if donnees.page == page_num %}
+                        <a href="{{ url_for('herbier', page=page_num) }}">{{ page_num }}</a>
+                    {% else %}
+                        <a href="{{ url_for('herbier', page=page_num) }}">{{ page_num }}</a>
+                    {% endif %}
+                {% else %}
+                ...
+                {% endif %}
             {% endfor %}
-            <a href="{{ url_for('herbier', page=donnees.next_num) }}" class="btn btn-outline-dark 
-                   {% if donnees.page == donnees.pages %}disabled{% endif %}">
+            <a href="{{ url_for('herbier', page=donnees.next_num) }}" class="{% if donnees.page == donnees.pages %}disabled{% endif %}">
                 &raquo;
             </a>
         </div>
-        <div class="col-sm-3"></div>
-    </div>
     </body>
 </html>

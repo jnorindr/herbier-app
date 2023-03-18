@@ -10,3 +10,5 @@ class Config():
     PROJECT = os.environ.get("PROJECT")
     SQLALCHEMY_DATABASE_URI = os.environ.get("SQLALCHEMY_DATABASE_URI")
     ILLU_PER_PAGE = int(os.environ.get("ILLU_PER_PAGE"))
+    WTF_CSRF_ENABLE = os.environ.get("WTF_CSRF_ENABLE ")
+    SECRET_KEY = os.environ.get("SECRET_KEY")

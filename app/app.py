@@ -12,4 +12,4 @@ app.config.from_object(Config)
 db = SQLAlchemy(app)
 
 # Import des routes
-from .routes import generales, erreurs
+from .routes import generales, insertions, erreurs
