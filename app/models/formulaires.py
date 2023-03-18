@@ -1,7 +1,6 @@
 from flask_wtf import FlaskForm
-from wtforms import StringField, SelectField, TextAreaField
-from wtforms.validators import Email, InputRequired
-from ..models.database import Herbier
+from wtforms import StringField, SelectField, TextAreaField, PasswordField
+from wtforms.validators import InputRequired
 
 class InsertionPlante(FlaskForm):
     famille2 = SelectField("famille2", choices=[('', ''), ('Acanthaceae', 'Acanthaceae'), ('Apocynaceae', 'Apocynaceae'), ('Asteraceae', 'Asteraceae'), ('Cyperaceae', 'Cyperaceae'),
@@ -11,3 +10,7 @@ class InsertionPlante(FlaskForm):
     nom_commun4 = StringField("nom_commun4", validators=[]) 
     nom_latin4 = StringField("nom_latin4", validators=[]) 
     commentaire = TextAreaField("commentaire", validators=[])
+
+class CreationUtilisateur(FlaskForm):
+    pseudo = StringField("prenom", validators=[])
+    password = PasswordField("password", validators=[])
