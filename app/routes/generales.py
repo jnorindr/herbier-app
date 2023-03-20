@@ -30,7 +30,7 @@ def herbier(page=1):
 # Définition de la fonction permettant d'identifier la plante et d'ajouter ces données à la base
 def identification(folio):
     """
-    Route permettant l'affichage d'une planche botanique et de ses informations 
+    Route permettant l'affichage d'une planche botanique et de ses informations.
 
     Parameters
     ----------
@@ -42,7 +42,6 @@ def identification(folio):
     template
         Retourne le template info_plante.html
     """
-
     try:
         # Test de l'existence de l'illustration dans la table
         if Herbier.query.filter(Herbier.id==folio).first():
@@ -53,7 +52,7 @@ def identification(folio):
             # Création de l'URL pour la requête à l'API
             api_endpoint = f"https://my-api.plantnet.org/v2/identify/{PROJECT}?api-key={API_KEY}"
 
-            # Utilisation du wrapper PyGallica pour récupérer l'image, l'enregistrer et récupérer son chemin
+            # Utilisation du wrapper PyGallica pour récupérer l'image, l'enregistrer et récupérer son chemin : utilisation de la méthode iiif de la classe IIIF
             # Utilisation de la variable folio pour construire l'URL pour chaque illustration
             image = IIIF.iiif('3A%2F12148%2Fbtv1b8451620k/'+folio, 'full', 'full', '0', 'native', 'jpg')
 

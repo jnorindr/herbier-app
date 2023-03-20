@@ -8,7 +8,7 @@ app = Flask(
     static_folder='statics')
 app.config.from_object(Config)
 
-# Définition de la base de données db
+# Définition de la base de données dans la variable db
 db = SQLAlchemy(app)
 
 # Import des routes

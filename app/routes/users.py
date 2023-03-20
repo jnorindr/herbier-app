@@ -5,6 +5,16 @@ from ..models.formulaires import CreationUtilisateur
 
 @app.route("/utilisateurs/creation", methods=["GET", "POST"])
 def creation_utilisateur():
+    """
+    Route permettant l'insertion d'un utilisateur dans la table users.
+
+    Returns
+    -------
+    app.models.users.Users
+        Insère une ligne dans la table users et crée une instance de la classe Users si l'insertion est un succès.
+    template
+        Retourne le template insertion_plante.html
+    """
     form = CreationUtilisateur()
 
     # Si le formulaire est rempli et soumis, créer une instance de la classe Users
