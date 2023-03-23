@@ -1,7 +1,7 @@
 from ..app import app, db
 from flask import render_template, abort
 from ..models.iiif_api import IIIF
-from ..models.database import Herbier
+from ..models.database import Herbier, Poemes
 import json, requests
 
 @app.route("/")
@@ -16,30 +16,34 @@ def accueil():
     """
     return render_template("pages/accueil.html")
 
-@app.route("/herbier")
-@app.route("/herbier/<int:page>")
-def herbier(page=1):
+@app.route("/poemes/<string:folio>", methods=["POST", "GET"])
+def page_poeme(folio):
     """
-    Route permettant l'affichage de la liste des planches botaniques, avec une pagination possible
+    Route permettant l'affichage d'une page de poème et de ses informations.
 
     Parameters
     ----------
-    page : int, optional
-        Le numéro de la page à afficher (si non fourni, 1 par défaut)
+    folio : str, required
+        Numéro de la vue correspondant à la page
 
     Returns
     -------
     template
-        Retourne le template herbier.html
+        Retourne le template info_poeme.html
     """
-    
-    # Cette route renvoie le template herbier.html qui utilisera comme données la requête ci-dessous
-    return render_template("pages/herbier.html",
-        donnees = Herbier.query.paginate(page=page, per_page=app.config["ILLU_PER_PAGE"]))
+    try:
+        # Test de l'existence du poème dans la table
+        if Poemes.query.filter(Poemes.id==folio).first():
+            return render_template("/pages/page_poeme.html", donnees=Poemes.query.filter(Poemes.id == folio).first(), folio=folio)
 
-# Route pour les pages individuelles des illustations de  plantes
+        # Une erreur 404 est renvoyée si la page n'existe pas
+        else:
+            abort(404)
+        # Erreur 404 en cas d'erreur
+    except Exception as erreur:
+        abort(404)
+
 @app.route("/herbier/<string:folio>", methods=["POST", "GET"])
-# Définition de la fonction permettant d'identifier la plante et d'ajouter ces données à la base
 def identification(folio):
     """
     Route permettant l'affichage d'une planche botanique et de ses informations.
