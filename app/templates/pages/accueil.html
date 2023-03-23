@@ -1,0 +1,68 @@
+{% extends "partials/conteneur.html" %}
+
+
+{% block body %}
+
+<style>
+
+.col-6 {
+        margin: auto;
+        margin-top: 30px;
+        text-align: justify;
+        
+    }
+ 
+
+    h1 {
+        margin-top: 50px;
+        margin-bottom: 20px;
+        color: olivedrab;
+        font-variant: small-caps;
+        font-size: 30px;
+
+    }
+    
+    ul {
+        margin-top: 20px;
+      
+
+    }
+
+
+    .presentation {
+        font-size: 18px;
+        word-spacing: 5px;
+        margin-bottom: 50px;
+        
+    }
+
+
+
+</style>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-3"></div>
+            <div class="col-6">
+        <h1>Bienvenue sur notre site. 
+            Chez nous, vous pourrez : </h1>
+            <ul class="presentation">
+                <br>
+                <li>Retrouver les plantes du manuscrit <i><a href="https://gallica.bnf.fr/ark:/12148/btv1b8451620k">La Guirlande de Julie</a></i> identifiées grâce à notre API de reconnaissance d'images</li>
+                <br>
+                <li>Apporter vos propres annotations sur celles-ci
+                </li>
+                <br>
+                <li>Accéder aux poèmes associés aux plantes identifiées
+                </li>
+                <br>
+                <li>Corriger les transcriptions des poèmes proposées par notre système d'OCR <i>(Optical Characters Recognition)</i>
+                </li>
+                <br>
+                <li>Retrouver toutes les métadonnées associées aux poèmes numérisés
+                </li>
+            </ul>
+        </div>
+        <div class="col-3"></div>
+
+{% endblock %}

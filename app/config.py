@@ -9,3 +9,6 @@ class Config():
     API_KEY = os.environ.get("API_KEY")
     PROJECT = os.environ.get("PROJECT")
     SQLALCHEMY_DATABASE_URI = os.environ.get("SQLALCHEMY_DATABASE_URI")
+    PLANTE_PER_PAGE = os.environ.get("PLANTE_PER_PAGE")
+    POEME_PER_PAGE = os.environ.get("POEME_PER_PAGE")
+

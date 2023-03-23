@@ -16,3 +16,19 @@ class Herbier(db.Model):
     nom_latin4 = db.Column(db.String(50))
     commentaire = db.Column(db.Text)
     id_poeme = db.Column(db.String(50))
+
+
+
+# Création de la classe associée à la table poèmes
+class Poemes(db.Model):
+    __tablename__ = "poemes"
+
+
+    id = db.Column(db.Text, primary_key=True)
+    OCR = db.Column(db.Text)
+    commentaire = db.Column(db.Text)
+    id_plante = db.Column(db.String(50))
+    titre = db.Column(db.String(20))
+
+
+

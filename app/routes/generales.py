@@ -1,8 +1,30 @@
 from ..app import app, db
 from flask import Flask, render_template
 from ..models.iiif_api import IIIF
-from ..models.database import Herbier
+from ..models.database import Herbier, Poemes
 import json, requests
+
+# Route pour la page d'accueil 
+@app.route("/accueil")
+def accueil():
+    return render_template("pages/accueil.html", 
+        sous_titre="Accueil")
+
+# Route pour la page du sommaire de l'herbier 
+@app.route("/poemes")
+@app.route("/poemes/<int:page>")
+def poemes(page=1):
+    return render_template("pages/sommaire_poemes.html", 
+        sous_titre="Sommaire des poèmes", donnees= Poemes.query.order_by(Poemes.titre).paginate(page=page, per_page=app.config["POEME_PER_PAGE"]))
+
+# Route pour la page du sommaire des poèmes
+# Route pour la page du sommaire de l'herbier 
+@app.route("/herbier")
+@app.route("/herbier/<int:page>")
+def herbier(page=1):
+    return render_template("pages/sommaire_herbier.html", 
+        sous_titre="Sommaire de l'herbier", donnees= Herbier.query.order_by(Herbier.id_poeme).paginate(page=page, per_page=app.config["PLANTE_PER_PAGE"]))
+
 
 # Route pour les pages individuelles des illustations de  plantes
 @app.route("/herbier/<string:folio>", methods=["POST", "GET"])
@@ -58,3 +80,6 @@ def identification(folio):
     donnees = Herbier.query.filter(Herbier.id == folio).first()
 
     return render_template("/pages/info_plante.html", donnees=donnees, folio=folio)
+
+
+
