@@ -1,18 +1,16 @@
 <html>
     <body>
-        <form action="{{url_for('creation_utilisateur')}}" method="post" name="creation_utilisateur">
+        <form action="{{url_for('connexion', folio=folio)}}" method="post" name="connexion">
         {{ form.hidden_tag() }}
 
             <div>
                 <label for="pseudo">Pseudonyme</label>
                 {{ form.pseudo(class_="form-control", placeholder_="Pseudonyme") }}
-                <small id="pseudo">Entrer un nom d'utilisateur.</small>
                 <label for="password">Mot de passe</label>
                 {{ form.password(class_="form-control", placeholder_="Mot de passe") }}
-                <small id="password">Entrer un mot de passe de plus de 6 caractères.</small>
             </div>
             <p>
-                <input type="submit" value="M'inscrire">
+                <input type="submit" value="Connexion">
             </p>
         </form>
     </body>

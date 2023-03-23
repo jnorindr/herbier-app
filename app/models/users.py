@@ -1,7 +1,8 @@
-from ..app import app, db
-from werkzeug.security import generate_password_hash
+from ..app import app, db, login
+from flask_login import UserMixin
+from werkzeug.security import generate_password_hash, check_password_hash
 
-class Users(db.Model):
+class Users(UserMixin, db.Model):
     """
     Une classe représentant la table users qui contient les informations des utilisateurs.
 
@@ -25,6 +26,7 @@ class Users(db.Model):
     pseudo = db.Column(db.String(50), nullable=False)
     password = db.Column(db.String(100), nullable=False)
 
+    # Méthode de classe pour la création d'un utilisateur
     @staticmethod
     def create_user(pseudo, password):
         # Création d'une variable erreurs correspondant à une liste vide
@@ -56,3 +58,21 @@ class Users(db.Model):
         # Si l'insertion échoue, retourner les erreurs
         except Exception as erreur:
             return False, [str(erreur)]
+    
+    # Méthodes de classe pour la connexion
+    def get_id(self):
+        return self.id
+    
+    # Utilisation de la variable login définie dans le app.py
+    @login.user_loader
+    def get_user_by_id(id):
+        return Users.query.get(int(id))
+    
+    @staticmethod
+    def identification(pseudo, password):
+        utilisateur = Users.query.filter(Users.pseudo == pseudo).first()
+
+        # Vérification de la concordance du pseudo et du mot de passe envoyés avec le pseudo et le mot de passe hashé stocké dans la table
+        if utilisateur and check_password_hash(utilisateur.password, password):
+            return utilisateur
+        return None

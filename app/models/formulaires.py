@@ -38,3 +38,17 @@ class CreationUtilisateur(FlaskForm):
     """
     pseudo = StringField("prenom", validators=[])
     password = PasswordField("password", validators=[])
+
+class Connexion(FlaskForm):
+    """
+    Une classe représentant le formulaire pour permettre à l'utilisateur de se connecter
+
+    Attributes
+    ----------
+    pseudo : wtforms.fields.StringField
+        Champs de texte libre correspondant au pseudonyme de l'utilisateur.
+    password : wtforms.PasswordField
+        Champs au texte masqué correspondant au mot de passe de l'utilisateur.
+    """
+    pseudo = StringField("pseudo", validators=[])
+    password = PasswordField("password", validators=[])

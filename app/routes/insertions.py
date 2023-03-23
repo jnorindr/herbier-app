@@ -1,9 +1,11 @@
 from ..app import app, db
 from flask import render_template, request, flash
+from flask_login import login_required
 from ..models.database import Herbier
 from ..models.formulaires import InsertionPlante
 
 @app.route("/insertion/plante/<string:folio>", methods=['GET', 'POST'])
+@login_required
 def insertion_plante(folio):
     """
     Route permettant l'insertion de l'identification et d'un commentaire sur une planche dans la table herbier

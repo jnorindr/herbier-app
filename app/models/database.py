@@ -33,7 +33,7 @@ class Herbier(db.Model):
     commentaire = db.Column(db.Text)
 
     # Propriétés de relation avec la table des poèmes
-    poems = db.relationship('Poemes',  backref='poemes',  cascade="all, delete", lazy=True)
+    poems = db.relationship('Poemes',  backref='poemes', lazy=True)
 
 class Poemes(db.Model):
     """

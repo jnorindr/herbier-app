@@ -4,6 +4,18 @@ from ..models.iiif_api import IIIF
 from ..models.database import Herbier
 import json, requests
 
+@app.route("/")
+def accueil():
+    """
+    Route permettant l'affichage de la page d'accueil
+
+    Returns
+    -------
+    template
+        Retourne le template accueil.html
+    """
+    return render_template("pages/accueil.html")
+
 @app.route("/herbier")
 @app.route("/herbier/<int:page>")
 def herbier(page=1):
