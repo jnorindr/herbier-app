@@ -14,7 +14,11 @@ def accueil():
     template
         Retourne le template accueil.html
     """
-    return render_template("pages/accueil.html")
+    # Récupération des métadonnées de l'ouvrage via l'API Présentation de Gallica
+    req = requests.get("https://gallica.bnf.fr/iiif/ark%3A%2F12148%2Fbtv1b8451620k/manifest.json")
+    # Conversion du résultat de la requête précédente au format JSON
+    biblio = req.json()
+    return render_template("pages/accueil.html", biblio=biblio)
 
 @app.route("/poemes/<string:folio>", methods=["POST", "GET"])
 def page_poeme(folio):

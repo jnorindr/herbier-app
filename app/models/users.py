@@ -19,6 +19,9 @@ class Users(UserMixin, db.Model):
     -------
     create_user(pseudo, password)
         Permet l'insertion d'un utilisateur dans la table avec un pseudonyme et un mot de passe hashé choisis par l'utilisateur.
+    
+    identification(pseudo, password)
+        Permet l'identification d'un utilisateur à partir d'un pseudo et d'un mot de passe fournis.
     """
     __tablename__ = "users"
 
@@ -29,6 +32,21 @@ class Users(UserMixin, db.Model):
     # Méthode de classe pour la création d'un utilisateur
     @staticmethod
     def create_user(pseudo, password):
+        """
+        Permet la création d'un utilisateur à partir d'un pseudonyme et d'un mot de passe fournis
+
+        Parameters
+        ----------
+        pseudo : str, required
+            Le pseudonyme choisi par l'utilisateur
+        password : str, required
+            Le mot de passe choisi par l'utilisateur
+
+        Returns
+        -------
+        app.models.users.Users
+            Une instance de la classe Users si l'enregistrement est un succès, sinon retourne les erreurs
+        """
         # Création d'une variable erreurs correspondant à une liste vide
         erreurs = []
         # L'utilisateur doit obligatoirement saisir un pseudo et un mot de passe de plus de 6 caractères, sinon un message d'erreur est ajouter à la liste erreurs
@@ -70,6 +88,21 @@ class Users(UserMixin, db.Model):
     
     @staticmethod
     def identification(pseudo, password):
+        """
+        Permet l'identification d'un utilisateur à partir d'un  pseudonyme et d'un mot de passe fournis.
+
+        Parameters
+        ----------
+        pseudo : str, required
+            Le pseudonyme fourni par l'utilisateur
+        password : str, required
+            Le mot de passe fourni par l'utilisateur
+
+        Returns
+        -------
+        app.models.users.Users
+            Une instance de la classe Users si l'identification réussit, sinon retourne None
+        """
         utilisateur = Users.query.filter(Users.pseudo == pseudo).first()
 
         # Vérification de la concordance du pseudo et du mot de passe envoyés avec le pseudo et le mot de passe hashé stocké dans la table

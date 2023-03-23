@@ -2,6 +2,17 @@ from flask_wtf import FlaskForm
 from wtforms import StringField, SelectField, TextAreaField, PasswordField
 from wtforms.validators import InputRequired
 
+class InsertionPoeme(FlaskForm):
+    """
+    Une classe représentant le formulaire pour insérer une identification un commentaire sur un poème.
+
+    Attributes
+    ----------
+    commentaire : wtforms.TextAreaField
+        Champs de texte libre permettant à l'utilisateur d'ajouter un commentaire dans la table.
+    """
+    commentaire = TextAreaField("commentaire", validators=[])
+     
 class InsertionPlante(FlaskForm):
     """
     Une classe représentant le formulaire pour insérer une identification de plante et un commentaire dans la table herbier.
