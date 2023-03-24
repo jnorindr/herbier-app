@@ -5,6 +5,7 @@ from ..models.database import Herbier, Poemes
 import json, requests
 
 @app.route("/")
+@app.route("/accueil")
 def accueil():
     """
     Route permettant l'affichage de la page d'accueil
@@ -57,7 +58,7 @@ def page_poeme(folio):
     try:
         # Test de l'existence du poème dans la table
         if Poemes.query.filter(Poemes.id==folio).first():
-            return render_template("/pages/page_poeme.html", donnees=Poemes.query.filter(Poemes.id == folio).first(), folio=folio)
+            return render_template("/pages/info_poeme.html", donnees=Poemes.query.filter(Poemes.id == folio).first(), folio=folio)
 
         # Une erreur 404 est renvoyée si la page n'existe pas
         else:
@@ -83,7 +84,7 @@ def herbier(page=1):
         Retourne le template sommaire_herbier.html
     """
     return render_template("pages/sommaire_herbier.html", 
-        sous_titre="Sommaire de l'herbier", donnees= Herbier.query.order_by(Herbier.id_poeme).paginate(page=page, per_page=app.config["PLANTE_PER_PAGE"]))
+        sous_titre="Sommaire de l'herbier", donnees= Herbier.query.order_by(Herbier.titre).paginate(page=page, per_page=app.config["PLANTE_PER_PAGE"]))
 
 @app.route("/herbier/<string:folio>", methods=["POST", "GET"])
 def identification(folio):

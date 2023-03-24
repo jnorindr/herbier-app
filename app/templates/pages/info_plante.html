@@ -22,12 +22,9 @@
         border-color: darkolivegreen;
     }
 
-
     .col-7 {
         margin-bottom: 30px;
         font-size: 22px;
-
-
     }
 
     h3 {
@@ -45,62 +42,59 @@
         margin-bottom: 5px;
     }
 </style>
+
+<div class="container">
     <h3><i>{{donnees.nom_latin1}}</i></h3>
-        <div class="container">
-            <div class="row">
-                <div class="col-7">
-                <table>
-                    <tr>
-                        <td>
-                            <img src="https://gallica.bnf.fr/iiif/ark%3A%2F12148%2Fbtv1b8451620k/{{folio}}/full/full/0/native.jpg" style="width:300px;"/>
-                        </td>
-                        <td>
-                            <ul class="metadonnees">
-                                <!-- Appel des données ajoutées à la base via la route -->
-                                <li>Identifiant : {{donnees.id}}</li>
-                                <li>Famille : {{donnees.famille}}</li>
-                                {% if donnees.nom_latin1 %}
-                                    <li>Nom latin 1 : {{donnees.nom_latin1}}</li>
-                                {% endif %}
-                                {% if donnees.nom_commun1 %}
-                                    <li>Nom commun 1 : {{donnees.nom_commun1}}</li>
-                                {% endif %}
-                                {% if donnees.nom_latin2 %}
-                                    <li>Nom latin 2 : {{donnees.nom_latin2}}</li>
-                                {% endif %}
-                                {% if donnees.nom_commun2 %}
-                                    <li>Nom commun 2 : {{donnees.nom_commun2}}</li>
-                                {% endif %}
-                                {% if donnees.nom_latin3 %}
-                                    <li>Nom latin 3 : {{donnees.nom_latin3}}</li>
-                                {% endif %}
-                                {% if donnees.nom_commun3 %}
-                                    <li>Nom commun 3 : {{donnees.nom_commun3}}</li>
-                                {% endif %}
-                            </ul>
-                            <ul>
-                            <br>
-                                <button type="button" class="btn btn-success btn-">Découvrez le poème associé</button>
-                            </ul>
-                        </td>
-                    </tr>
-                </table>
-              </div>
-              <div class="col-4">
-                {% if donnees.famille2 %}
-                <h4>Mon identification</h4>
-                <li>Famille : {{donnees.famille2}}</li>
-                <li>Nom commun : {{donnees.nom_commun4}}</li>
-                <li>Nom latin : {{donnees.nom_latin4}}</li>
-                <li>Commentaire : {{donnees.commentaire}}</li>
-
-                {% else %}
-
-                <p class="suggestion">Une suggestion à faire ?</p>
-                <button type="button" class="btn btn-success btn-lg"><a href="{{ url_for('insertion_plante', folio=donnees.id) }}">Proposer mon identification</a></button>
-                {% endif %}
-            </div>
+    <div class="row">
+        <div class="col-7">
+            <table>
+                <tr>
+                    <td>
+                        <img src="https://gallica.bnf.fr/iiif/ark%3A%2F12148%2Fbtv1b8451620k/{{folio}}/full/full/0/native.jpg" style="width:300px;"/>
+                    </td>
+                    <td>
+                        <ul class="metadonnees">
+                            <!-- Appel des données ajoutées à la base via la route -->
+                            <li>Identifiant : {{donnees.id}}</li>
+                            <li>Famille : {{donnees.famille}}</li>
+                            {% if donnees.nom_latin1 %}
+                                <li>Nom latin 1 : {{donnees.nom_latin1}}</li>
+                            {% endif %}
+                            {% if donnees.nom_commun1 %}
+                                <li>Nom commun 1 : {{donnees.nom_commun1}}</li>
+                            {% endif %}
+                            {% if donnees.nom_latin2 %}
+                                <li>Nom latin 2 : {{donnees.nom_latin2}}</li>
+                            {% endif %}
+                            {% if donnees.nom_commun2 %}
+                                <li>Nom commun 2 : {{donnees.nom_commun2}}</li>
+                            {% endif %}
+                            {% if donnees.nom_latin3 %}
+                                <li>Nom latin 3 : {{donnees.nom_latin3}}</li>
+                            {% endif %}
+                            {% if donnees.nom_commun3 %}
+                                <li>Nom commun 3 : {{donnees.nom_commun3}}</li>
+                            {% endif %}
+                        <br>
+                            <button type="button" class="btn btn-success btn-">Découvrez le poème associé</button>
+                        </ul>
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <div class="col-4">
+            {% if donnees.famille2 %}
+            <h4>Mon identification</h4>
+            <li>Famille : {{donnees.famille2}}</li>
+            <li>Nom commun : {{donnees.nom_commun4}}</li>
+            <li>Nom latin : {{donnees.nom_latin4}}</li>
+            <li>Commentaire : {{donnees.commentaire}}</li>
+            {% else %}
+            <p class="suggestion">Une suggestion à faire ?</p>
+            <button type="button" class="btn btn-success btn-lg"><a href="{{ url_for('insertion_plante', folio=donnees.id) }}">Proposer mon identification</a></button>
+            {% endif %}
         </div>
     </div>
+</div>
 
 {% endblock %}

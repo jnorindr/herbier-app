@@ -16,7 +16,7 @@ class Herbier(db.Model):
         Noms latins des plantes identifiées. Quatre colonnes pour permettre plusieurs identifications.
     commentaire : sqlalchemy.sql.schema.Column
         Commentaire ajouté par l'utilisateur à la planche.
-        titre : sqlalchemy.sql.schema.Column
+    titre : sqlalchemy.sql.schema.Column
         Titre de la planche.
     """
     __tablename__ = "herbier"

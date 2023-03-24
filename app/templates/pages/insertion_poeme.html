@@ -1,15 +1,17 @@
-<html>
-    <body>
-        <form action="{{url_for('insertion_poeme', folio=folio)}}" method="post" name="insertion_poeme">
-        {{ form.hidden_tag() }}
+{% extends "partials/conteneur.html" %}
 
-            <div>
-                <label for="commentaire">Commentaire</label>
-                {{ form.commentaire(class_="form-control", placeholder_="Commentaire") }}
-            </div>
-            <p>
-                <input type="submit" value="Envoyer">
-            </p>
-        </form>
-    </body>
-</html>
+{% block body %}
+
+    <form action="{{url_for('insertion_poeme', folio=folio)}}" method="post" name="insertion_poeme">
+    {{ form.hidden_tag() }}
+
+        <div>
+            <label for="commentaire">Commentaire</label>
+            {{ form.commentaire(class_="form-control", placeholder_="Commentaire") }}
+        </div>
+        <p>
+            <input type="submit" value="Envoyer">
+        </p>
+    </form>
+
+{% endblock%}

@@ -36,7 +36,7 @@ def insertion_poeme(folio):
             
             # Afficher un message confirmant la réussite de la mise à jour des informations et retourner la page du poème
             flash("Le commentaire a bien été ajouté", "info")
-            return render_template("/pages/page_poeme.html", donnees=Poemes.query.filter(Poemes.id == folio).first(), folio=folio)
+            return render_template("/pages/info_poeme.html", donnees=Poemes.query.filter(Poemes.id == folio).first(), folio=folio)
 
     # En cas d'exception, afficher un message d'erreur
     except Exception as erreur:
