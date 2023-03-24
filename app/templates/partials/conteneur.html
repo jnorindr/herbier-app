@@ -84,28 +84,50 @@
     <div class="collapse navbar-collapse" id="navbarNav">
       <ul class="navbar-nav ml-auto">
         <li class="nav-item">
-          <a class="nav-link" href="http://localhost:5000/herbier">Coin herbier</a>
+          <a class="nav-link" href="{{ url_for('herbier') }}">Coin herbier</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="http://localhost:5000/poemes">Coin poèmes</a>
+          <a class="nav-link" href="{{ url_for('poemes') }}">Coin poèmes</a>
+        {%if current_user.is_authenticated %}
+        <li class="nav-item active">
+          <a class="nav-link" href="{{ url_for('deconnexion') }}">Se déconnecter ({{ current_user.pseudo }})</a>
+        </li>
+        {% else %}
+        <li class="nav-item active">
+          <a class="nav-link" href="{{ url_for('connexion') }}">Se connecter</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">Se connecter</a>
+          <a class="nav-link" href="{{ url_for('creation_utilisateur') }}">S'enregistrer</a>
         </li>
-
+          {% endif %}
       </ul>
     </div>
     <div>
     <form class="form-inline" action="/action_page.php">
       <input class="form-control mr-sm-2" type="text" placeholder="Une plante, un poème...">
     </form>
-</div>
-
-<button class="btn btn-success" type="submit" >Rechercher</button>
+    </div>
+    <button class="btn btn-success" type="submit">Rechercher</button>
   </nav>
 
+  <div class="container">
+    {% with messages = get_flashed_messages(with_categories=true) %}
+    {% if messages %}
+    <div class="row">
+      <div class="col">
+        {% for category, message in messages %}
+        <div class="alert alert-{{category}}" role="alert">{{ message }}</div>
+        {% endfor %}
+      </div>
+    </div>
+    {% endif %}
+    {% endwith %}
+    <div class="row">
+      <div class="col">
+      </div>
+    </div>
+  </div>
   
-
   <header class="jumbotron jumbotron-fluid">
     <div class="container">
       <div class="col colCouleur">

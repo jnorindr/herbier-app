@@ -2,16 +2,29 @@
 
 {% block body %}
 
-    <form action="{{url_for('insertion_poeme', folio=folio)}}" method="post" name="insertion_poeme">
-    {{ form.hidden_tag() }}
+<table>
+    <tr>
+        <td>
+            <img src="https://gallica.bnf.fr/iiif/ark%3A%2F12148%2Fbtv1b8451620k/{{folio}}/full/full/0/native.jpg" style="width:300px;"/>
+        </td>
+        <td>
+            <form action="{{url_for('insertion_poeme', folio=folio)}}" method="post" name="insertion_poeme">
+            {{ form.hidden_tag() }}
 
-        <div>
-            <label for="commentaire">Commentaire</label>
-            {{ form.commentaire(class_="form-control", placeholder_="Commentaire") }}
-        </div>
-        <p>
-            <input type="submit" value="Envoyer">
-        </p>
-    </form>
+            <div>
+                <label for="ocr">Transcription</label>
+                {{ form.ocr(class_="form-control", placeholder_= donnees.ocr) }}
+            </div>
+                <div>
+                    <label for="commentaire">Commentaire</label>
+                    {{ form.commentaire(class_="form-control", placeholder_="Commentaire") }}
+                </div>
+                <p>
+                    <input type="submit" value="Envoyer">
+                </p>
+            </form>
+        </td>
+    </tr>
+</table>
 
 {% endblock%}

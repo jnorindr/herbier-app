@@ -54,12 +54,12 @@
                         {% for poemes in donnees.items %}
                             {% if (donnees.items).index(poemes) == 0 %}
                                 <a class="list-group-item" id="list-{{titre}}-list" data-toggle="tooltip" data-placement="bottom" title="{{poemes.ocr}}"
-                                href="poemes/{{poemes.id}}" role="tab" aria-controls="{{poemes.id}}">
+                                href="{{ url_for('page_poeme', folio=poemes.id) }}" role="tab" aria-controls="{{poemes.id}}">
                                     <li>{{poemes.titre}}, {{poemes.id}}</li>
                                 </a>
                             {% else %}
                                 <a class="list-group-item" id="list-{{titre}}-list" data-toggle="tooltip" data-placement="bottom" title="{{poemes.ocr}}"
-                                href="poemes/{{poemes.id}}" role="tab" aria-controls="{{poemes.id}}">
+                                href="{{ url_for('page_poeme', folio=poemes.id) }}" role="tab" aria-controls="{{poemes.id}}">
                                     <li>{{poemes.titre}}, {{poemes.id}}</li>
                                 </a>
                             {% endif %}

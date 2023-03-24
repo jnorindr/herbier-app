@@ -51,12 +51,12 @@
                     {% endif %}
                     {% for herbier in donnees.items %}
                         {% if (donnees.items).index(herbier) == 0 %}
-                            <a class="list-group-item" id="list-{{titre}}-list" data-toggle="list" href="{{herbier.id}}" role="tab" aria-controls="{{titre}}">
-                                <li>{{herbier.titre}}, {{herbier.id}}</li>
+                            <a class="list-group-item" id="list-{{titre}}-list" data-toggle="list" href="{{ url_for('identification', folio=herbier.id) }}" role="tab" aria-controls="{{titre}}">
+                                <li>{{herbier.poems[0].titre}}, {{herbier.id}}</li>
                             </a>
                         {% else %}
-                            <a class="list-group-item" id="list-{{titre}}-list" data-toggle="list" href="{{herbier.id}}" role="tab" aria-controls="{{titre}}">
-                                <li>{{herbier.titre}}, {{herbier.id}}</li>
+                            <a class="list-group-item" id="list-{{titre}}-list" data-toggle="list" href="{{ url_for('identification', folio=herbier.id) }}" role="tab" aria-controls="{{titre}}">
+                                <li>{{herbier.poems[0].titre}}, {{herbier.id}}</li>
                             </a>
                         {% endif %}
                     {% endfor %}

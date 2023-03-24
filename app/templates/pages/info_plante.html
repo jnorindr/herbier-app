@@ -44,7 +44,7 @@
 </style>
 
 <div class="container">
-    <h3><i>{{donnees.nom_latin1}}</i></h3>
+    <h3><i>{{donnees.poems[0].titre}}</i></h3>
     <div class="row">
         <div class="col-7">
             <table>
@@ -76,7 +76,9 @@
                                 <li>Nom commun 3 : {{donnees.nom_commun3}}</li>
                             {% endif %}
                         <br>
-                            <button type="button" class="btn btn-success btn-">Découvrez le poème associé</button>
+                            <button type="button" class="btn btn-success btn-">
+                                <a href="{{ url_for('page_poeme', folio=donnees.poems[0].id) }}">Découvrez le poème associé</a>
+                            </button>
                         </ul>
                     </td>
                 </tr>

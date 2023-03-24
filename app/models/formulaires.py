@@ -8,9 +8,12 @@ class InsertionPoeme(FlaskForm):
 
     Attributes
     ----------
+    ocr : wtforms.TextAreaField
+        Champs de texte permettant la modification de la transcription du texte.
     commentaire : wtforms.TextAreaField
         Champs de texte libre permettant à l'utilisateur d'ajouter un commentaire dans la table.
     """
+    ocr = TextAreaField("ocr", validators=[])
     commentaire = TextAreaField("commentaire", validators=[])
      
 class InsertionPlante(FlaskForm):
@@ -47,8 +50,8 @@ class CreationUtilisateur(FlaskForm):
     password : wtforms.PasswordField
         Champs au texte masqué correspondant au mot de passe de l'utilisateur à insérer.
     """
-    pseudo = StringField("prenom", validators=[])
-    password = PasswordField("password", validators=[])
+    pseudo = StringField("pseudo", [InputRequired("Veuillez saisir un nom d'utilisateur.")])
+    password = PasswordField("password", [InputRequired("Veuillez saisir un mot de passe.")])
 
 class Connexion(FlaskForm):
     """
@@ -61,5 +64,5 @@ class Connexion(FlaskForm):
     password : wtforms.PasswordField
         Champs au texte masqué correspondant au mot de passe de l'utilisateur.
     """
-    pseudo = StringField("pseudo", validators=[])
-    password = PasswordField("password", validators=[])
+    pseudo = StringField("pseudo", [InputRequired("Veuillez saisir votre nom d'utilisateur.")])
+    password = PasswordField("password", [InputRequired("Veuillez saisir votre mot de passe.")])

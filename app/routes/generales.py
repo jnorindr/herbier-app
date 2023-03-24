@@ -84,7 +84,7 @@ def herbier(page=1):
         Retourne le template sommaire_herbier.html
     """
     return render_template("pages/sommaire_herbier.html", 
-        sous_titre="Sommaire de l'herbier", donnees= Herbier.query.order_by(Herbier.titre).paginate(page=page, per_page=app.config["PLANTE_PER_PAGE"]))
+        sous_titre="Sommaire de l'herbier", donnees= Herbier.query.paginate(page=page, per_page=app.config["PLANTE_PER_PAGE"]))
 
 @app.route("/herbier/<string:folio>", methods=["POST", "GET"])
 def identification(folio):
@@ -101,9 +101,9 @@ def identification(folio):
     template
         Retourne le template info_plante.html
     """
-    try:
+    #try:
         # Test de l'existence de l'illustration dans la table
-        if Herbier.query.filter(Herbier.id==folio).first():
+    if Herbier.query.filter(Herbier.id==folio).first():
             # Import depuis le fichier config.py de la clé d'API et de la zone géographique
             API_KEY = app.config['API_KEY']
             PROJECT = app.config['PROJECT']
@@ -158,8 +158,8 @@ def identification(folio):
             return render_template("/pages/info_plante.html", donnees=Herbier.query.filter(Herbier.id == folio).first(), folio=folio)
         
         # Une erreur 404 est renvoyée si l'illustration n'existe pas
-        else:
-            abort(404)
+        #else:
+        #    abort(404)
         # Erreur 404 en cas d'erreur
-    except Exception as erreur:
-        abort(404)
+    #except Exception as erreur:
+    #    abort(404)

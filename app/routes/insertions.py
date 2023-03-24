@@ -23,27 +23,29 @@ def insertion_poeme(folio):
         Retourne le template insertion_poeme.html
     """
     form = InsertionPoeme()
+    donnees=Poemes.query.filter(Poemes.id == folio).first()
 
     try:
         # Si le formulaire est rempli et soumi, récupérer les informations
         if form.validate_on_submit():
+            ocr = request.form.get("ocr", None)
             commentaire = request.form.get("commentaire", None)
 
             # Mettre à jour la ligne de la table poemes donc la valeur de l'id est égale à la valeur de la variable folio pour y insérer les données du formulaire
             Poemes.query.filter(Poemes.id == folio).\
-                    update({"commentaire": commentaire})
+                    update({"commentaire": commentaire, "ocr": ocr})
             db.session.commit()
             
             # Afficher un message confirmant la réussite de la mise à jour des informations et retourner la page du poème
-            flash("Le commentaire a bien été ajouté", "info")
-            return render_template("/pages/info_poeme.html", donnees=Poemes.query.filter(Poemes.id == folio).first(), folio=folio)
+            flash("La transcription a bien été modifiée", "info")
+            return render_template("/pages/info_poeme.html", donnees=donnees, folio=folio)
 
     # En cas d'exception, afficher un message d'erreur
     except Exception as erreur:
         flash("Une erreur s'est produite : " + str(erreur), "error")
     
     # Retourner le template correspondant à la page d'insertion
-    return render_template("/pages/insertion_poeme.html", form=form, folio=folio)
+    return render_template("/pages/insertion_poeme.html", donnees=donnees, form=form, folio=folio)
 
 @app.route("/insertion/plante/<string:folio>", methods=['GET', 'POST'])
 @login_required
