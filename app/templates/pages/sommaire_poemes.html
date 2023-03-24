@@ -1,4 +1,5 @@
 {% extends "partials/conteneur.html" %}
+
 {% block body %}
 
 <style>
@@ -43,39 +44,35 @@
     <div class="row">
         <div class="col-4"></div>
             <div class="col-4">
-            <div class="list-group" id="list-tab" role="tablist">
-                <ul>
-                {%if donnees.prev_num %}
-                <a class="list-group-item" id="list-list-prev" 
-                     href="{{ url_for('poemes', page=donnees.prev_num) }}">
-                        &laquo;
-                </a>
-                {% endif %}
-                {% for poemes in donnees.items %}
-                {% if (donnees.items).index(poemes) == 0 %}
-                <a class="list-group-item" id="list-{{titre}}-list" data-toggle="tooltip" data-placement="bottom" title="{{poemes.OCR}}"
-                    href="poemes/{{poemes.id}}" role="tab" aria-controls="{{poemes.id}}"><li>{{poemes.titre}}, {{poemes.id}}</li></a>
-                {% else %}
-                <a class="list-group-item" id="list-{{titre}}-list" data-toggle="tooltip" data-placement="bottom" title="{{poemes.OCR}}"
-                href="poemes/{{poemes.id}}" role="tab" aria-controls="{{poemes.id}}"><li>{{poemes.titre}}, {{poemes.id}}</li></a>
-                {% endif %}
-                {% endfor %}
+                <div class="list-group" id="list-tab" role="tablist">
+                    <ul>
+                        {%if donnees.prev_num %}
+                            <a class="list-group-item" id="list-list-prev" href="{{ url_for('poemes', page=donnees.prev_num) }}">
+                                &laquo;
+                            </a>
+                        {% endif %}
+                        {% for poemes in donnees.items %}
+                            {% if (donnees.items).index(poemes) == 0 %}
+                                <a class="list-group-item" id="list-{{titre}}-list" data-toggle="tooltip" data-placement="bottom" title="{{poemes.ocr}}"
+                                href="poemes/{{poemes.id}}" role="tab" aria-controls="{{poemes.id}}">
+                                    <li>{{poemes.titre}}, {{poemes.id}}</li>
+                                </a>
+                            {% else %}
+                                <a class="list-group-item" id="list-{{titre}}-list" data-toggle="tooltip" data-placement="bottom" title="{{poemes.ocr}}"
+                                href="poemes/{{poemes.id}}" role="tab" aria-controls="{{poemes.id}}">
+                                    <li>{{poemes.titre}}, {{poemes.id}}</li>
+                                </a>
+                            {% endif %}
+                        {% endfor %}
 
-                {%if donnees.next_num %}
-                <a class="list-group-item" id="list-list-next" 
-                    href="{{ url_for('poemes', page=donnees.next_num) }}">
-                    &raquo;
-                </a>
-                {% endif %}
-            </ul>
+                        {%if donnees.next_num %}
+                            <a class="list-group-item" id="list-list-next" href="{{ url_for('poemes', page=donnees.next_num) }}">
+                                &raquo;
+                            </a>
+                        {% endif %}
+                    </ul>
+                </div>
             </div>
         </div>
-            </div>
-        </div>
-    </div>
-</div>
-<br>
-
-
 
 {% endblock %}
