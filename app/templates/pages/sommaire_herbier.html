@@ -1,0 +1,81 @@
+{% extends "partials/conteneur.html" %}
+{% block body %}
+
+<style>
+    h1 {
+        text-align: center;
+        margin-top: 50px;
+        margin-bottom: 20px;
+        color: olivedrab;
+        font-variant: small-caps;
+        font-size: 40px;
+        text-shadow: 2px 2px 4px olive;
+    }
+
+    .list-group-item {
+        text-align: center;
+        border-radius: 20px;
+        background-color: olivedrab;
+        text-transform: uppercase;
+        color: wheat;
+    }
+
+    li {
+        margin-left: 20px;
+    }
+
+    ul {
+       
+        border-radius: 20px;
+        align-items: center;
+    }
+
+    .btn {
+        align-items: center;
+    }
+
+
+</style>
+
+<div class="container">
+    <h1>Sommaire de l'herbier de <i>La Guirlande de Julie</i></h1>
+    <br>
+    <div class="row">
+        <div class="col-4"></div>
+            <div class="col-4">
+            <div class="list-group" id="list-tab" role="tablist">
+                <ul>
+                {%if donnees.prev_num %}
+                <a class="list-group-item" id="list-list-prev" 
+                     href="{{ url_for('herbier', page=donnees.prev_num) }}">
+                        &laquo;
+                </a>
+                {% endif %}
+                {% for herbier in donnees.items %}
+                {% if (donnees.items).index(herbier) == 0 %}
+                <a class="list-group-item" id="list-{{id_poeme}}-list" data-toggle="list"
+                    href="herbier/{{herbier.id}}" role="tab" aria-controls="{{id_poeme}}"><li>{{herbier.id_poeme}}, {{herbier.id}}</li></a>
+                {% else %}
+                <a class="list-group-item" id="list-{{id_poeme}}-list" data-toggle="list"
+                href="herbier/{{herbier.id}}" role="tab" aria-controls="{{id_poeme}}"><li>{{herbier.id_poeme}}, {{herbier.id}}</li></a>
+                {% endif %}
+                {% endfor %}
+
+                {%if donnees.next_num %}
+                <a class="list-group-item" id="list-list-next" 
+                    href="{{ url_for('herbier', page=donnees.next_num) }}">
+                    &raquo;
+                </a>
+                {% endif %}
+            </ul>
+            </div>
+        </div>
+            </div>
+        </div>
+    </div>
+</div>
+<br>
+
+
+
+{% endblock %}

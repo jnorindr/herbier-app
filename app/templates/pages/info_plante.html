@@ -1,14 +1,62 @@
-<html>
-    <body>
-        <div>
-            {% block content %}
+{% extends "partials/conteneur.html" %}
+
+{% block body %}
+
+<style>
+    .suggestion {
+        text-shadow: 2px 2px 4px olive;
+        font-size: 22px;
+        margin-top: 46px;
+        margin-bottom: 10px;
+        margin-left: auto;
+    }
+
+    .col-4 {
+        background-color:palegoldenrod;
+        margin-top: 90px;
+        margin-bottom: 200px;
+        text-align: center;
+        margin-left: 90px;
+        border-style: dashed;
+        border-radius: 25px;
+        border-color: darkolivegreen;
+    }
+
+
+    .col-7 {
+        margin-bottom: 30px;
+        font-size: 22px;
+
+
+    }
+
+    h3 {
+        
+        font-size: 25px;
+        text-align:start;
+        margin-top: 25px;
+        margin-bottom: 10px;
+        margin-left: 90px;
+
+    } 
+
+    .metadonnees {
+        font-size: 18px;
+        margin-bottom: 5px;
+    }
+</style>
+    <h3><i>{{donnees.nom_latin1}}</i></h3>
+        <div class="container">
+            <div class="row">
+                <div class="col-7">
                 <table>
                     <tr>
                         <td>
                             <img src="https://gallica.bnf.fr/iiif/ark%3A%2F12148%2Fbtv1b8451620k/{{folio}}/full/full/0/native.jpg" style="width:300px;"/>
                         </td>
                         <td>
-                            <ul>
+                            <ul class="metadonnees">
+                                <!-- Appel des données ajoutées à la base via la route -->
                                 <li>Identifiant : {{donnees.id}}</li>
                                 <li>Famille : {{donnees.famille}}</li>
                                 {% if donnees.nom_latin1 %}
@@ -31,22 +79,28 @@
                                 {% endif %}
                             </ul>
                             <ul>
-                                {% if donnees.famille2 %}
-                                <h4>Mon identification</h4>
-                                <li>Famille : {{donnees.famille2}}</li>
-                                <li>Nom commun : {{donnees.nom_commun4}}</li>
-                                <li>Nom latin : {{donnees.nom_latin4}}</li>
-                                <li>Commentaire : {{donnees.commentaire}}</li>
-
-                                {% else %}
-                                <a href="{{ url_for('insertion_plante', folio=donnees.id) }}">Proposer mon identification</a>
-
-                                {% endif %}
+                            <br>
+                                <button type="button" class="btn btn-success btn-">Découvrez le poème associé</button>
                             </ul>
                         </td>
                     </tr>
                 </table>
-            {% endblock %}
+              </div>
+              <div class="col-4">
+                {% if donnees.famille2 %}
+                <h4>Mon identification</h4>
+                <li>Famille : {{donnees.famille2}}</li>
+                <li>Nom commun : {{donnees.nom_commun4}}</li>
+                <li>Nom latin : {{donnees.nom_latin4}}</li>
+                <li>Commentaire : {{donnees.commentaire}}</li>
+
+                {% else %}
+
+                <p class="suggestion">Une suggestion à faire ?</p>
+                <button type="button" class="btn btn-success btn-lg"><a href="{{ url_for('insertion_plante', folio=donnees.id) }}">Proposer mon identification</a></button>
+                {% endif %}
+            </div>
         </div>
-    </body>
-</html>
+    </div>
+
+{% endblock %}

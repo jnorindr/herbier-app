@@ -1,9 +1,64 @@
-<html>
-    <body>
-        <h1>Salut c'est l'accueil</h1>
-        <p><i>{{biblio['metadata'][5]['value']}}</i><br>
-            {{biblio['metadata'][6]['value']}}<br>
-            {{biblio['metadata'][4]['value']}}<br>
-            {{biblio['metadata'][8]['value']}}</p>
-    </body>
-</html>
+{% extends "partials/conteneur.html" %}
+
+{% block body %}
+
+<style>
+
+.col-6 {
+        margin: auto;
+        margin-top: 30px;
+        text-align: justify;
+        
+    }
+ 
+
+    h1 {
+        margin-top: 50px;
+        margin-bottom: 20px;
+        color: olivedrab;
+        font-variant: small-caps;
+        font-size: 30px;
+
+    }
+    
+    ul {
+        margin-top: 20px;
+      
+
+    }
+
+
+    .presentation {
+        font-size: 18px;
+        word-spacing: 5px;
+        margin-bottom: 50px;
+        
+    }
+</style>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-3"></div>
+            <div class="col-6">
+        <h1>Bienvenue sur notre application.
+            Chez nous, vous pourrez : </h1>
+            <ul class="presentation">
+                <br>
+                <li>Découvrir les identifications proposées par l'API Pl@ntNet des illustrations botaniques de <i><a href="https://gallica.bnf.fr/ark:/12148/btv1b8451620k">{{biblio['metadata'][5]['value']}}</a></i>,</li>
+                <br>
+                <li>Proposez vos propres identifications pour enrichir notre base de données,</li>
+                <br>
+                <li>Consulter les poèmes associés aux plantes identifiées et leur transcription automatique au format texte,</li>
+                <br>
+                <li>Proposez vos corrections aux transcriptions des poèmes afin d'affiner les données de l'application.</li>
+                <br>
+                <li><i>{{biblio['metadata'][5]['value']}}</i><br>
+                    {{biblio['metadata'][6]['value']}}<br>
+                    {{biblio['metadata'][4]['value']}}<br>
+                    {{biblio['metadata'][8]['value']}}</p>
+                </li>
+            </ul>
+        </div>
+        <div class="col-3"></div>
+
+{% endblock %}

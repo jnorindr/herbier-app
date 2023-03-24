@@ -18,7 +18,26 @@ def accueil():
     req = requests.get("https://gallica.bnf.fr/iiif/ark%3A%2F12148%2Fbtv1b8451620k/manifest.json")
     # Conversion du résultat de la requête précédente au format JSON
     biblio = req.json()
-    return render_template("pages/accueil.html", biblio=biblio)
+    return render_template("pages/accueil.html", sous_titre="Accueil", biblio=biblio)
+
+@app.route("/poemes")
+@app.route("/poemes/<int:page>")
+def poemes(page=1):
+    """
+    Route permettant l'affichage de la liste des poèmes.
+
+    Parameters
+    ----------
+    page : int, optional
+        Numéro de page
+
+    Returns
+    -------
+    template
+        Retourne le template sommaire_poemes.html
+    """
+    return render_template("pages/sommaire_poemes.html", 
+        sous_titre="Sommaire des poèmes", donnees= Poemes.query.order_by(Poemes.titre).paginate(page=page, per_page=app.config["POEME_PER_PAGE"]))
 
 @app.route("/poemes/<string:folio>", methods=["POST", "GET"])
 def page_poeme(folio):
@@ -46,6 +65,25 @@ def page_poeme(folio):
         # Erreur 404 en cas d'erreur
     except Exception as erreur:
         abort(404)
+
+@app.route("/herbier")
+@app.route("/herbier/<int:page>")
+def herbier(page=1):
+    """
+    Route permettant l'affichage de la liste des planches botaniques.
+
+    Parameters
+    ----------
+    page : int, optional
+        Numéro de page
+
+    Returns
+    -------
+    template
+        Retourne le template sommaire_herbier.html
+    """
+    return render_template("pages/sommaire_herbier.html", 
+        sous_titre="Sommaire de l'herbier", donnees= Herbier.query.order_by(Herbier.id_poeme).paginate(page=page, per_page=app.config["PLANTE_PER_PAGE"]))
 
 @app.route("/herbier/<string:folio>", methods=["POST", "GET"])
 def identification(folio):
@@ -117,7 +155,7 @@ def identification(folio):
 
             # Cette route renvoie le template info_plante.html qui utilisera comme données la requête ci-dessous
             return render_template("/pages/info_plante.html", donnees=Herbier.query.filter(Herbier.id == folio).first(), folio=folio)
-
+        
         # Une erreur 404 est renvoyée si l'illustration n'existe pas
         else:
             abort(404)
