@@ -3,47 +3,60 @@
 {% block body %}
 
 <style>
-    .suggestion {
-        text-shadow: 2px 2px 4px olive;
-        font-size: 22px;
-        margin-top: 46px;
-        margin-bottom: 10px;
-        margin-left: auto;
+
+    a {
+        color:white;
+        text-decoration: none;
+        margin-left: 5px;
     }
 
-    .col-4 {
+
+
+    .suggestion {
+        text-shadow: 2px 2px 4px olive;
+        margin-top: 40px;
+        margin-bottom: 10px;
+        
+
+    }
+
+    .col-3 {
         background-color:palegoldenrod;
         margin-top: 90px;
         margin-bottom: 200px;
         text-align: center;
-        margin-left: 90px;
         border-style: dashed;
         border-radius: 25px;
         border-color: darkolivegreen;
+        margin-right: 20px;
     }
+
 
     .col-7 {
         margin-bottom: 30px;
         font-size: 22px;
+        margin-left: 40px;
+
     }
 
     h3 {
-        
-        font-size: 25px;
+        font-family: cursive;
+        font-size: 27px;
         text-align:start;
         margin-top: 25px;
         margin-bottom: 10px;
-        margin-left: 90px;
+        margin-left: 50px;
 
     } 
 
     .metadonnees {
-        font-size: 18px;
+        font-family: cursive;
+        font-size: 19px;
         margin-bottom: 5px;
     }
 </style>
 
-<div class="container">
+<div>
     <h3><i>{{donnees.poems[0].titre}}</i></h3>
     <div class="row">
         <div class="col-7">
@@ -75,16 +88,16 @@
                             {% if donnees.nom_commun3 %}
                                 <li>Nom commun 3 : {{donnees.nom_commun3}}</li>
                             {% endif %}
-                        <br>
-                            <button type="button" class="btn btn-success btn-">
-                                <a href="{{ url_for('page_poeme', folio=donnees.poems[0].id) }}">Découvrez le poème associé</a>
-                            </button>
                         </ul>
+                            <button type="button" class="btn btn-success btn">
+                               <a href="{{ url_for('page_poeme', folio=donnees.poems[0].id) }}">Découvrez le poème associé</a> 
+                            </button>
                     </td>
                 </tr>
             </table>
         </div>
-        <div class="col-4">
+        <div class="col-1"></div>
+        <div class="col-3">
             {% if donnees.famille2 %}
             <h4>Mon identification</h4>
             <li>Famille : {{donnees.famille2}}</li>
@@ -93,7 +106,9 @@
             <li>Commentaire : {{donnees.commentaire}}</li>
             {% else %}
             <p class="suggestion">Une suggestion à faire ?</p>
-            <button type="button" class="btn btn-success btn-lg"><a href="{{ url_for('insertion_plante', folio=donnees.id) }}">Proposer mon identification</a></button>
+            <button type="button" class="btn btn-success">
+                <a href="{{ url_for('insertion_plante', folio=donnees.id) }}">Proposer mon identification</a>
+            </button>
             {% endif %}
         </div>
     </div>

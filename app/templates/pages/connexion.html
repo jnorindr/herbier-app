@@ -2,18 +2,63 @@
 
 {% block body %}
 
-    <form action="{{url_for('connexion', folio=folio)}}" method="post" name="connexion">
-    {{ form.hidden_tag() }}
+<style>
 
-        <div>
-            <label for="pseudo">Pseudonyme</label>
-            {{ form.pseudo(class_="form-control", placeholder_="Pseudonyme") }}
-            <label for="password">Mot de passe</label>
-            {{ form.password(class_="form-control", placeholder_="Mot de passe") }}
+.form-control:focus, .form-control:active, .form-password:focus {
+  box-shadow:none;
+  background-color: #e6ffff
+
+
+}
+
+    .pseudo {
+        font-size: 23px;
+        margin-bottom: 10px;
+    }
+
+    .mdp {
+        font-size: 23px;
+        margin-bottom: 10px;
+
+    }
+
+
+    .singin {
+        margin-left: 240px;
+        margin-top:15px;
+
+    }
+
+    .form-control {
+        border: 5px dotted darkolivegreen ;
+        background-color:palegoldenrod;
+
+    }
+
+        
+        
+        
+
+</style>
+
+    <form action="{{url_for('connexion', folio=folio)}}" method="post" name="connexion">
+        <div class="row">
+            <div class="col-3"></div>
+            <div class="col-6">
+                <br>
+            <label for="pseudo"><br><p class="pseudo">Pseudonyme</p></label>
+            {{ form.pseudo(class_="form-control", placeholder_="Insérez votre pseudo") }}
+            <label for="password"><br><p class="mdp">Mot de passe</p></label>
+            {{ form.password(class_="form-control", placeholder_="Insérez votre mot de passe") }}
+            <br>
+            <p class="singin">
+                    <input type="button" class="btn btn-success btn-lg" value="Connexion">
+            </p>
+            <br>
+            <br>
         </div>
-        <p>
-            <input type="submit" value="Connexion">
-        </p>
+        </div>
+      
     </form>
 
 {% endblock %}

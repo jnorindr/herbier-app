@@ -1,31 +1,88 @@
 {% extends "partials/conteneur.html" %}
 
 {% block body %}
+
+
+<style>
+
+a {
+        color:white;
+        text-decoration: none;
+    }
+
+
+
+
+h3 {
+        font-family: cursive;
+        font-size: 27px;
+        text-align:start;
+        margin-top: 25px;
+        margin-bottom: 10px;
+        margin-left: 50px;
+
+    } 
+
+    .col-5 {
+        margin-bottom: 30px;
+        font-size: 22px;
+        margin-left: 40px;
+    }
+
+    .col-6 {
+        font-family: cursive;
+        margin-left: 20px;
+        text-align: justify;
+    }
+
+    .col-1 {
+        background-color:palegoldenrod;
+        margin-top: 90px;
+        text-align: center;
+        border-style: dashed;
+        border-radius: 25px;
+        border-color: darkolivegreen;
+    }
+
+</style>
 <div>
     {% block content %}
-        <h5>
-            {{donnees.titre }} ({{donnees.id}})
-        </h5>
+        <h3>
+            <i>{{donnees.titre }} ({{donnees.id}})</i>
+        </h3>
         <table>
             <tr>
-                <td>
+                <td><div class="col-5">
                     <img src="https://gallica.bnf.fr/iiif/ark%3A%2F12148%2Fbtv1b8451620k/{{folio}}/full/full/0/native.jpg" style="width:300px;"/>
+                </div>
                 </td>
                 <td>
-                    <div>
+                    <div class="col-6">
                         <p>{{donnees.ocr}}</p>
                     </div>
                     <div>
                         {% if donnees.commentaire %}
                         <p>Commentaire : {{donnees.commentaire}}</p>
                         {% else %}
-                        <a href="{{ url_for('insertion_poeme', folio=donnees.id) }}">Écrire un commentaire</a>
-
+                        <button type="button" class="btn btn-success btn">
+                            <a href="{{ url_for('identification', folio=donnees.id_plante) }}">Découvrez la plante associée</a> 
+                         </button>
+                         <button type="button" class="btn btn-success">
+                            <a href="{{ url_for('insertion_poeme', folio=donnees.id) }}">Proposer ma modification</a>
+                        </button>
                         {% endif %}
+                        
                     </div>
+                    
                 </td>
+              
             </tr>
+            
         </table>
+        
+    </div>
+
+</div>
     {% endblock %}
 </div>
 

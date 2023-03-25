@@ -27,6 +27,11 @@
         word-spacing: 5px;
         margin-bottom: 50px;   
     }
+
+    .ouvrageref {
+        font-family: cursive;
+    }
+
 </style>
 
 <div class="container">
@@ -37,19 +42,21 @@
                 Chez nous, vous pourrez :
             </h1>
             <ul class="presentation">
-                <li>Découvrir les identifications proposées par l'API Pl@ntNet des illustrations botaniques de <i><a href="https://gallica.bnf.fr/ark:/12148/btv1b8451620k">{{biblio['metadata'][5]['value']}}</a></i>,</li>
+                <li>Découvrir les identifications proposées par l'API Pl@ntNet des illustrations botaniques de <i><a href="https://gallica.bnf.fr/ark:/12148/btv1b8451620k">{{biblio['metadata'][5]['value']}}</a></i></li>
+                <div class="ouvrageref">
                 <br>
-                <li>Proposez vos propres identifications pour enrichir notre base de données,</li>
+                    {{biblio['metadata'][6]['value']}}<br>
+                    {{biblio['metadata'][4]['value']}}<br>
+                    {{biblio['metadata'][8]['value']}}
+                </div><br>
+                <li>Proposez vos propres identifications pour enrichir notre base de données.</li>
                 <br>
-                <li>Consulter les poèmes associés aux plantes identifiées et leur transcription automatique au format texte,</li>
+                <li>Consulter les poèmes associés aux plantes identifiées et leur transcription automatique au format texte.</li>
                 <br>
                 <li>Proposez vos corrections aux transcriptions des poèmes afin d'affiner les données de l'application.</li>
                 <br>
-                <li><i>{{biblio['metadata'][5]['value']}}</i><br>
-                    {{biblio['metadata'][6]['value']}}<br>
-                    {{biblio['metadata'][4]['value']}}<br>
-                    {{biblio['metadata'][8]['value']}}</p>
-                </li>
+                
+         
             </ul>
         </div>
         <div class="col-3"></div>
