@@ -143,8 +143,10 @@ def identification(folio):
             # Transformation de la réponse au format JSON vers un dictionnaire Python
             ident = json.loads(response.text)
 
-            # Import des valeurs qui nous intéressent dans la base de données herbier à partir de la réponse en JSON de l'API
-            Herbier.query.filter(Herbier.id == folio).\
+            # Vérification de l'existence des résultats dans le dictionnaire
+            if 'results' in ident.keys():
+                # Import des valeurs qui nous intéressent dans la base de données herbier à partir de la réponse en JSON de l'API
+                Herbier.query.filter(Herbier.id == folio).\
                 update({"famille": ident['results'][0]['species']['family']['scientificNameWithoutAuthor'],
                 "nom_commun1": ', '.join(ident['results'][0]['species']['commonNames']),
                 "nom_latin1": ident['results'][0]['species']['scientificNameWithoutAuthor'],
@@ -152,7 +154,12 @@ def identification(folio):
                 "nom_commun2": ', '.join(ident['results'][1]['species']['commonNames']),
                 "nom_commun3": ', '.join(ident['results'][2]['species']['commonNames']),
                 "nom_latin3": ident['results'][2]['species']['scientificNameWithoutAuthor']})
-            db.session.commit()
+                db.session.commit()
+            
+            # Sinon retourner un message signalant que l'identification est impossible
+            else:
+                Herbier.query.filter(Herbier.id == folio).\
+                update({"famille": 'Espèce inconnue'})
 
             # Cette route renvoie le template info_plante.html qui utilisera comme données la requête ci-dessous
             return render_template("/pages/info_plante.html", donnees=Herbier.query.filter(Herbier.id == folio).first(), folio=folio)
