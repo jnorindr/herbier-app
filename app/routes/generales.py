@@ -1,5 +1,6 @@
 from ..app import app, db
-from flask import render_template, abort
+from flask import render_template, abort, request
+from sqlalchemy import or_, text
 from ..models.iiif_api import IIIF
 from ..models.database import Herbier, Poemes
 import json, requests
@@ -41,7 +42,7 @@ def poemes(page=1):
         sous_titre="Sommaire des poèmes", donnees= Poemes.query.order_by(Poemes.titre).paginate(page=page, per_page=app.config["POEME_PER_PAGE"]))
 
 @app.route("/poemes/<string:folio>", methods=["POST", "GET"])
-def page_poeme(folio):
+def info_poeme(folio):
     """
     Route permettant l'affichage d'une page de poème et de ses informations.
 
@@ -87,7 +88,7 @@ def herbier(page=1):
         sous_titre="Sommaire de l'herbier", donnees= Herbier.query.paginate(page=page, per_page=app.config["PLANTE_PER_PAGE"]))
 
 @app.route("/herbier/<string:folio>", methods=["POST", "GET"])
-def identification(folio):
+def info_plante(folio):
     """
     Route permettant l'affichage d'une planche botanique et de ses informations.
 
@@ -170,3 +171,35 @@ def identification(folio):
         # Erreur 404 en cas d'erreur
     except Exception as erreur:
         abort(404)
+
+@app.route("/recherche_rapide")
+@app.route("/recherche_rapide/<int:page>")
+def recherche_rapide(page=1):
+    """
+    Route permettant à l'utilisateur de faire une recherche rapide via la navbar.
+
+    Parameters
+    ----------
+    page : int, optional
+        Numéro de page
+
+    Returns
+    -------
+    template
+        Retourne le template resultats_recherche.html
+    """
+    # Récupération de la chaîne dans le formulaire
+    chaine = request.args.get("chaine", None)
+    # Si la requête existe
+    if chaine:
+        # Les requêtes retournent une liste des pages des poèmes et plantes dont le titre ou le texte contient la chaîne.
+        resultats_poemes = Poemes.query.join(Herbier, Poemes.id_plante == Herbier.id).filter(or_(
+            Poemes.titre.ilike(f"%{chaine}%"),
+            Poemes.ocr.ilike(f"%{chaine}%"))
+            ).distinct(Poemes.titre).order_by(Poemes.titre).paginate(page=page)
+        
+        resultats_plantes = Herbier.query.join(Poemes, Poemes.id_plante == Herbier.id).\
+            filter(Poemes.titre.ilike(f"%{chaine}%")).distinct(Poemes.titre).order_by(Poemes.titre).paginate(page=page)
+    else:
+        resultats=None
+    return render_template("pages/resultats_recherche.html", sous_titre=f"Recherche | {chaine}", donnees=resultats_poemes, donnees2=resultats_plantes, requete=chaine)

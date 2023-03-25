@@ -1,173 +1,154 @@
 <!doctype html>
-<html lang="en">
-
-<head>
-  
-  <link rel='icon' href="https://cdn-icons-png.flaticon.com/512/7593/7593027.png" type='image/x-icon' sizes="16x16" />
-  <title>Le poète à la main verte | {{sous_titre}}</title>
+<html lang="fr">
+  <head>
+    <link rel='icon' href="https://cdn-icons-png.flaticon.com/512/7593/7593027.png" type='image/x-icon' sizes="16x16" />
+    <title>Le poète à la main verte | {{sous_titre}}</title>
     {% include "partials/css.html" %}
     {% include "partials/metadata.html" %}
     {% include "partials/js.html" %}
     {% block js %}{%endblock%}
     {% block css %}{%endblock%}
 
-<style>
-
-
-
-      
-a:hover {
+    <style>
+      a:hover {
         color:white;
-    }
+      }
 
-
-  ul {
+      ul {
         margin-top: 20px;
-  
-    }
+      }
     
-   .text-center{
-    font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-    color:white;
-    text-decoration-line: underline;
-      margin-top: 120px;
-      font-variant: small-caps;
-      font-weight: bold;
-      font-size: 60px;
-      text-shadow: 2px 2px 4px olive;
-    }
+      .text-center{
+        font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+        color:white;
+        text-decoration-line: underline;
+        margin-top: 120px;
+        font-variant: small-caps;
+        font-weight: bold;
+        font-size: 60px;
+        text-shadow: 2px 2px 4px olive;
+      }
 
+      .nav-item {
+        border: 2px solid beige;
+        margin-left: 20px;
+        border-style: dotted;
+        border-radius: 20px;
+        background-color:darkolivegreen;
+        margin-bottom: 15px;
+      }
 
-    .nav-item {
-      border: 2px solid beige;
-      margin-left: 20px;
-      border-style: dotted;
-      border-radius: 20px;
-      background-color:darkolivegreen;
-      margin-bottom: 15px;
-    }
+      .nav-link {
+        color:beige;
+      }
 
-    .nav-link {
-      color:beige;
-    }
+      .btn-outline-info {
+        border: 2px solid beige;
+        margin-left: 10px;
+        border-style: dotted;
+        border-radius: 20px;
+        background-color:darkolivegreen;
+      }
 
-    .btn-outline-info {
-      border: 2px solid beige;
-      margin-left: 10px;
-      border-style: dotted;
-      border-radius: 20px;
-      background-color:darkolivegreen;
-    }
+      .btn-success {
+        border: 2px solid beige;
+        margin-left: 10px;
+        border-style: dotted;
+        border-radius: 20px;
+        background-color:darkolivegreen;
+        margin-right: 20px;
+      }
 
-    .btn-success {
-      border: 2px solid beige;
-      margin-left: 10px;
-      border-style: dotted;
-      border-radius: 20px;
-      background-color:darkolivegreen;
-      margin-right: 20px;
-    }
+      img {
+        margin-left: 10px;
+      }
 
-    img {
-      margin-left: 10px;
-    }
-
-    .form-control {
+      .form-control {
         border: 5px dotted darkolivegreen ;
         background-color:palegoldenrod;
+      }
 
-    }
+      .form-control:focus, .form-control:active, .form-password:focus {
+        box-shadow:none;
+        background-color: #e6ffff
+      }
 
-    .form-control:focus, .form-control:active, .form-password:focus {
-  box-shadow:none;
-  background-color: #e6ffff
+      .bg-image {
+        background-image: url('https://previews.123rf.com/images/vicushka/vicushka1506/vicushka150600102/41061682-feuilles-de-foug%C3%A8re-sur-la-nature-floue-banni%C3%A8re-de-fond-pour-le-site-web.jpg');
+        height: 400px; 
+        width: 100%;
+        overflow: hidden;
+        margin-top: -300px;
+      }
+    </style>
+  </head>
 
-
-}
-    
-
-</style>
-</head>
-
-
-
-
-<body>
-  <!-- Barre de navigation -->
-
-  <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
-    <a class="navbar-brand" href="http://localhost:5000/accueil">
-      <img src="https://cdn-icons-png.flaticon.com/512/7593/7593027.png" style="width:40px;">
-    </a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarNav">
-      <ul class="navbar-nav ml-auto">
-        <li class="nav-item">
-          <a class="nav-link" href="{{ url_for('herbier') }}">Coin herbier</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="{{ url_for('poemes') }}">Coin poèmes</a>
-        {%if current_user.is_authenticated %}
-        <li class="nav-item active">
-          <a class="nav-link" href="{{ url_for('deconnexion') }}">Se déconnecter ({{ current_user.pseudo }})</a>
-        </li>
-        {% else %}
-        <li class="nav-item active">
-          <a class="nav-link" href="{{ url_for('connexion') }}">Se connecter</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="{{ url_for('creation_utilisateur') }}">S'enregistrer</a>
-        </li>
+  <body>
+    <!-- Barre de navigation -->
+    <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+      <a class="navbar-brand" href="http://localhost:5000/accueil">
+        <img src="https://cdn-icons-png.flaticon.com/512/7593/7593027.png" style="width:40px;">
+      </a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item">
+            <a class="nav-link" href="{{ url_for('herbier') }}">Coin herbier</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{{ url_for('poemes') }}">Coin poèmes</a>
+          {%if current_user.is_authenticated %}
+          <li class="nav-item">
+            <a class="nav-link" href="{{ url_for('deconnexion') }}">Se déconnecter ({{ current_user.pseudo }})</a>
+          </li>
+          {% else %}
+          <li class="nav-item">
+            <a class="nav-link" href="{{ url_for('connexion') }}">Se connecter</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{{ url_for('creation_utilisateur') }}">S'enregistrer</a>
+          </li>
           {% endif %}
-      </ul>
-    </div>
-    <div>
-    <form class="form-inline" action="/action_page.php">
-      <input class="form-control mr-sm-2" type="text" placeholder="Une plante, un poème...">
-    </form>
-    </div>
-    <button class="btn btn-success" type="submit">Rechercher</button>
-  </nav>
+        </ul>
+      </div>
+      {% include "partials/formulaires/recherche_rapide.html" %}
+    </nav>
 
-  <div class="container">
-    {% with messages = get_flashed_messages(with_categories=true) %}
-    {% if messages %}
-    <div class="row">
-      <div class="col">
-        {% for category, message in messages %}
-        <div class="alert alert-{{category}}" role="alert">{{ message }}</div>
-        {% endfor %}
-      </div>
-    </div>
-    {% endif %}
-    {% endwith %}
-    <div class="row">
-      <div class="col">
-      </div>
-    </div>
-  </div>
-  
-  <header class="jumbotron jumbotron-fluid">
     <div class="container">
-      <div class="col colCouleur">
-        <h1 class="text-center">Le poète à la main verte</h1>
+      {% with messages = get_flashed_messages(with_categories=true) %}
+      {% if messages %}
+      <div class="row">
+        <div class="col">
+          {% for category, message in messages %}
+          <div class="alert alert-{{category}}" role="alert">{{ message }}</div>
+          {% endfor %}
+        </div>
+      </div>
+      {% endif %}
+      {% endwith %}
+      <div class="row">
+        <div class="col"></div>
       </div>
     </div>
-  </header>
-
-  <div class="bg-image" style="
-    background-image: url('https://previews.123rf.com/images/vicushka/vicushka1506/vicushka150600102/41061682-feuilles-de-foug%C3%A8re-sur-la-nature-floue-banni%C3%A8re-de-fond-pour-le-site-web.jpg');
-    height: 400px; width:100%;overflow:hidden;margin-top: -300px;"></div>
   
-    
+    <header class="jumbotron jumbotron-fluid">
+      <div class="container">
+        <div class="col colCouleur">
+          <h1 class="text-center">Le poète à la main verte</h1>
+        </div>
+      </div>
+    </header>
 
+    <div class="bg-image"></div>
+  
     {% block body%}{%endblock%}
-
+    
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3"
         crossorigin="anonymous"></script>
-</body>
 
+  </body>
 </html>

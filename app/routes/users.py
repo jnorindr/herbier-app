@@ -32,11 +32,11 @@ def creation_utilisateur():
         # Sinon, renvoyer les erreurs et retourner la page d'inscription
         else:
             flash(",".join(donnees), "error")
-            return render_template("pages/creation_utilisateur.html", form=form)
+            return render_template("partials/formulaires/creation_utilisateur.html", form=form)
     
     # Sinon, retourner la page d'inscription
     else:
-        return render_template("pages/creation_utilisateur.html", form=form)
+        return render_template("partials/formulaires/creation_utilisateur.html", form=form)
 
 @app.route("/utilisateurs/connexion", methods=["GET", "POST"])
 def connexion():
@@ -51,7 +51,7 @@ def connexion():
     form = Connexion()
 
     # Vérification que l'utilisateur n'est pas déjà connecté : si l'utilisateur est connecté, retour à la page d'accueil
-    if current_user.is_authenticated is True:
+    if current_user.is_authenticated:
         flash("Vous êtes déjà connecté", "info")
         return redirect(url_for("accueil"))
     
@@ -69,11 +69,11 @@ def connexion():
         # Sinon, retourner la page de connexion
         else:
             flash("L'identifiant ou le mot de passe est incorrect", "error")
-            return render_template("pages/connexion.html", form=form)
+            return render_template("partials/formulaires/connexion.html", form=form)
         
     # Sinon, retourner la page de connexion
     else:
-        return render_template("pages/connexion.html", form=form)
+        return render_template("partials/formulaires/connexion.html", form=form)
 
 login.login_view = "connexion"
 

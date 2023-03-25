@@ -65,7 +65,7 @@ h3 {
                         <p>Commentaire : {{donnees.commentaire}}</p>
                         {% else %}
                         <button type="button" class="btn btn-success btn">
-                            <a href="{{ url_for('identification', folio=donnees.id_plante) }}">Découvrez la plante associée</a> 
+                            <a href="{{ url_for('info_plante', folio=donnees.id_plante) }}">Découvrez la plante associée</a> 
                          </button>
                          <button type="button" class="btn btn-success">
                             <a href="{{ url_for('insertion_poeme', folio=donnees.id) }}">Proposer ma modification</a>

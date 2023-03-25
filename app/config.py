@@ -12,5 +12,5 @@ class Config():
     SQLALCHEMY_DATABASE_URI = os.environ.get("SQLALCHEMY_DATABASE_URI")
     WTF_CSRF_ENABLE = os.environ.get("WTF_CSRF_ENABLE ")
     SECRET_KEY = os.environ.get("SECRET_KEY")
-    PLANTE_PER_PAGE = os.environ.get("PLANTE_PER_PAGE")
-    POEME_PER_PAGE = os.environ.get("POEME_PER_PAGE")
+    PLANTE_PER_PAGE = int(os.environ.get("PLANTE_PER_PAGE"))
+    POEME_PER_PAGE = int(os.environ.get("POEME_PER_PAGE"))

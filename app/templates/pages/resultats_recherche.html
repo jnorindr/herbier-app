@@ -24,6 +24,7 @@
     .list-group-item li {
         margin-left: 20px;
         padding: 10px;
+        text-align: left;
     }
 
     ul {
@@ -33,28 +34,26 @@
 </style>
 
 <div class="container">
-    <h1>Sommaire des poemes de <i>La Guirlande de Julie</i></h1>
+    <h1>Résultats de recherche pour "{{ requete }}"</h1>
     <br>
     <div class="row">
-        <div class="col-4"></div>
-        <div class="col-4">
+        <div class="col-4 offset-1">
             <ul>
-                {%if donnees.prev_num %}
-                <a class="list-group-item" href="{{ url_for('poemes', page=donnees.prev_num) }}">
-                    &laquo;
-                </a>
-                {% endif %}
-                {% for poemes in donnees.items %}
-                <a class="list-group-item" href="{{ url_for('info_poeme', folio=poemes.id) }}">
-                    <li>{{poemes.titre}}, {{poemes.id}}</li>
+            {% for poemes in donnees.items %}
+            <a class="list-group-item" href="{{ url_for('info_poeme', folio=poemes.id) }}">
+                <li>{{poemes.titre}}, {{poemes.id}}</li>
+            </a>
+            {% endfor %}
+            </ul>
+        </div>
+        <div class="col-4 offset-1">
+            <ul>
+                {% for plante in donnees2.items %}
+                <a class="list-group-item" href="{{ url_for('info_plante', folio=plante.id) }}">
+                    <li><img src="https://gallica.bnf.fr/iiif/ark%3A%2F12148%2Fbtv1b8451620k/{{plante.id}}/full/full/0/native.jpg" style="width:60px;"/>
+                        {{plante.poems[0].titre}}</li>
                 </a>
                 {% endfor %}
-
-                {%if donnees.next_num %}
-                <a class="list-group-item" href="{{ url_for('poemes', page=donnees.next_num) }}">
-                    &raquo;
-                </a>
-                {% endif %}
             </ul>
         </div>
     </div>
