@@ -1,8 +1,10 @@
+<!-- Template pour le sommaire des pages avec des illustrations -->
+
 {% extends "partials/conteneur.html" %}
 
 {% block body %}
 <style>
-    h1 {
+    h2 {
         text-align: center;
         margin-top: 50px;
         margin-bottom: 20px;
@@ -18,26 +20,32 @@
         background-color: olivedrab;
         text-transform: uppercase;
         color: wheat;
+        margin: 1px;
     }
 
     .list-group-item li {
         margin-left: 20px;
         padding: 10px;
         text-align: left;
+        list-style-type: none;
     }
 
-    ul {
+    div>ul {
         border-radius: 20px;
         align-items: center;
+    }
+
+    .mini {
+        width:60px;
+        margin-right:10px;
     }
 </style>
 
 <div class="container">
-    <h1>Sommaire de l'herbier de <i>La Guirlande de Julie</i></h1>
+    <h2>Sommaire de l'herbier de <i>La Guirlande de Julie</i></h2>
     <br>
     <div class="row">
-        <div class="col-4"></div>
-        <div class="col-4">
+        <div class="col-4 offset-4">
             <ul>
                 {%if donnees.prev_num %}
                 <a class="list-group-item" href="{{ url_for('herbier', page=donnees.prev_num) }}">
@@ -46,7 +54,7 @@
                 {% endif %}
                 {% for herbier in donnees.items %}
                 <a class="list-group-item" href="{{ url_for('info_plante', folio=herbier.id) }}">
-                    <li><img src="https://gallica.bnf.fr/iiif/ark%3A%2F12148%2Fbtv1b8451620k/{{herbier.id}}/full/full/0/native.jpg" style="width:60px;"/>
+                    <li><img src="https://gallica.bnf.fr/iiif/ark%3A%2F12148%2Fbtv1b8451620k/{{herbier.id}}/full/full/0/native.jpg" class="mini"/>
                         {{herbier.poems[0].titre}}</li>
                 </a>
                 {% endfor %}

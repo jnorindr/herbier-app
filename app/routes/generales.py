@@ -59,7 +59,9 @@ def info_poeme(folio):
     try:
         # Test de l'existence du poème dans la table
         if Poemes.query.filter(Poemes.id==folio).first():
-            return render_template("/pages/info_poeme.html", donnees=Poemes.query.filter(Poemes.id == folio).first(), folio=folio)
+            # Création d'une variable associée aux données requêtées dans la base
+            donnees=Poemes.query.filter(Poemes.id == folio).first()
+            return render_template("/pages/info_poeme.html", sous_titre=donnees.titre+' '+donnees.id, donnees=donnees, folio=folio)
 
         # Une erreur 404 est renvoyée si la page n'existe pas
         else:
@@ -85,7 +87,7 @@ def herbier(page=1):
         Retourne le template sommaire_herbier.html
     """
     return render_template("pages/sommaire_herbier.html", 
-        sous_titre="Sommaire de l'herbier", donnees= Herbier.query.paginate(page=page, per_page=app.config["PLANTE_PER_PAGE"]))
+        sous_titre="Sommaire de l'herbier", donnees=Herbier.query.paginate(page=page, per_page=app.config["PLANTE_PER_PAGE"]))
 
 @app.route("/herbier/<string:folio>", methods=["POST", "GET"])
 def info_plante(folio):
@@ -162,8 +164,11 @@ def info_plante(folio):
                 Herbier.query.filter(Herbier.id == folio).\
                 update({"famille": 'Espèce inconnue'})
 
+            # Création d'une variable associée aux données requêtées dans la base
+            donnees=Herbier.query.filter(Herbier.id == folio).first()
+
             # Cette route renvoie le template info_plante.html qui utilisera comme données la requête ci-dessous
-            return render_template("/pages/info_plante.html", donnees=Herbier.query.filter(Herbier.id == folio).first(), folio=folio)
+            return render_template("/pages/info_plante.html", sous_titre=donnees.poems[0].titre, donnees=donnees, folio=folio)
         
         # Une erreur 404 est renvoyée si l'illustration n'existe pas
         else:
@@ -193,13 +198,26 @@ def recherche_rapide(page=1):
     # Si la requête existe
     if chaine:
         # Les requêtes retournent une liste des pages des poèmes et plantes dont le titre ou le texte contient la chaîne.
-        resultats_poemes = Poemes.query.join(Herbier, Poemes.id_plante == Herbier.id).filter(or_(
-            Poemes.titre.ilike(f"%{chaine}%"),
-            Poemes.ocr.ilike(f"%{chaine}%"))
+        resultats_poemes = Poemes.query.join(Herbier, Poemes.id_plante == Herbier.id).\
+            filter(or_(Poemes.titre.ilike(f"%{chaine}%"),
+                        Poemes.ocr.ilike(f"%{chaine}%"),
+                        Poemes.commentaire.ilike(f"%{chaine}%"))
             ).distinct(Poemes.titre).order_by(Poemes.titre).paginate(page=page)
         
         resultats_plantes = Herbier.query.join(Poemes, Poemes.id_plante == Herbier.id).\
-            filter(Poemes.titre.ilike(f"%{chaine}%")).distinct(Poemes.titre).order_by(Poemes.titre).paginate(page=page)
+            filter(or_(Poemes.titre.ilike(f"%{chaine}%"),
+                       Herbier.commentaire.ilike(f"%{chaine}%"),
+                       Herbier.famille.ilike(f"%{chaine}%"),
+                       Herbier.famille2.ilike(f"%{chaine}%"),
+                       Herbier.nom_latin1.ilike(f"%{chaine}%"),
+                       Herbier.nom_latin2.ilike(f"%{chaine}%"),
+                       Herbier.nom_latin3.ilike(f"%{chaine}%"),
+                       Herbier.nom_latin4.ilike(f"%{chaine}%"),
+                       Herbier.nom_commun1.ilike(f"%{chaine}%"),
+                       Herbier.nom_commun2.ilike(f"%{chaine}%"),
+                       Herbier.nom_commun3.ilike(f"%{chaine}%"),
+                       Herbier.nom_commun4.ilike(f"%{chaine}%"))
+            ).distinct(Poemes.titre).order_by(Poemes.titre).paginate(page=page)
     else:
         resultats=None
     return render_template("pages/resultats_recherche.html", sous_titre=f"Recherche | {chaine}", donnees=resultats_poemes, donnees2=resultats_plantes, requete=chaine)

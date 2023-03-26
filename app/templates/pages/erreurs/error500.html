@@ -1,6 +1,14 @@
+<!-- Template affiché en cas d'erreur 500 ou 503 -->
+
 <html>
     <body>
-        <div align="center"><h1>Une erreur inattendue est survenue</h1>
-        <img src="https://pbs.twimg.com/media/EzdmZZ9WYAUKUHw.jpg"/></div>
+        <div align="center">
+            <!-- Texte principal -->
+            <h1>Une erreur inattendue est survenue</h1>
+            <!-- Lien pour permettre à l'utilisateur de revenir à l'accueil de l'application -->
+            <a href="{{ url_for('accueil') }}">Revenir à l'accueil</a>
+            <!-- Image -->
+            <img src="https://pbs.twimg.com/media/EzdmZZ9WYAUKUHw.jpg"/>
+        </div>
     </body>
 </html>

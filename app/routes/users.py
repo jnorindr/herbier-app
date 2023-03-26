@@ -75,6 +75,7 @@ def connexion():
     else:
         return render_template("partials/formulaires/connexion.html", form=form)
 
+# Définition de la page retournée automatiquement quand l'utilisateur non-connecté essaye d'accéder aux pages avec restriction
 login.login_view = "connexion"
 
 @app.route("/utilisateurs/deconnexion", methods=["POST", "GET"])

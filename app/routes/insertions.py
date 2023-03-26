@@ -45,7 +45,7 @@ def insertion_poeme(folio):
         flash("Une erreur s'est produite : " + str(erreur), "error")
     
     # Retourner le template correspondant à la page d'insertion
-    return render_template("/pages/insertion_poeme.html", donnees=donnees, form=form, folio=folio)
+    return render_template("/partials/formulaires/insertion_poeme.html", sous_titre=donnees.titre, donnees=donnees, form=form, folio=folio)
 
 @app.route("/insertion/plante/<string:folio>", methods=['GET', 'POST'])
 @login_required
@@ -83,11 +83,13 @@ def insertion_plante(folio):
             
             # Afficher un message confirmant la réussite de la mise à jour des informations et retourner la page de la planche
             flash("L'identification " + nom_latin4 + " a bien été ajoutée", "info")
-            return render_template("/pages/info_plante.html", donnees=Herbier.query.filter(Herbier.id == folio).first(), folio=folio)
+
+            donnees=Herbier.query.filter(Herbier.id == folio).first()
+            return render_template("/pages/info_plante.html", sous_titre=donnees.poems[0].titre, donnees=donnees, folio=folio)
 
     # En cas d'exception, afficher un message d'erreur
     except Exception as erreur:
         flash("Une erreur s'est produite lors de l'insertion de l'identification " + nom_latin4 + " : " + str(erreur), "error")
     
     # Retourner le template correspondant à la page d'insertion
-    return render_template("/pages/insertion_plante.html", form=form, folio=folio)
+    return render_template("/partials/formulaires/insertion_plante.html", form=form, folio=folio)

@@ -1,3 +1,5 @@
+<!-- Template pour la page du formulaire de connexion -->
+
 {% extends "partials/conteneur.html" %}
 
 {% block body %}
@@ -32,8 +34,7 @@
 </style>
 
 <div class="row">
-    <div class="col-3"></div>
-    <div class="col-6">
+    <div class="col-6 offset-3">
         <form action="{{url_for('connexion')}}" method="post" name="connexion">
         {{ form.hidden_tag() }}
             <br>

@@ -1,6 +1,14 @@
+<!-- Template à afficher en cas d'erreur 404 -->
+
 <html>
     <body>
-        <div align="center"><h2>Erreur 404 : la page demandée n'a pas été trouvée</h2>
-        <img src="https://pbs.twimg.com/media/EzdmZZ9WYAUKUHw.jpg"/></div>
+        <div align="center">
+            <!-- Message principal -->
+            <h1>La page demandée n'a pas été trouvée</h1>
+            <!-- Lien pour permettre à l'utilisateur de revenir à l'accueil de l'application -->
+            <a href="{{ url_for('accueil') }}">Revenir à l'accueil</a>
+            <!-- Image -->
+            <img src="https://pbs.twimg.com/media/EzdmZZ9WYAUKUHw.jpg"/>
+        </div>
     </body>
 </html>

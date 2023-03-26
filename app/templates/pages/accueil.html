@@ -1,65 +1,53 @@
+<!-- Template pour la page d'accueil de l'application -->
+
 {% extends "partials/conteneur.html" %}
 
 {% block body %}
 
 <style>
-    .col-6 {
-        margin: auto;
-        margin-top: 30px;
-        text-align: justify;
-        
-    }
- 
     h1 {
-        margin-top: 50px;
+        margin-top: 20px;
         margin-bottom: 20px;
         color: olivedrab;
         font-variant: small-caps;
         font-size: 30px;
     }
-    
-    ul {
-        margin-top: 20px;
-    }
 
     .presentation {
-        font-size: 18px;
+        margin-top: 20px;
         word-spacing: 5px;
-        margin-bottom: 50px;   
     }
 
+    .presentation>li {
+        margin-bottom: 5px;
+    }
     .ouvrageref {
         font-family: cursive;
+        border: 1px solid olive;
+        padding: 15px;
+        margin-bottom: 20px;
     }
 
 </style>
 
 <div class="container">
     <div class="row">
-        <div class="col-3"></div>
-        <div class="col-6">
-            <h1>Bienvenue sur notre application.
-                Chez nous, vous pourrez :
-            </h1>
+        <div class="col-8 offset-2">
+            <h1>Bienvenue sur notre application !</h1>
+            <p>Avec notre application, vous aurez la possibilité de :</p>
             <ul class="presentation">
-                <li>Découvrir les identifications proposées par l'API Pl@ntNet des illustrations botaniques de <i><a href="https://gallica.bnf.fr/ark:/12148/btv1b8451620k">{{biblio['metadata'][5]['value']}}</a></i></li>
-                <div class="ouvrageref">
-                <br>
-                    {{biblio['metadata'][6]['value']}}<br>
-                    {{biblio['metadata'][4]['value']}}<br>
-                    {{biblio['metadata'][8]['value']}}
-                </div><br>
+                <li>Découvrir les identifications proposées par l'API Pl@ntNet des illustrations botaniques de <i><a href="https://gallica.bnf.fr/ark:/12148/btv1b8451620k">La Guirlande de Julie</a></i></li>
                 <li>Proposez vos propres identifications pour enrichir notre base de données.</li>
-                <br>
                 <li>Consulter les poèmes associés aux plantes identifiées et leur transcription automatique au format texte.</li>
-                <br>
                 <li>Proposez vos corrections aux transcriptions des poèmes afin d'affiner les données de l'application.</li>
-                <br>
-                
-         
             </ul>
+            <div class="ouvrageref">
+                <b>Informations bibliographiques :</b><br>
+                La Guirlande de Julie ({{biblio['metadata'][6]['value']}})<br>
+                {{biblio['metadata'][4]['value']}}<br>
+                {{biblio['metadata'][8]['value']}}
+            </div>
         </div>
-        <div class="col-3"></div>
     </div>
 </div>
 

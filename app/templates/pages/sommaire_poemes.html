@@ -1,9 +1,11 @@
+<!-- Template pour le sommaire des pages avec des poèmes -->
+
 {% extends "partials/conteneur.html" %}
 
 {% block body %}
 
 <style>
-    h1 {
+    h2 {
         text-align: center;
         margin-top: 50px;
         margin-bottom: 20px;
@@ -19,6 +21,8 @@
         background-color: olivedrab;
         text-transform: uppercase;
         color: wheat;
+        list-style-type: none;
+        margin: 1px;
     }
 
     .list-group-item li {
@@ -26,18 +30,17 @@
         padding: 10px;
     }
 
-    ul {
+    div>ul {
         border-radius: 20px;
         align-items: center;
     }
 </style>
 
 <div class="container">
-    <h1>Sommaire des poemes de <i>La Guirlande de Julie</i></h1>
+    <h2>Sommaire des poemes de <i>La Guirlande de Julie</i></h2>
     <br>
     <div class="row">
-        <div class="col-4"></div>
-        <div class="col-4">
+        <div class="col-4 offset-4">
             <ul>
                 {%if donnees.prev_num %}
                 <a class="list-group-item" href="{{ url_for('poemes', page=donnees.prev_num) }}">

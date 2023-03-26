@@ -1,26 +1,47 @@
+<!-- Template pour les pages individuelles des planches botaniques -->
+
 {% extends "partials/conteneur.html" %}
 
 {% block body %}
 
 <style>
-
     a {
         color:white;
         text-decoration: none;
         margin-left: 5px;
     }
 
-
-
-    .suggestion {
-        text-shadow: 2px 2px 4px olive;
-        margin-top: 40px;
-        margin-bottom: 10px;
-        
-
+    h3 {
+        font-family: cursive;
+        font-size: 27px;
+        padding-top: 20px;
+        margin-left: 60px;
     }
 
-    .col-3 {
+    .illu {
+        width: 300px;
+        margin-left: 50px;
+        margin-bottom: 50px;
+    }
+
+    .metadonnees {
+        margin-bottom: 30px;
+        font-size: 19px;
+        text-align: center;
+    }
+
+    .metadonnees>ul {
+        font-family: cursive;
+        text-align: left;
+        list-style-type: none;
+        margin-top: 20%;
+    }
+
+    .metadonnees.button {
+        display: block;
+    }
+
+    .myid {
         background-color:palegoldenrod;
         margin-top: 90px;
         margin-bottom: 200px;
@@ -28,76 +49,56 @@
         border-style: dashed;
         border-radius: 25px;
         border-color: darkolivegreen;
-        margin-right: 20px;
     }
-
-
-    .col-7 {
-        margin-bottom: 30px;
-        font-size: 22px;
-        margin-left: 40px;
-
-    }
-
-    h3 {
-        font-family: cursive;
-        font-size: 27px;
-        text-align:start;
-        margin-top: 25px;
+    
+    .suggestion {
+        text-shadow: 2px 2px 4px olive;
+        margin-top: 40px;
+        margin-right: 50px;
         margin-bottom: 10px;
-        margin-left: 50px;
-
-    } 
-
-    .metadonnees {
-        font-family: cursive;
-        font-size: 19px;
-        margin-bottom: 5px;
     }
 </style>
 
-<div>
-    <h3><i>{{donnees.poems[0].titre}}</i></h3>
+<div class="container-fluid">
     <div class="row">
-        <div class="col-7">
-            <table>
-                <tr>
-                    <td>
-                        <img src="https://gallica.bnf.fr/iiif/ark%3A%2F12148%2Fbtv1b8451620k/{{folio}}/full/full/0/native.jpg" style="width:300px;"/>
-                    </td>
-                    <td>
-                        <ul class="metadonnees">
-                            <!-- Appel des données ajoutées à la base via la route -->
-                            <li>Identifiant : {{donnees.id}}</li>
-                            <li>Famille : {{donnees.famille}}</li>
-                            {% if donnees.nom_latin1 %}
-                                <li>Nom latin 1 : {{donnees.nom_latin1}}</li>
-                            {% endif %}
-                            {% if donnees.nom_commun1 %}
-                                <li>Nom commun 1 : {{donnees.nom_commun1}}</li>
-                            {% endif %}
-                            {% if donnees.nom_latin2 %}
-                                <li>Nom latin 2 : {{donnees.nom_latin2}}</li>
-                            {% endif %}
-                            {% if donnees.nom_commun2 %}
-                                <li>Nom commun 2 : {{donnees.nom_commun2}}</li>
-                            {% endif %}
-                            {% if donnees.nom_latin3 %}
-                                <li>Nom latin 3 : {{donnees.nom_latin3}}</li>
-                            {% endif %}
-                            {% if donnees.nom_commun3 %}
-                                <li>Nom commun 3 : {{donnees.nom_commun3}}</li>
-                            {% endif %}
-                        </ul>
-                            <button type="button" class="btn btn-success btn">
-                               <a href="{{ url_for('info_poeme', folio=donnees.poems[0].id) }}">Découvrez le poème associé</a> 
-                            </button>
-                    </td>
-                </tr>
-            </table>
-        </div>
-        <div class="col-1"></div>
+        <h3>{{donnees.poems[0].titre}}</h3>
         <div class="col-3">
+            <img src="https://gallica.bnf.fr/iiif/ark%3A%2F12148%2Fbtv1b8451620k/{{folio}}/full/full/0/native.jpg" class="illu"/>
+        </div>
+        <div class="col-5 metadonnees">
+            <ul>
+            <!-- Appel des données ajoutées à la base via la route -->
+                <li><b>{{donnees.famille}}</b></li>
+                <li>
+                    {% if donnees.nom_latin1 %}
+                        {{donnees.nom_latin1}}
+                    {% endif %}
+                    {% if donnees.nom_commun1 %}
+                        ({{donnees.nom_commun1}})
+                    {% endif %}
+                </li>
+                <li>
+                    {% if donnees.nom_latin2 %}
+                        {{donnees.nom_latin2}}
+                    {% endif %}
+                    {% if donnees.nom_commun2 %}
+                        ({{donnees.nom_commun2}})
+                    {% endif %}
+                </li>
+                <li>
+                    {% if donnees.nom_latin3 %}
+                        {{donnees.nom_latin3}}
+                    {% endif %}
+                    {% if donnees.nom_commun3 %}
+                        ({{donnees.nom_commun3}})
+                    {% endif %}
+                </li>
+            </ul>
+            <button type="button" class="btn btn-success btn">
+                <a href="{{ url_for('info_poeme', folio=donnees.poems[0].id) }}">Découvrez le poème associé</a> 
+            </button>
+        </div>
+        <div class="col-3 myid">
             {% if donnees.famille2 %}
             <h4>Mon identification</h4>
             <li>Famille : {{donnees.famille2}}</li>

@@ -1,4 +1,4 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="fr">
   <head>
     <link rel='icon' href="https://cdn-icons-png.flaticon.com/512/7593/7593027.png" type='image/x-icon' sizes="16x16" />
@@ -10,12 +10,9 @@
     {% block css %}{%endblock%}
 
     <style>
-      a:hover {
-        color:white;
-      }
-
-      ul {
-        margin-top: 20px;
+      ul.navbar-nav {
+        margin-top: 10px;
+        margin-left: 20px;
       }
     
       .text-center{
@@ -59,10 +56,6 @@
         margin-right: 20px;
       }
 
-      img {
-        margin-left: 10px;
-      }
-
       .form-control {
         border: 5px dotted darkolivegreen ;
         background-color:palegoldenrod;
@@ -85,25 +78,24 @@
 
   <body>
     <!-- Barre de navigation -->
-    <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
-      <a class="navbar-brand" href="http://localhost:5000/accueil">
-        <img src="https://cdn-icons-png.flaticon.com/512/7593/7593027.png" style="width:40px;">
-      </a>
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
-        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarNav">
+    <nav class="navbar navbar-expand-sm bg-dark navbar-dark justify-content-between">
         <ul class="navbar-nav ml-auto">
+          <li class="navbar-brand">
+            <a href="{{ url_for('accueil') }}">
+              <img src="https://cdn-icons-png.flaticon.com/512/7593/7593027.png" style="width:40px;">
+            </a>
+          </li>
           <li class="nav-item">
             <a class="nav-link" href="{{ url_for('herbier') }}">Coin herbier</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="{{ url_for('poemes') }}">Coin poèmes</a>
+          <!-- Si l'utilisateur est connecté, lui proposer de se déconnecter -->
           {%if current_user.is_authenticated %}
           <li class="nav-item">
             <a class="nav-link" href="{{ url_for('deconnexion') }}">Se déconnecter ({{ current_user.pseudo }})</a>
           </li>
+          <!-- Sinon, lui proposer de se connecter ou de créer un compte-->
           {% else %}
           <li class="nav-item">
             <a class="nav-link" href="{{ url_for('connexion') }}">Se connecter</a>
@@ -113,10 +105,10 @@
           </li>
           {% endif %}
         </ul>
-      </div>
-      {% include "partials/formulaires/recherche_rapide.html" %}
+        {% include "partials/formulaires/recherche_rapide.html" %}
     </nav>
 
+    <!-- Style des flashing messages pour transmettre des informations à l'utilisateur -->
     <div class="container">
       {% with messages = get_flashed_messages(with_categories=true) %}
       {% if messages %}
@@ -129,26 +121,21 @@
       </div>
       {% endif %}
       {% endwith %}
-      <div class="row">
-        <div class="col"></div>
-      </div>
     </div>
   
-    <header class="jumbotron jumbotron-fluid">
+    <header class="jumbotron-fluid">
       <div class="container">
-        <div class="col colCouleur">
+        <div class="col">
           <h1 class="text-center">Le poète à la main verte</h1>
         </div>
       </div>
+      <div class="bg-image"></div>
     </header>
 
-    <div class="bg-image"></div>
-  
     {% block body%}{%endblock%}
     
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3"
         crossorigin="anonymous"></script>
-
   </body>
 </html>
