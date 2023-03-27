@@ -51,7 +51,7 @@
     <br>
     <div class="row">
 
-    <!-- Affichage des items ayant pour titre la chaine recherchée -->
+    <!-- Affichage des poèmes ayant pour titre la chaine recherchée -->
         <div class="col-4 offset-1">
             <ul>
             {% for poemes in donnees.items %}
@@ -61,6 +61,8 @@
             {% endfor %}
             </ul>
         </div>
+
+        <!-- Affichage des illustrations ayant pour titre la chaine recherchée -->
         <div class="col-4 offset-1">
             <ul>
                 {% for plante in donnees2.items %}

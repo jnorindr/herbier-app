@@ -37,7 +37,7 @@
     <div class="row">
         <div class="col-6 offset-3">
             <form action="{{url_for('creation_utilisateur')}}" method="post" name="creation_utilisateur">
-                {{ form.hidden_tag() }}
+            {{ form.hidden_tag() }}
                 <br>
                 <label for="pseudo"><br><p class="pseudo">Nom d'utilisateur</p></label>
                 {{ form.pseudo(class_="form-control", placeholder_="Insérez votre nom d'utilisateur") }}
