@@ -14,7 +14,7 @@
     }
 
     .illu {
-        width: 300px;
+        width: 350px;
         margin-left: 50px;
         margin-bottom: 50px;
     }
@@ -50,7 +50,7 @@
             <img src="https://gallica.bnf.fr/iiif/ark%3A%2F12148%2Fbtv1b8451620k/{{folio}}/full/full/0/native.jpg" class="illu"/>
         </div>
         <div class="col-5 offset-1 insertion">
-            <form action="{{url_for('insertion_poeme', folio=folio)}}" method="post" name="insertion_plante">
+            <form action="{{url_for('insertion_plante', folio=folio)}}" method="post" name="insertion_plante">
             {{ form.hidden_tag() }}
                 <label for="famille2">Sélectionner la famille de la plante identifiée.</label>
                 {{ form.famille2(class_="form-control", placeholder_="Famille") }}
@@ -61,8 +61,8 @@
                 <label for="commentaire">Commentaire</label>
                 {{ form.commentaire(class_="form-control", placeholder_="Commentaire") }}
                 <br>
+                <input type="submit" class="btn btn-success btn-lg modification" value="Envoyer"> 
             </form>
-            <input type="button" class="btn btn-success btn-lg modification" value="Envoyer"> 
         </div>
     </div>
 </div>

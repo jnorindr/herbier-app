@@ -24,6 +24,8 @@ def insertion_poeme(folio):
     """
     form = InsertionPoeme()
     donnees=Poemes.query.filter(Poemes.id == folio).first()
+    # Données qui seront appelées dans le champs OCR du formulaire pour permettre à l'utilisateur de les modifier
+    form.ocr.data=donnees.ocr
 
     try:
         # Si le formulaire est rempli et soumi, récupérer les informations
@@ -68,7 +70,6 @@ def insertion_plante(folio):
     form = InsertionPlante()
     donnees=Herbier.query.filter(Herbier.id == folio).first()
 
-
     try:
         # Si le formulaire est rempli et soumi, récupérer les informations
         if form.validate_on_submit():
@@ -92,4 +93,4 @@ def insertion_plante(folio):
         flash("Une erreur s'est produite lors de l'insertion de l'identification " + nom_latin4 + " : " + str(erreur), "error")
     
     # Retourner le template correspondant à la page d'insertion
-    return render_template("/partials/formulaires/insertion_plante.html", sous_titre=Poemes.titre, donnees=donnees, form=form, folio=folio)
+    return render_template("/partials/formulaires/insertion_plante.html", sous_titre=donnees.poems[0].titre, donnees=donnees, form=form, folio=folio)

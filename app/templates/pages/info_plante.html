@@ -21,7 +21,7 @@
     }
 
     .illu {
-        width: 300px;
+        width: 350px;
         margin-left: 50px;
         margin-bottom: 50px;
     }
@@ -29,33 +29,31 @@
     .metadonnees {
         margin-bottom: 30px;
         font-size: 19px;
-        text-align: center;
-        padding: 30px;
     }
 
     .metadonnees>ul {
         font-family: cursive;
-        text-align: left;
         list-style-type: none;
         margin-top: 20%;
-        margin-left: 15px;
-        margin-right: 15px;
+        margin-left: -10%;
+        text-align: justify;
     }
 
-    .metadonnees.button {
-        display: block;
+    .poeme_associe {
+        margin-left: 15%;
     }
 
     .myid {
         background-color:palegoldenrod;
+        border-color: darkolivegreen;
+        border-style: dashed;
+        border-radius: 25px;
+        margin-left: 5%;
         margin-top: 90px;
         margin-bottom: 200px;
         text-align: center;
-        border-style: dashed;
-        border-radius: 25px;
-        border-color: darkolivegreen;
         padding-top:40px;
-        padding-top:40px;
+        padding-bottom:40px;
     }
     
     .suggestion {
@@ -77,10 +75,10 @@
 <div class="container-fluid">
     <div class="row">
         <h3 class="col-11 offset-1">{{donnees.poems[0].titre}}</h3>
-        <div class="col-3">
+        <div class="col-4">
             <img src="https://gallica.bnf.fr/iiif/ark%3A%2F12148%2Fbtv1b8451620k/{{folio}}/full/full/0/native.jpg" class="illu"/>
         </div>
-        <div class="col-5 metadonnees">
+        <div class="col-4 metadonnees">
             <ul>
             <!-- Appel des données ajoutées à la base via la route -->
                 <li><b>{{donnees.famille}}</b></li>
@@ -109,7 +107,7 @@
                     {% endif %}
                 </li>
             </ul>
-            <button type="button" class="btn btn-success btn">
+            <button type="button" class="btn btn-success btn poeme_associe">
                 <a href="{{ url_for('info_poeme', folio=donnees.poems[0].id) }}">Découvrez le poème associé</a> 
             </button>
         </div>
@@ -123,6 +121,9 @@
                 <li>{{donnees.nom_latin4}} ({{donnees.nom_commun4}})</li>
                 <li>Commentaire : {{donnees.commentaire}}</li>
             </ul>
+            <button type="button" class="btn btn-success">
+                <a href="{{ url_for('insertion_plante', folio=donnees.id) }}">Modifier mon identification</a>
+            </button>
             {% else %}
             <p class="suggestion">Une suggestion à faire ?</p>
             <button type="button" class="btn btn-success">
