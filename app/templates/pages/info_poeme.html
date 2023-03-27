@@ -8,14 +8,16 @@
     a {
         color:white;
         text-decoration: none;
-        margin-left: 5px;
+    }
+
+    a:hover {
+        color: #e6ffff;
     }
 
     h3 {
         font-family: cursive;
         font-size: 27px;
         padding-top: 20px;
-        margin-left: 60px;
     }
 
     .illu {
@@ -44,7 +46,7 @@
 
 <div class="container-fluid">
     <div class="row">
-        <h3>{{donnees.titre }} ({{donnees.id}})</h3>
+        <h3 class="col-11 offset-1">{{donnees.titre}} ({{donnees.id}})</h3>
         <div class="col-3">
             <img src="https://gallica.bnf.fr/iiif/ark%3A%2F12148%2Fbtv1b8451620k/{{folio}}/full/full/0/native.jpg" class="illu"/>
         </div>
