@@ -3,33 +3,75 @@
 {% extends "partials/conteneur.html" %}
 
 {% block body %}
-<table>
-    <tr>
-        <td>
-            <img src="https://gallica.bnf.fr/iiif/ark%3A%2F12148%2Fbtv1b8451620k/{{folio}}/full/full/0/native.jpg" style="width:300px;"/>
-        </td>
-        <td>
-    <form action="{{url_for('insertion_plante', folio=folio)}}" method="post" name="insertion_plante">
-    {{ form.hidden_tag() }}
 
-        <div>
-            <label for="famille2">Famille botanique</label>
+<style>
+
+    h3 {
+        font-family: cursive;
+        font-size: 27px;
+        padding-top: 20px;
+    }
+
+    .illu {
+        width: 300px;
+        margin-left: 50px;
+        margin-bottom: 50px;
+    }
+
+    .insertion {
+        margin-top: 90px;
+        margin-bottom: 30px;
+        font-size: 19px;
+        text-align: left;
+        
+    }
+
+    .insertion>ul {
+        font-family: cursive;
+        text-align: left;
+        list-style-type: none;
+        margin-top: 20%;
+        
+    }
+    
+    label {
+        margin-top: 10px;
+        margin-bottom: 10px;
+    }
+
+    .modification {
+        margin-left: 38%;
+    }
+
+
+</style>
+
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-3">
+            <h3 class="col-11 offset-1">{{donnees.poems[0].titre}}</h3>
+            <img src="https://gallica.bnf.fr/iiif/ark%3A%2F12148%2Fbtv1b8451620k/{{folio}}/full/full/0/native.jpg" class="illu"/>
+        </div>
+        <div class="col-1"></div>
+        <div class="col-5 insertion">
+            
+            <form action="{{url_for('insertion_poeme', folio=folio)}}" method="post" name="insertion_plante">
+            {{ form.hidden_tag() }}
+            <label for="famille2">Sélectionner la famille de la plante identifiée.</label>
             {{ form.famille2(class_="form-control", placeholder_="Famille") }}
-            <small id="famille2">Sélectionner la famille de la plante identifiée.</small>
-            <label for="nom_commun4">Nom commun</label>
+            <label for="nom_commun4">Entrer le(s) nom(s) commun(s) de la plante.</label>
             {{ form.nom_commun4(class_="form-control", placeholder_="Nom commun") }}
-            <small id="nom_commun4">Entrer le(s) nom(s) commun(s) de la plante.</small>
-            <label for="nom_latin4">Nom latin</label>
+            <label for="nom_latin4">Entrer le nom latin de la plante.</label>
             {{ form.nom_latin4(class_="form-control", placeholder_="Nom latin") }}
-            <small id="nom_latin4">Entrer le nom latin de la plante.</small>
             <label for="commentaire">Commentaire</label>
             {{ form.commentaire(class_="form-control", placeholder_="Commentaire") }}
-        </div>
-        <p>
-            <input type="submit" value="Envoyer mon identification">
-        </p>
-    </form>
-</td>
-</tr>
-</table>
-{% endblock %}
+            <br>
+        </form>
+        <input type="button" class="btn btn-success btn-lg modification" value="Envoyer"> 
+    </div>
+
+
+
+{% endblock%}
+
