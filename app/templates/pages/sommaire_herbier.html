@@ -4,6 +4,7 @@
 
 {% block body %}
 <style>
+
     a:hover {
         color: #e6ffff;
     }
@@ -43,6 +44,7 @@
         width:60px;
         margin-right:10px;
     }
+
 </style>
 
 <div class="container">
@@ -51,14 +53,17 @@
     <div class="row">
         <div class="col-4 offset-4">
             <ul>
+                <!-- Création des boutons de pagination du sommaire -->
                 {%if donnees.prev_num %}
                 <a class="list-group-item" href="{{ url_for('herbier', page=donnees.prev_num) }}">
                     &laquo;
                 </a>
                 {% endif %}
+                 <!-- Appel des folios des plantes enregistrés en base -->
                 {% for herbier in donnees.items %}
                 <a class="list-group-item" href="{{ url_for('info_plante', folio=herbier.id) }}" onclick="loading();">
                     <li><img src="https://gallica.bnf.fr/iiif/ark%3A%2F12148%2Fbtv1b8451620k/{{herbier.id}}/full/full/0/native.jpg" class="mini"/>
+                    <!-- Appel des titres dans la base poèmes -->   
                         {{herbier.poems[0].titre}}</li>
                 </a>
                 {% endfor %}

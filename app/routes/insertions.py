@@ -66,6 +66,8 @@ def insertion_plante(folio):
         Retourne le template insertion_plante.html
     """
     form = InsertionPlante()
+    donnees=Herbier.query.filter(Herbier.id == folio).first()
+
 
     try:
         # Si le formulaire est rempli et soumi, récupérer les informations
@@ -83,13 +85,11 @@ def insertion_plante(folio):
             
             # Afficher un message confirmant la réussite de la mise à jour des informations et retourner la page de la planche
             flash("L'identification " + nom_latin4 + " a bien été ajoutée", "info")
-
-            donnees=Herbier.query.filter(Herbier.id == folio).first()
-            return render_template("/pages/info_plante.html", sous_titre=donnees.poems[0].titre, donnees=donnees, folio=folio)
+            return render_template("/pages/info_plante.html", donnees=donnees, folio=folio)
 
     # En cas d'exception, afficher un message d'erreur
     except Exception as erreur:
         flash("Une erreur s'est produite lors de l'insertion de l'identification " + nom_latin4 + " : " + str(erreur), "error")
     
     # Retourner le template correspondant à la page d'insertion
-    return render_template("/partials/formulaires/insertion_plante.html", form=form, folio=folio)
+    return render_template("/partials/formulaires/insertion_plante.html", sous_titre=Poemes.titre, donnees=donnees, form=form, folio=folio)
