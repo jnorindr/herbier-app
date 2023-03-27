@@ -4,20 +4,52 @@
 
 {% block body %}
 
-    <form action="{{url_for('creation_utilisateur')}}" method="post" name="creation_utilisateur">
-    {{ form.hidden_tag() }}
+<style>
+    .form-control:focus, .form-control:active, .form-password:focus {
+        box-shadow:none;
+        background-color: #e6ffff
+    }
 
-        <div>
-            <label for="pseudo">Pseudonyme</label>
-            {{ form.pseudo(class_="form-control", placeholder_="Pseudonyme") }}
-            <small id="pseudo">Entrer un nom d'utilisateur.</small>
-            <label for="password">Mot de passe</label>
-            {{ form.password(class_="form-control", placeholder_="Mot de passe") }}
-            <small id="password">Entrer un mot de passe de plus de 6 caractères.</small>
+    .pseudo {
+        font-size: 23px;
+        margin-bottom: 10px;
+    }
+
+    .mdp {
+        font-size: 23px;
+        margin-bottom: 10px;
+    }
+
+    .singin {
+        margin-left: 40%;
+        margin-top:15px;
+        display: inline-block;
+    }
+
+    .form-control {
+        border: 5px dotted darkolivegreen ;
+        background-color:palegoldenrod;
+
+    }  
+    </style>
+
+
+    <div class="row">
+        <div class="col-6 offset-3">
+            <form action="{{url_for('creation_utilisateur')}}" method="post" name="creation_utilisateur">
+                {{ form.hidden_tag() }}
+                <br>
+                <label for="pseudo"><br><p class="pseudo">Nom d'utilisateur</p></label>
+                {{ form.pseudo(class_="form-control", placeholder_="Insérez votre nom d'utilisateur") }}
+                <label for="password"><br><p class="mdp">Mot de passe</p></label>
+                {{ form.password(class_="form-control", placeholder_="Insérez un mot de passe de plus de 6 caractères") }}
+                <br>
+                <input type="submit" class="btn btn-success btn-lg singin" value="M'inscrire">
+                <br>
+                <br>
+            </form>
         </div>
-        <p>
-            <input type="submit" value="M'inscrire">
-        </p>
-    </form>
+    </div>
+
 
 {% endblock %}

@@ -50,10 +50,12 @@
     <h2>Résultats de recherche pour "{{ requete }}"</h2>
     <br>
     <div class="row">
+
+    <!-- Affichage des items ayant pour titre la chaine recherchée -->
         <div class="col-4 offset-1">
             <ul>
             {% for poemes in donnees.items %}
-            <a class="list-group-item" href="{{ url_for('info_poeme', folio=poemes.id) }}">
+            <a class="list-group-item" href="{{ url_for('info_poeme', folio=poemes.id) }}" data-toggle="tooltip" data-placement="bottom" title="{{poemes.ocr}}">
                 <li>{{poemes.titre}}, {{poemes.id}}</li>
             </a>
             {% endfor %}

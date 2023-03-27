@@ -16,7 +16,7 @@
 
     h3 {
         font-family: cursive;
-        font-size: 27px;
+        font-size: 30px;
         padding-top: 20px;
     }
 
@@ -29,19 +29,38 @@
     .metadonnees {
         margin-bottom: 30px;
         font-size: 19px;
-        text-align: center;
     }
 
     .metadonnees>p {
         font-family: cursive;
-        text-align: left;
         list-style-type: none;
         margin-top: 20%;
+        margin-left: 15%;
+        text-align: justify;
+        
     }
 
-    .metadonnees.button {
-        display: block;
+    .illustration_associee {
+        margin-left: 15%;
     }
+
+    .myid {
+        background-color:palegoldenrod;
+        margin-top: 90px;
+        margin-bottom: 200px;
+        text-align: center;
+        border-style: dashed;
+        border-radius: 25px;
+        border-color: darkolivegreen;
+    }
+    
+    .suggestion {
+        text-shadow: 2px 2px 4px olive;
+        margin-top: 50px;
+        margin-bottom: 10px;
+    }
+
+
 </style>
 
 <div class="container-fluid">
@@ -50,17 +69,22 @@
         <div class="col-3">
             <img src="https://gallica.bnf.fr/iiif/ark%3A%2F12148%2Fbtv1b8451620k/{{folio}}/full/full/0/native.jpg" class="illu"/>
         </div>
-        <div class="col-6 offset-1 metadonnees">
+        <div class="col-4 metadonnees">
             <p>{{donnees.ocr}}</p>
             {% if donnees.commentaire %}
                 <p>Commentaire : {{donnees.commentaire}}</p>
             {% endif %}
-            <button type="button" class="btn btn-success btn">
+            <button type="button" class="btn btn-success btn illustration_associee">
                 <a href="{{ url_for('info_plante', folio=donnees.id_plante) }}" onclick="loading();">Découvrez la plante associée</a> 
-             </button>
+             </button>        
+        </div>
+        <div class="col-1"></div>
+        <div class="col-3 myid">
+            <p class="suggestion">Une suggestion à faire ?</p>
             <button type="button" class="btn btn-success">
                 <a href="{{ url_for('insertion_poeme', folio=donnees.id) }}">Proposer ma modification</a>
-            </button>          
+            </button>
+            {% endif %}
         </div>
     </div>
 </div>

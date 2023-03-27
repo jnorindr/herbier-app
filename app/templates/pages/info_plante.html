@@ -16,7 +16,7 @@
 
     h3 {
         font-family: cursive;
-        font-size: 27px;
+        font-size: 30px;
         padding-top: 20px;
     }
 
@@ -38,6 +38,8 @@
         text-align: left;
         list-style-type: none;
         margin-top: 20%;
+        margin-left: 15px;
+        margin-right: 15px;
     }
 
     .metadonnees.button {
@@ -110,6 +112,8 @@
                 <a href="{{ url_for('info_poeme', folio=donnees.poems[0].id) }}">Découvrez le poème associé</a> 
             </button>
         </div>
+
+<!-- Affichage des modifications si existantes en base pour la plante affichée -->
         <div class="col-3 myid">
             {% if donnees.famille2 %}
             <h5>Mon identification</h5>
