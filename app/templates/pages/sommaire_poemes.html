@@ -46,13 +46,15 @@
     <div class="row">
         <div class="col-4 offset-4">
             <ul>
+                <!-- Création des boutons de pagination du sommaire -->
                 {%if donnees.prev_num %}
                 <a class="list-group-item" href="{{ url_for('poemes', page=donnees.prev_num) }}">
                     &laquo;
                 </a>
                 {% endif %}
+                <!-- Appel des folios des poèmes enregistrés en base -->
                 {% for poemes in donnees.items %}
-                <a class="list-group-item" href="{{ url_for('info_poeme', folio=poemes.id) }}">
+                <a class="list-group-item" href="{{ url_for('info_poeme', folio=poemes.id) }}" data-toggle="tooltip" data-placement="top" title="{{poemes.ocr}}">
                     <li>{{poemes.titre}}, {{poemes.id}}</li>
                 </a>
                 {% endfor %}

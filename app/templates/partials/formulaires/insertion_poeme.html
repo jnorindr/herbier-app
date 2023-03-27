@@ -6,11 +6,11 @@
 
 <style>
 
-h3 {
-    font-family: cursive;
-    font-size: 27px;
-    padding-top: 20px;
-}
+    h3 {
+        font-family: cursive;
+        font-size: 30px;
+        padding-top: 20px;
+    }
 
     .illu {
         width: 300px;
@@ -19,23 +19,16 @@ h3 {
     }
 
     .insertion {
-        margin-top: 90px;
+        margin-top: 10px;
         margin-bottom: 30px;
         font-size: 19px;
         text-align: left;
         
     }
 
-    .insertion>ul {
-        font-family: cursive;
-        text-align: left;
-        list-style-type: none;
-        margin-top: 20%;
-        
-    }
-    
+
     label {
-        margin-top: 10px;
+        margin-top: 20px;
         margin-bottom: 10px;
     }
 
@@ -43,6 +36,7 @@ h3 {
         margin-left: 40%;
     }
 
+    
 
 </style>
 
@@ -55,17 +49,15 @@ h3 {
         </div>
         <div class="col-1"></div>
         <div class="col-5 insertion">
-            
             <form action="{{url_for('insertion_poeme', folio=folio)}}" method="post" name="insertion_poeme">
             {{ form.hidden_tag() }}
                <label for="ocr">Transcription</label>
-               {{ form.ocr(class_="form-control", placeholder_= donnees.ocr) }}
-
+                <textarea class="form-control" rows="6" placeholder="{{donnees.ocr}}"></textarea>
                   <label for="commentaire">Commentaire</label>
-                  {{ form.commentaire(class_="form-control", placeholder_="Commentaire") }}
+                 {{ form.commentaire(class_="form-control", placeholder_="Commentaire") }}
                     <br>
                 </form>
-                <input type="button" class="btn btn-success btn-lg modification" value="Envoyer"> 
+                <input type="button" class="btn btn-success btn-md modification" value="Envoyer"> 
             </div>
 
 
