@@ -30,6 +30,7 @@
         margin-bottom: 30px;
         font-size: 19px;
         text-align: center;
+        padding: 30px;
     }
 
     .metadonnees>ul {
@@ -51,13 +52,22 @@
         border-style: dashed;
         border-radius: 25px;
         border-color: darkolivegreen;
+        padding-top:40px;
+        padding-top:40px;
     }
     
     .suggestion {
         text-shadow: 2px 2px 4px olive;
-        margin-top: 40px;
-        margin-right: 50px;
         margin-bottom: 10px;
+    }
+
+    p + button {
+        display: block;
+    }
+
+    .myid li {
+        text-align: left;
+        list-style-type: none;
     }
 </style>
 
@@ -102,11 +112,12 @@
         </div>
         <div class="col-3 myid">
             {% if donnees.famille2 %}
-            <h4>Mon identification</h4>
-            <li>Famille : {{donnees.famille2}}</li>
-            <li>Nom commun : {{donnees.nom_commun4}}</li>
-            <li>Nom latin : {{donnees.nom_latin4}}</li>
-            <li>Commentaire : {{donnees.commentaire}}</li>
+            <h5>Mon identification</h5>
+            <ul>
+                <li><b>{{donnees.famille2}}</b></li>
+                <li>{{donnees.nom_latin4}} ({{donnees.nom_commun4}})</li>
+                <li>Commentaire : {{donnees.commentaire}}</li>
+            </ul>
             {% else %}
             <p class="suggestion">Une suggestion à faire ?</p>
             <button type="button" class="btn btn-success">
