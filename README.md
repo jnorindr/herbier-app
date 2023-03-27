@@ -9,10 +9,9 @@ Pour l'installation, vous aurez besoin de vous inscrire et de générer une clé
 
 - Cloner le dépôt : ```git clone [AJOUTER LIEN QUAND FINI]```
 - Vérifier que la version de Python installée correspond à Python 3.X : ```python --version```. Sinon, l'installer avec la commande ```sudo apt-get install python3 python3-pip python3-virtualenv``` (vous aurez besoin des droits administrateur pour lancer cette commande).
-- Installer la base de données à la racine de l'application
 - Se déplacer dans le dossier de l'application : ```cd herbier-app```
-- Créer un environnement virtuel : ```virtualenv env -p python3``` 
-- Activer l'environnement virtuel : ```source env/bin/activate```
+- Installer la base de données à la racine de l'application
+- Créer un environnement virtuel : ```virtualenv env -p python3```
 - À la racine de l'application, créer un fichier ```.env``` contenant les variables suivantes :
 ```
 DEBUG = True
@@ -24,8 +23,10 @@ SECRET_KEY = [clé_secrète_personnelle]
 PLANTE_PER_PAGE = 5
 POEME_PER_PAGE = 10
 ```
+- Activer l'environnement virtuel : ```source env/bin/activate```
 - Installer les packages nécessaires au fonctionnement de l'application : ```pip install -r requirements.txt```
 - Lancer l'application : ```python run.py```
+
 - Pour arrêter l'application : ```Ctrl + c```, puis désactivez l'environnement avec la commande ```deactivate```
 
 ## Lancement de l'application
