@@ -22,10 +22,8 @@
         margin-top: 10px;
         margin-bottom: 30px;
         font-size: 19px;
-        text-align: left;
-        
+        text-align: left; 
     }
-
 
     label {
         margin-top: 20px;
@@ -35,11 +33,7 @@
     .modification {
         margin-left: 40%;
     }
-
-    
-
 </style>
-
 
 <div class="container-fluid">
     <div class="row">
@@ -47,18 +41,18 @@
         <div class="col-3">
             <img src="https://gallica.bnf.fr/iiif/ark%3A%2F12148%2Fbtv1b8451620k/{{folio}}/full/full/0/native.jpg" class="illu"/>
         </div>
-        <div class="col-1"></div>
-        <div class="col-5 insertion">
+        <div class="col-5 offset-1 insertion">
             <form action="{{url_for('insertion_poeme', folio=folio)}}" method="post" name="insertion_poeme">
             {{ form.hidden_tag() }}
-               <label for="ocr">Transcription</label>
+                <label for="ocr">Transcription</label>
                 <textarea class="form-control" rows="6" placeholder="{{donnees.ocr}}"></textarea>
-                  <label for="commentaire">Commentaire</label>
-                 {{ form.commentaire(class_="form-control", placeholder_="Commentaire") }}
-                    <br>
-                </form>
-                <input type="button" class="btn btn-success btn-md modification" value="Envoyer"> 
-            </div>
-
+                <label for="commentaire">Commentaire</label>
+                {{ form.commentaire(class_="form-control", placeholder_="Commentaire") }}
+                <br>
+            </form>
+            <input type="button" class="btn btn-success btn-md modification" value="Envoyer"> 
+        </div>
+    </div>
+</div>
 
 {% endblock%}
