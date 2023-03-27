@@ -48,13 +48,13 @@
         <div class="col-3">
             <img src="https://gallica.bnf.fr/iiif/ark%3A%2F12148%2Fbtv1b8451620k/{{folio}}/full/full/0/native.jpg" class="illu"/>
         </div>
-        <div class="col-5 offset-1 metadonnees">
+        <div class="col-6 offset-1 metadonnees">
             <p>{{donnees.ocr}}</p>
             {% if donnees.commentaire %}
                 <p>Commentaire : {{donnees.commentaire}}</p>
             {% endif %}
             <button type="button" class="btn btn-success btn">
-                <a href="{{ url_for('info_plante', folio=donnees.id_plante) }}">Découvrez la plante associée</a> 
+                <a href="{{ url_for('info_plante', folio=donnees.id_plante) }}" onclick="loading();">Découvrez la plante associée</a> 
              </button>
             <button type="button" class="btn btn-success">
                 <a href="{{ url_for('insertion_poeme', folio=donnees.id) }}">Proposer ma modification</a>

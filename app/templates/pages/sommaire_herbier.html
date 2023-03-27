@@ -53,7 +53,7 @@
                 </a>
                 {% endif %}
                 {% for herbier in donnees.items %}
-                <a class="list-group-item" href="{{ url_for('info_plante', folio=herbier.id) }}">
+                <a class="list-group-item" href="{{ url_for('info_plante', folio=herbier.id) }}" onclick="loading();">
                     <li><img src="https://gallica.bnf.fr/iiif/ark%3A%2F12148%2Fbtv1b8451620k/{{herbier.id}}/full/full/0/native.jpg" class="mini"/>
                         {{herbier.poems[0].titre}}</li>
                 </a>
