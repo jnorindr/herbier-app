@@ -71,17 +71,20 @@
         text-align: left;
         list-style-type: none;
     }
+
 </style>
 
 <div class="container-fluid">
     <div class="row">
+        <!-- Titre de l'illustration à partir de la table poème jointe -->
         <h3 class="col-11 offset-1">{{donnees.poems[0].titre}}</h3>
         <div class="col-3">
+            <!-- Appel de l'image par l'API IIIF de Gallica + utilisation de la variable folio pour l'adapter à chaque page -->
             <img src="https://gallica.bnf.fr/iiif/ark%3A%2F12148%2Fbtv1b8451620k/{{folio}}/full/full/0/native.jpg" class="illu"/>
         </div>
         <div class="col-5 metadonnees">
             <ul>
-            <!-- Appel des données ajoutées à la base via la route -->
+            <!-- Affichage des données ajoutées à la base via la route, si ces dernières existent -->
                 <li><b>{{donnees.famille}}</b></li>
                 <li>
                     {% if donnees.nom_latin1 %}

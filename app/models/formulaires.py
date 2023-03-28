@@ -13,7 +13,7 @@ class InsertionPoeme(FlaskForm):
     commentaire : wtforms.TextAreaField
         Champs de texte libre permettant à l'utilisateur d'ajouter un commentaire dans la table.
     """
-    ocr = TextAreaField("ocr", validators=[])
+    ocr = TextAreaField("ocr", validators=[InputRequired()], render_kw={'class': 'form-control', 'rows': 8})
     commentaire = TextAreaField("commentaire", validators=[])
      
 class InsertionPlante(FlaskForm):

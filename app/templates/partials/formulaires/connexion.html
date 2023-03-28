@@ -21,33 +21,33 @@
     }
 
     .singin {
-        margin-left: 40%;
-        margin-top:15px;
+        margin-left: 35%;
+        margin-top:20px;
+        margin-bottom: 20px;
         display: inline-block;
     }
 
     .form-control {
         border: 5px dotted darkolivegreen ;
         background-color:palegoldenrod;
-
     }  
 
 </style>
 
-<div class="row">
-    <div class="col-6 offset-3">
-        <form action="{{url_for('connexion')}}" method="post" name="connexion">
-        {{ form.hidden_tag() }}
-            <br>
-            <label for="pseudo"><br><p class="pseudo">Pseudonyme</p></label>
-            {{ form.pseudo(class_="form-control", placeholder_="Insérez votre pseudo") }}
-            <label for="password"><br><p class="mdp">Mot de passe</p></label>
-            {{ form.password(class_="form-control", placeholder_="Insérez votre mot de passe") }}
-            <br>
-            <input type="submit" class="btn btn-success btn-lg singin" value="Se connecter">
-            <br>
-            <br>
-        </form>
+<div class="container">
+    <div class="row">
+        <div class="col-6 offset-3">
+            <form action="{{url_for('connexion')}}" method="post" name="connexion">
+            {{ form.hidden_tag() }}
+                <br>
+                <label for="pseudo"><br><p class="pseudo">Pseudonyme</p></label>
+                {{ form.pseudo(class_="form-control", placeholder_="Insérez votre pseudo") }}
+                <label for="password"><br><p class="mdp">Mot de passe</p></label>
+                {{ form.password(class_="form-control", placeholder_="Insérez votre mot de passe") }}
+                <br>
+                <input type="submit" class="btn btn-success btn-lg singin" value="Se connecter">
+            </form>
+        </div>
     </div>
 </div>
 
