@@ -1,6 +1,7 @@
 from ..app import app, db
 from flask import render_template, abort, request
 from sqlalchemy import or_, text
+from flask_weasyprint import HTML, render_pdf
 from ..models.iiif_api import IIIF
 from ..models.database import Herbier, Poemes
 import json, requests
@@ -71,6 +72,29 @@ def info_poeme(folio):
         # Erreur 404 en cas d'erreur
     except Exception as erreur:
         abort(404)
+
+
+@app.route('/poemes/<string:name>.pdf')
+def print_pdf(name):
+    """
+    Route permettant la transformation des pages des poèmes en PDF.
+
+    Parameters
+    ----------
+    name : str, required
+        Numéro de la vue correspondant à la page transformée
+
+    Returns
+    -------
+    pdf
+        Retourne le document PDF issu du template info_poeme.html
+    """
+    # Données à présenter dans le document
+    donnees = Poemes.query.filter(Poemes.id==name).first()
+
+    # Page HTML à transformer
+    html = render_template('pages/info_poeme.html', name=name, donnees=donnees)
+    return render_pdf(HTML(string=html))
 
 @app.route("/herbier")
 @app.route("/herbier/<int:page>")
@@ -199,7 +223,7 @@ def recherche_rapide(page=1):
     chaine = request.args.get("chaine", None)
     # Si la requête existe
     if chaine:
-        # Les requêtes retournent une liste des pages des poèmes et plantes dont le titre ou le texte contient la chaîne.
+        # Les requêtes retournent une liste des pages des poèmes et plantes dont les données contient la chaîne.
         resultats_poemes = Poemes.query.join(Herbier, Poemes.id_plante == Herbier.id).\
             filter(or_(Poemes.titre.ilike(f"%{chaine}%"),
                         Poemes.ocr.ilike(f"%{chaine}%"),
@@ -220,6 +244,9 @@ def recherche_rapide(page=1):
                        Herbier.nom_commun3.ilike(f"%{chaine}%"),
                        Herbier.nom_commun4.ilike(f"%{chaine}%"))
             ).distinct(Poemes.titre).order_by(Poemes.titre).paginate(page=page)
+    # En l'absence de résultats, retourner le template vide
     else:
-        resultats=None
-    return render_template("pages/resultats_recherche.html", sous_titre=f"Recherche | {chaine}", donnees=resultats_poemes, donnees2=resultats_plantes, requete=chaine)
+        resultats_poemes=None
+        resultats_plantes=None
+    return render_template("pages/resultats_recherche.html", sous_titre=f"Recherche | {chaine}", donnees=resultats_poemes, 
+                           donnees2=resultats_plantes, requete=chaine)

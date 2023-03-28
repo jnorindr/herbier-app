@@ -13,7 +13,7 @@
     }
 
     .illu {
-        width: 300px;
+        width: 350px;
         margin-left: 50px;
         margin-bottom: 50px;
     }
@@ -45,12 +45,12 @@
             <form action="{{url_for('insertion_poeme', folio=folio)}}" method="post" name="insertion_poeme">
             {{ form.hidden_tag() }}
                 <label for="ocr">Transcription</label>
-                <textarea class="form-control" rows="6" placeholder="{{donnees.ocr}}"></textarea>
+                {{ form.ocr(class_="form-control") }}
                 <label for="commentaire">Commentaire</label>
                 {{ form.commentaire(class_="form-control", placeholder_="Commentaire") }}
                 <br>
+            <input type="submit" class="btn btn-success btn-md modification" value="Envoyer"> 
             </form>
-            <input type="button" class="btn btn-success btn-md modification" value="Envoyer"> 
         </div>
     </div>
 </div>
