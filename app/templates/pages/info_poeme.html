@@ -51,8 +51,8 @@
 
     .myid {
         background-color:palegoldenrod;
-        margin-top: 90px;
-        margin-bottom: 200px;
+        margin-top: 170px;
+        margin-bottom: 220px;
         margin-left: 5%;
         text-align: center;
         border-style: dashed;
@@ -132,6 +132,7 @@
         <div class="col-4 metadonnees">
             <!-- Affichage de la transcription depuis la requête définie dans la route -->
             <p>{{donnees.ocr}}</p>
+            <br>
             <button type="button" class="btn btn-success btn illustration_associee">
                 <a href="{{ url_for('info_plante', folio=donnees.id_plante) }}" onclick="loading();">Découvrez la plante associée</a> 
              </button>
