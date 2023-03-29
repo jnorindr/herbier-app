@@ -32,3 +32,9 @@ POEME_PER_PAGE = 10
 ## Lancement de l'application
 
 Après la première installation, pour lancer l'application, il faut activer l'environnement ```source env/bin/activate``` et le lancer l'application ```python run.py```
+
+## Fonctionnalités proposées par l'application 
+Le Poète à la main verte permet de :
+  - Découvrir via un sommaire herbier toutes les illustrations de plante recensées dans le manuscrit _[La Guirlande de Julie](https://gallica.bnf.fr/ark:/12148/btv1b8451620k)_.Celui-ci propose une miniature de chaque illustration, et le titre du poème qui lui est associé. 
+  <picture>
+  </picture>
