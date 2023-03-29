@@ -1,0 +1,346 @@
+@charset "utf-8";
+
+/* Couleurs du corps de la page */
+body {
+    background-color: #FFFCF8;
+}
+
+/* Marge de la liste de la navbar */
+ul.navbar-nav {
+    margin-top: 10px;
+    margin-left: 20px;
+}
+
+/* Apparence des boutons de la barre de navigation */
+.nav-item {
+    border: 2px solid beige;
+    margin-left: 20px;
+    border-style: dotted;
+    border-radius: 20px;
+    background-color:darkolivegreen;
+    margin-bottom: 10px;
+}
+
+/* Apparence des liens */
+a {
+    color:beige;
+    text-decoration: none;
+}
+
+/* Apparence des liens survolés */
+a:hover {
+    color: #e6ffff;
+}
+
+/* Titre principal */
+h1 {
+    position: absolute;
+    font-family:'Gill Sans', 'Gill Sans MT', 'Trebuchet MS', sans-serif;
+    color:white;
+    top: 170px;
+    left: 20%;
+    font-variant: small-caps;
+    font-weight: bold;
+    font-size: 60px;
+    text-shadow: 2px 2px 4px olive;
+}
+
+/* Titres de niveau 2 */
+h2 {
+    text-align: center;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    color: olivedrab;
+    font-variant: small-caps;
+    font-size: 30px;
+}
+
+/* Titres de niveau 3 */
+h3 {
+    font-family: cursive;
+    font-size: 30px;
+    padding-top: 20px;
+    padding-bottom: 10px;
+}
+
+/* Bannière */
+.bg-image {
+    background-image: url('/statics/banniere.jpg');
+    background-size: 100%;
+    background-position: center;
+    height: 250px; 
+    width: 100%;
+    overflow: hidden;
+}
+
+/* Format de la présentation de l'application sur la page d'accueil */
+.presentation {
+    margin-top: 20px;
+    word-spacing: 5px;
+}
+
+.presentation>li {
+    margin-bottom: 5px;
+}
+
+/* Mise en forme de la notice sur la page d'accueil */
+.ouvrageref {
+    font-family: cursive;
+    border: 1px solid darkolivegreen;
+    padding: 15px;
+    margin-bottom: 20px;
+}
+
+/* Apparence du message de chargement des données */
+div#loading {
+    width: 170px;
+    margin-top: 5%;
+    margin-left: 43%;
+    padding: 10px;
+    padding-top: 0;
+    display: none;
+    cursor: wait;
+    border-radius: 10px;
+    background-color: rgba(0,0,0,.3);
+    color: darkolivegreen;
+    text-align: center;
+    font-size: 0.8em;
+}
+
+/* Apparence des boutons de l'application */
+.btn-success {
+    border: 2px solid beige;
+    margin-left: 10px;
+    border-style: dotted;
+    border-radius: 20px;
+    background-color:darkolivegreen;
+    margin-right: 20px;
+}
+
+/* Couleur des champs des formulaires */
+.form-control {
+    border: 5px dotted darkolivegreen ;
+    background-color:palegoldenrod;
+}
+
+/* Couleur des fomulaires actifs */
+.form-control:focus, .form-control:active, .form-password:focus {
+    box-shadow:none;
+    background-color: #e6ffff;
+}
+
+/* Format des labels des champs des formulaires */
+.etiquette {
+    font-size: 23px;
+    margin-top: 20px;
+}
+
+/* Position du bouton d'envoi du formulaire de connexion/d'enregistrement */
+.singin {
+    margin-left: 35%;
+    margin-top:20px;
+    margin-bottom: 20px;
+    display: inline-block;
+}
+
+/* Apparence du formulaire d'insertion */
+.insertion {
+    margin-top: 10px;
+    margin-bottom: 30px;
+    font-size: 19px;
+    text-align: left;
+}
+
+.insertion>ul {
+    font-family: cursive;
+    text-align: left;
+    list-style-type: none;
+    margin-top: 20%;
+}
+
+/* Format des étiquettes des champs */
+label {
+    margin-top: 20px;
+    margin-bottom: 10px;
+}
+
+/* Position du bouton d'envoi du formulaire d'insertion */
+.modification {
+    margin-left: 38%;
+}
+
+/* Apparence du pied de page */
+footer {
+    background-color: beige;
+    color: darkolivegreen;
+    font-size: 0.7em;
+}
+
+/* Apparence des illustrations des pages d'information */
+.illu {
+    width: 350px;
+    margin-left: 50px;
+    margin-bottom: 50px;
+}
+
+/* Mise en forme des informations sur les plantes */
+.metadonnees {
+    margin-bottom: 30px;
+    font-size: 19px;
+    text-align: center;
+    padding: 30px;
+    padding-left: 60px;
+}
+
+.metadonnees>ul {
+    font-family: cursive;
+    text-align: left;
+    list-style-type: none;
+    margin-top: 20%;
+    margin-left: 15px;
+    margin-right: 15px;
+}
+
+/* Bouton vers le poème associé */
+.metadonnees.button {
+    display: block;
+}
+
+/* Cadre "Mon identification" */
+.myid {
+    background-color:palegoldenrod;
+    margin-top: 90px;
+    margin-bottom: 200px;
+    margin-left: 5%;
+    text-align: center;
+    border-style: dashed;
+    border-radius: 25px;
+    border-color: darkolivegreen;
+    padding-top:40px;
+    padding-bottom:40px;
+}
+
+/* Texte de suggestion */
+.suggestion {
+    text-shadow: 2px 2px 4px olive;
+    margin-bottom: 10px;
+}
+
+/* Format du bouton pour l'aligner */
+p + button {
+    display: block;
+}
+
+/* Format de la liste contenant les infos de "mon identification" */
+.myid li {
+    text-align: left;
+    list-style-type: none;
+}
+
+/* Mise en forme du texte des poèmes */
+.ocr {
+    margin-bottom: 30px;
+    font-size: 19px;
+}
+
+.ocr>p {
+    font-family: cursive;
+    list-style-type: none;
+    margin-top: 20%;
+    margin-left: 5%;
+    text-align: justify;
+    
+}
+
+/* Bouton vers la plante associée */
+.illustration_associee {
+    margin-left: 25%;
+}
+
+/* Bouton pour export PDF */
+.pdf {
+    margin-left: 28%;
+    margin-top: 1%;
+}
+
+/* Apparence du PDF de sortie */
+@page { 
+    size: A4; 
+    margin: 2.5cm;
+    font-family: 'Times New Roman', Times, serif;
+
+    @top-right {
+        content: "Page " counter(page) " sur " counter(pages);
+    }
+
+    @top-center {
+        content: string(h1);
+    }
+}
+
+/* Apparence des éléments après la requête média */
+@media print {
+    /* Ces éléments n'apparaissent pas */
+    nav, nav>ul>li, .suggestion, button.btn, button>a, form { 
+        display: none;
+    }
+
+    /* Conversion du titre h1 en une chaine récupérée pour le titre de la page et image de header invisible sur le PDF */
+    header {
+        width: 0;
+        height: 0;
+        visibility: hidden;
+        string-set: h1 content();
+    }
+
+    h3 {
+        text-align: center;
+    }
+
+    /* Transformation de la transcription pour l'adapter à la page PDF */
+    .ocr>p {
+        font-family: sans-serif;
+        font-size: 12px;
+        position: relative;
+        width: 500px;
+        left: -150px;
+    }
+
+    /* Transformation du commentaire pour l'adapter à la page PDF */
+    .myid {
+        border: none;
+        background-color: #fff;
+        width: 500px;
+        font-size: 12px;
+        margin-left: -20px;
+    }
+}
+
+/* Apparence des items des listes de résultats et sommaires */
+.list-group-item {
+    text-align: center;
+    border-radius: 20px;
+    background-color: olivedrab;
+    text-transform: uppercase;
+    color: wheat;
+    list-style-type: none;
+    margin: 1px;
+}
+
+.list-group-item li {
+    margin-left: 20px;
+    padding: 10px;
+    text-align: left;
+    list-style-type: none;
+}
+
+div>ul {
+    border-radius: 20px;
+    align-items: center;
+}
+
+/* Format des miniatures */
+.mini {
+    width:60px;
+    margin-right:10px;
+}

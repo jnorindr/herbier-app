@@ -15,4 +15,4 @@ db = SQLAlchemy(app)
 login = LoginManager(app)
 
 # Import des routes
-from .routes import generales, insertions, users, erreurs
+from .routes import generales, insertions, suppressions, users, erreurs

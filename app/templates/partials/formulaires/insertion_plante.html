@@ -4,63 +4,31 @@
 
 {% block body %}
 
-<style>
-
-    h3 {
-        font-family: cursive;
-        font-size: 30px;
-        padding-top: 20px;
-        padding-bottom: 10px;
-    }
-
-    .illu {
-        width: 350px;
-        margin-left: 50px;
-        margin-bottom: 50px;
-    }
-
-    .insertion {
-        margin-bottom: 30px;
-        font-size: 19px;
-        text-align: left;
-    }
-
-    .insertion>ul {
-        font-family: cursive;
-        text-align: left;
-        list-style-type: none;
-        margin-top: 20%;
-    }
-    
-    label {
-        margin-top: 10px;
-        margin-bottom: 10px;
-    }
-
-    .modification {
-        margin-left: 38%;
-    }
-</style>
-
-
 <div class="container-fluid">
     <div class="row">
+        <!-- Titre de la planche pour laquelle l'utilisateur veut insérer une identification -->
         <h3 class="col-11 offset-1">{{donnees.poems[0].titre}}</h3>
         <div class="col-3">
+            <!-- Illustration sur Gallica -->
             <img src="https://gallica.bnf.fr/iiif/ark%3A%2F12148%2Fbtv1b8451620k/{{folio}}/full/full/0/native.jpg" class="illu"/>
         </div>
         <div class="col-5 offset-1 insertion">
+            <!-- Appel de la route du formulaire d'insertion -->
             <form action="{{url_for('insertion_plante', folio=folio)}}" method="post" name="insertion_plante">
             {{ form.hidden_tag() }}
+                <!-- Famille à sélectionner -->
                 <label for="famille2">Sélectionner la famille de la plante identifiée.</label>
                 {{ form.famille2(class_="form-control", placeholder_="Famille") }}
+                <!-- Champs pour les noms communs et latins -->
                 <label for="nom_commun4">Entrer le(s) nom(s) commun(s) de la plante.</label>
                 {{ form.nom_commun4(class_="form-control", placeholder_="Nom commun") }}
                 <label for="nom_latin4">Entrer le nom latin de la plante.</label>
                 {{ form.nom_latin4(class_="form-control", placeholder_="Nom latin") }}
+                <!-- Champs permettant à l'utilisateur de laisser un commentaire -->
                 <label for="commentaire">Commentaire</label>
                 {{ form.commentaire(class_="form-control", placeholder_="Commentaire") }}
                 <br>
+                <!-- Bouton d'envoi -->
                 <input type="submit" class="btn btn-success btn-lg modification" value="Envoyer"> 
             </form>
         </div>

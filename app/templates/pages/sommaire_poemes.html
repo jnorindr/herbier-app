@@ -4,62 +4,27 @@
 
 {% block body %}
 
-<style>
-    a:hover {
-        color: #e6ffff;
-    }
-    
-    h2 {
-        text-align: center;
-        margin-top: 50px;
-        margin-bottom: 20px;
-        color: olivedrab;
-        font-variant: small-caps;
-        font-size: 40px;
-        text-shadow: 2px 2px 4px olive;
-    }
-
-    .list-group-item {
-        text-align: center;
-        border-radius: 20px;
-        background-color: olivedrab;
-        text-transform: uppercase;
-        color: wheat;
-        list-style-type: none;
-        margin: 1px;
-    }
-
-    .list-group-item li {
-        margin-left: 20px;
-        padding: 10px;
-    }
-
-    div>ul {
-        border-radius: 20px;
-        align-items: center;
-    }
-</style>
-
 <div class="container">
-    <h2>Sommaire des poemes de <i>La Guirlande de Julie</i></h2>
+    <h2>Sommaire des poèmes de <i>La Guirlande de Julie</i></h2>
     <br>
     <div class="row">
         <div class="col-4 offset-4">
             <ul>
-                <!-- Création des boutons de pagination du sommaire -->
+                <!-- Création du bouton pour aller à la page précédente si elle existe -->
                 {%if donnees.prev_num %}
                 <a class="list-group-item" href="{{ url_for('poemes', page=donnees.prev_num) }}">
                     &laquo;
                 </a>
                 {% endif %}
-                <!-- Appel des folios des poèmes enregistrés en base -->
-                {% for poemes in donnees.items %}
+                 <!-- Itération sur les résultats de la requête définie dans la route : pour chaque entrée de la table afficher un lien -->
+                 {% for poemes in donnees.items %}
                 <a class="list-group-item" href="{{ url_for('info_poeme', folio=poemes.id) }}" data-toggle="tooltip" data-placement="top" title="{{poemes.ocr}}">
                     <li>{{poemes.titre}}, {{poemes.id}}</li>
                 </a>
                 {% endfor %}
 
                 {%if donnees.next_num %}
+                <!-- Création du bouton pour aller à la page suivante si elle existe -->
                 <a class="list-group-item" href="{{ url_for('poemes', page=donnees.next_num) }}">
                     &raquo;
                 </a>

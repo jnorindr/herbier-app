@@ -4,123 +4,6 @@
 
 {% block body %}
 
-<style>
-    a {
-        color:white;
-        text-decoration: none;
-    }
-
-    a:hover {
-        color: #e6ffff;
-    }
-
-    h3 {
-        font-family: cursive;
-        font-size: 30px;
-        padding-top: 20px;
-    }
-
-    .illu {
-        width: 350px;
-        margin-left: 50px;
-        margin-bottom: 50px;
-    }
-
-    .metadonnees {
-        margin-bottom: 30px;
-        font-size: 19px;
-    }
-
-    .metadonnees>p {
-        font-family: cursive;
-        list-style-type: none;
-        margin-top: 20%;
-        margin-left: 5%;
-        text-align: justify;
-        
-    }
-
-    .illustration_associee {
-        margin-left: 25%;
-    }
-
-    .pdf {
-        margin-left: 28%;
-        margin-top: 1%;
-    }
-
-    .myid {
-        background-color:palegoldenrod;
-        margin-top: 90px;
-        margin-bottom: 200px;
-        margin-left: 5%;
-        text-align: center;
-        border-style: dashed;
-        border-radius: 25px;
-        border-color: darkolivegreen;
-        padding-top: 40px;
-        padding-bottom: 40px;
-    }
-    
-    .suggestion {
-        text-shadow: 2px 2px 4px olive;
-        margin-bottom: 10px;
-    }
-
-    /* Apparence du PDF de sortie */
-    @page { 
-        size: A4; 
-        margin: 2.5cm;
-        font-family: 'Times New Roman', Times, serif;
-
-        @top-right {
-        content: "Page " counter(page) " sur " counter(pages);
-        }
-
-        @top-center {
-        content: string(h1);
-        }
-    }
-
-    /* Apparence des éléments après la requête média */
-    @media print {
-        nav, nav>ul>li, .suggestion, button.btn, button>a, form { 
-            display: none;
-        }
-
-    /* Conversion du titre h1 en une chaine récupérée pour le titre de la page et image de header invisible sur le PDF */
-        header {
-            width: 0;
-            height: 0;
-            visibility: hidden;
-            string-set: h1 content();
-        }
-
-        h3 {
-            text-align: center;
-        }
-    
-        /* Transformation de la transcription pour l'adapter à la page PDF */
-        .metadonnees>p {
-            font-family: sans-serif;
-            font-size: 12px;
-            position: relative;
-            width: 500px;
-            left: -150px;
-        }
-
-        /* Transformation du commentaire pour l'adapter à la page PDF */
-        .myid {
-            border: none;
-            background-color: #fff;
-            width: 500px;
-            font-size: 12px;
-            margin-left: -20px;
-        }
-
-        }
-</style>
-
 <div class="container-fluid">
     <div class="row">
         <!-- Titre et numéro de la planche -->
@@ -129,7 +12,7 @@
             <!-- Appel de l'image par l'API IIIF de Gallica + utilisation de la variable folio pour l'adapter à chaque page -->
             <img src="https://gallica.bnf.fr/iiif/ark%3A%2F12148%2Fbtv1b8451620k/{{folio}}/full/full/0/native.jpg" class="illu"/>
         </div>
-        <div class="col-4 metadonnees">
+        <div class="col-4 ocr">
             <!-- Affichage de la transcription depuis la requête définie dans la route -->
             <p>{{donnees.ocr}}</p>
             <button type="button" class="btn btn-success btn illustration_associee">
@@ -145,12 +28,16 @@
             <!-- Affichage de l'annotation de l'utilisateur si celle-ci existe -->
             {% if donnees.commentaire %}
             <p>Commentaire : {{donnees.commentaire}}</p>
-            {% endif %}
+            <button type="button" class="btn btn-success">
+                <a href="{{ url_for('suppression_poeme', folio=donnees.id) }}">Supprimer la transcription</a>
+            </button>
+            {% else %}
             <p class="suggestion">Une modification à faire ?</p>
             <!-- Bouton vers la page d'insertion dans la table poeme -->
             <button type="button" class="btn btn-success">
                 <a href="{{ url_for('insertion_poeme', folio=donnees.id) }}">Corriger la transcription</a>
             </button>
+            {% endif %}
         </div>
     </div>
 </div>
