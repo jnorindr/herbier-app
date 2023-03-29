@@ -3,49 +3,6 @@
 {% extends "partials/conteneur.html" %}
 
 {% block body %}
-<style>
-
-    a:hover {
-        color: #e6ffff;
-    }
-    
-    h2 {
-        text-align: center;
-        margin-top: 50px;
-        margin-bottom: 20px;
-        color: olivedrab;
-        font-variant: small-caps;
-        font-size: 40px;
-        text-shadow: 2px 2px 4px olive;
-    }
-
-    .list-group-item {
-        text-align: center;
-        border-radius: 20px;
-        background-color: olivedrab;
-        text-transform: uppercase;
-        color: wheat;
-        margin: 1px;
-    }
-
-    .list-group-item li {
-        margin-left: 20px;
-        padding: 10px;
-        text-align: left;
-        list-style-type: none;
-    }
-
-    div>ul {
-        border-radius: 20px;
-        align-items: center;
-    }
-
-    .mini {
-        width:60px;
-        margin-right:10px;
-    }
-
-</style>
 
 <div class="container">
     <h2>Sommaire de l'herbier de <i>La Guirlande de Julie</i></h2>
@@ -53,21 +10,23 @@
     <div class="row">
         <div class="col-4 offset-4">
             <ul>
-                <!-- Création des boutons de pagination du sommaire -->
+                <!-- Création du bouton pour aller à la page précédente si elle existe -->
                 {%if donnees.prev_num %}
                 <a class="list-group-item" href="{{ url_for('herbier', page=donnees.prev_num) }}">
                     &laquo;
                 </a>
                 {% endif %}
-                 <!-- Appel des folios des plantes enregistrés en base -->
+                 <!-- Itération sur les résultats de la requête définie dans la route : pour chaque entrée de la table afficher un lien -->
                 {% for herbier in donnees.items %}
                 <a class="list-group-item" href="{{ url_for('info_plante', folio=herbier.id) }}" onclick="loading();">
+                    <!-- Miniature générée à partir de l'image sur Gallica dont le numéro de vue correspond à l'id via API IIIF -->
                     <li><img src="https://gallica.bnf.fr/iiif/ark%3A%2F12148%2Fbtv1b8451620k/{{herbier.id}}/full/full/0/native.jpg" class="mini"/>
-                    <!-- Appel des titres dans la base poèmes -->   
+                    <!-- Appel des titres dans la base poèmes jointe -->   
                         {{herbier.poems[0].titre}}</li>
                 </a>
                 {% endfor %}
 
+                <!-- Création d'un bouton pour aller à la page suivante si elle existe -->
                 {%if donnees.next_num %}
                 <a class="list-group-item" href="{{ url_for('herbier', page=donnees.next_num) }}">
                     &raquo;

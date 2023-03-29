@@ -4,52 +4,27 @@
 
 {% block body %}
 
-<style>
-
-    h3 {
-        font-family: cursive;
-        font-size: 30px;
-        padding-top: 20px;
-    }
-
-    .illu {
-        width: 350px;
-        margin-left: 50px;
-        margin-bottom: 50px;
-    }
-
-    .insertion {
-        margin-top: 10px;
-        margin-bottom: 30px;
-        font-size: 19px;
-        text-align: left; 
-    }
-
-    label {
-        margin-top: 20px;
-        margin-bottom: 10px;
-    }
-
-    .modification {
-        margin-left: 40%;
-    }
-</style>
-
 <div class="container-fluid">
     <div class="row">
+        <!-- Titre du poème dont l'utilisateur veut modifier la transcription -->
         <h3 class="col-11 offset-1">{{donnees.titre}}</h3>
         <div class="col-3">
+            <!-- Image du poème à partir de Gallica -->
             <img src="https://gallica.bnf.fr/iiif/ark%3A%2F12148%2Fbtv1b8451620k/{{folio}}/full/full/0/native.jpg" class="illu"/>
         </div>
         <div class="col-5 offset-1 insertion">
+            <!-- Appel de la route du formulaire -->
             <form action="{{url_for('insertion_poeme', folio=folio)}}" method="post" name="insertion_poeme">
             {{ form.hidden_tag() }}
+                <!-- Champs pour la correction de la transcription-->
                 <label for="ocr">Transcription</label>
-                {{ form.ocr(class_="form-control") }}
+                {{ form.ocr(class_="form-control", placeholder_="Votre transcription du poème") }}
+                <!-- Champs permettant à l'utilisateur d'ajouter un commentaire -->
                 <label for="commentaire">Commentaire</label>
                 {{ form.commentaire(class_="form-control", placeholder_="Commentaire") }}
                 <br>
-            <input type="submit" class="btn btn-success btn-md modification" value="Envoyer"> 
+                <!-- Bouton d'envoi -->
+                <input type="submit" class="btn btn-success btn-md modification" value="Envoyer"> 
             </form>
         </div>
     </div>

@@ -4,56 +4,16 @@
 
 {% block body %}
 
-<style>
-    a:hover {
-        color: #e6ffff;
-    }
-
-    h2 {
-        text-align: center;
-        margin-top: 50px;
-        margin-bottom: 20px;
-        color: olivedrab;
-        font-variant: small-caps;
-        font-size: 40px;
-        text-shadow: 2px 2px 4px olive;
-    }
-
-    .list-group-item {
-        text-align: center;
-        border-radius: 20px;
-        background-color: olivedrab;
-        text-transform: uppercase;
-        color: wheat;
-        margin: 1px;
-    }
-
-    .list-group-item li {
-        margin-left: 20px;
-        padding: 10px;
-        text-align: left;
-        list-style-type: none;
-    }
-
-    div>ul {
-        border-radius: 20px;
-        align-items: center;
-    }
-
-    .mini {
-        width:60px;
-        margin-right:10px;
-    }
-</style>
-
 <div class="container">
+    <!-- Titre de la page reprenant la chaîne recherchée par l'utilisateur -->
     <h2>Résultats de recherche pour "{{ requete }}"</h2>
     <br>
     <div class="row">
 
-    <!-- Affichage des poèmes ayant pour titre la chaine recherchée -->
+    <!-- Affichage des poèmes dont les données contiennent la chaine recherchée -->
         <div class="col-4 offset-1">
             <ul>
+            <!-- Itération sur le résultat de la requête dans la table Poemes définie dans la route -->
             {% for poemes in donnees.items %}
             <a class="list-group-item" href="{{ url_for('info_poeme', folio=poemes.id) }}" data-toggle="tooltip" data-placement="bottom" title="{{poemes.ocr}}">
                 <li>{{poemes.titre}}, {{poemes.id}}</li>
@@ -62,9 +22,10 @@
             </ul>
         </div>
 
-        <!-- Affichage des illustrations ayant pour titre la chaine recherchée -->
+        <!-- Affichage des pages des illustrations dont les données contiennent la chaine recherchée -->
         <div class="col-4 offset-1">
             <ul>
+                <!-- Itération sur le résultat de la requête dans la table Herbier définie dans la route -->
                 {% for plante in donnees2.items %}
                 <a class="list-group-item" href="{{ url_for('info_plante', folio=plante.id) }}" onclick="loading();">
                     <li><img src="https://gallica.bnf.fr/iiif/ark%3A%2F12148%2Fbtv1b8451620k/{{plante.id}}/full/full/0/native.jpg" class="mini"/>

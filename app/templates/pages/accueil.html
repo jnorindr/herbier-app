@@ -4,45 +4,19 @@
 
 {% block body %}
 
-<style>
-    h1 {
-        margin-top: 20px;
-        margin-bottom: 20px;
-        color: olivedrab;
-        font-variant: small-caps;
-        font-size: 30px;
-    }
-
-    .presentation {
-        margin-top: 20px;
-        word-spacing: 5px;
-    }
-
-    .presentation>li {
-        margin-bottom: 5px;
-    }
-    .ouvrageref {
-        font-family: cursive;
-        border: 1px solid darkolivegreen;
-        padding: 15px;
-        margin-bottom: 20px;
-    }
-
-</style>
-
 <div class="container">
     <div class="row">
         <div class="col-8 offset-2">
-            <h1>Bienvenue sur notre application !</h1>
+            <h2>Bienvenue sur notre application !</h2>
             <p>Avec notre application, vous aurez la possibilité de :</p>
             <ul class="presentation">
-                <li>Découvrir les identifications proposées par l'API Pl@ntNet des illustrations botaniques de <i><a href="https://gallica.bnf.fr/ark:/12148/btv1b8451620k">La Guirlande de Julie</a></i></li>
-                <li>Proposez vos propres identifications pour enrichir notre base de données.</li>
-                <li>Consulter les poèmes associés aux plantes identifiées et leur transcription automatique au format texte.</li>
-                <li>Proposez vos corrections aux transcriptions des poèmes afin d'affiner les données de l'application.</li>
+                <li>Découvrir les identifications proposées par l'API Pl@ntNet des illustrations botaniques de <i><a href="https://gallica.bnf.fr/ark:/12148/btv1b8451620k" style="color:olive;">La Guirlande de Julie</a></i>,</li>
+                <li>Proposer vos propres identifications pour enrichir notre base de données,</li>
+                <li>Consulter les poèmes associés aux plantes identifiées et leur transcription automatique au format texte,</li>
+                <li>Proposez vos corrections des transcriptions des poèmes afin d'affiner les données de l'application.</li>
             </ul>
 
-<!-- Appel des informations bibliographiques de l'ouvrage de référence via l'API Gallica présentation -->
+            <!-- Informations bibliographiques de l'ouvrage de référence obtenues via une requête à l'API IIIF de Gallica dans la route -->
             <div class="ouvrageref">
                 <b>Informations bibliographiques :</b><br>
                 La Guirlande de Julie ({{biblio['metadata'][6]['value']}})<br>

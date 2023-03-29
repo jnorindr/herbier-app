@@ -31,7 +31,7 @@ def creation_utilisateur():
 
         # Sinon, renvoyer les erreurs et retourner la page d'inscription
         else:
-            flash(",".join(donnees), "error")
+            flash(",".join(donnees), "warning")
             return render_template("partials/formulaires/creation_utilisateur.html", form=form)
     
     # Sinon, retourner la page d'inscription
@@ -68,7 +68,7 @@ def connexion():
             return redirect(url_for("accueil"))
         # Sinon, retourner la page de connexion
         else:
-            flash("L'identifiant ou le mot de passe est incorrect", "error")
+            flash("L'identifiant ou le mot de passe est incorrect", "warning")
             return render_template("partials/formulaires/connexion.html", form=form)
         
     # Sinon, retourner la page de connexion

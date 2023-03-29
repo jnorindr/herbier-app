@@ -4,46 +4,20 @@
 
 {% block body %}
 
-<style>
-    .form-control:focus, .form-control:active, .form-password:focus {
-        box-shadow:none;
-        background-color: #e6ffff
-    }
-
-    .pseudo {
-        font-size: 23px;
-        margin-bottom: 10px;
-    }
-
-    .mdp {
-        font-size: 23px;
-        margin-bottom: 10px;
-    }
-
-    .singin {
-        margin-left: 35%;
-        margin-top: 20px;
-        margin-bottom: 20px;
-        display: inline-block;
-    }
-
-    .form-control {
-        border: 5px dotted darkolivegreen ;
-        background-color:palegoldenrod;
-
-    }  
-    </style>
-
 <div class="container">
     <div class="row">
         <div class="col-6 offset-3">
+            <!-- Appel de la route du formulaire -->
             <form action="{{url_for('creation_utilisateur')}}" method="post" name="creation_utilisateur">
             {{ form.hidden_tag() }}
                 <br>
-                <label for="pseudo"><br><p class="pseudo">Nom d'utilisateur</p></label>
-                {{ form.pseudo(class_="form-control", placeholder_="Insérez un nom d'utilisateur") }}
-                <label for="password"><br><p class="mdp">Mot de passe</p></label>
-                {{ form.password(class_="form-control", placeholder_="Insérez un mot de passe de plus de 6 caractères") }}
+                <!-- Champs pour la saisie du pseudo-->
+                <label for="pseudo" class="etiquette">Nom d'utilisateur</label>
+                {{ form.pseudo(class_="form-control", placeholder_="Saisissez un nom d'utilisateur") }}
+                <!-- Champs pour la saisie du mot de passe -->
+                <label for="password" class="etiquette">Mot de passe</label>
+                {{ form.password(class_="form-control", placeholder_="Saisissez un mot de passe de plus de 6 caractères") }}
+                <!-- Bouton d'envoi -->
                 <input type="submit" class="btn btn-success btn-lg singin" value="M'inscrire">
             </form>
         </div>
