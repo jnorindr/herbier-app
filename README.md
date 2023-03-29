@@ -27,7 +27,7 @@ POEME_PER_PAGE = 10
 - Installer les packages nécessaires au fonctionnement de l'application : ```pip install -r requirements.txt```
 - Lancer l'application : ```python run.py```
 
-- Pour arrêter l'application : ```Ctrl + c```, puis désactivez l'environnement avec la commande ```deactivate```
+- Pour arrêter l'application : ```Ctrl + C```, puis désactivez l'environnement avec la commande ```deactivate```
 
 ## Lancement de l'application
 
