@@ -21,8 +21,9 @@
     }
 
     .singin {
-        margin-left: 40%;
-        margin-top:15px;
+        margin-left: 35%;
+        margin-top: 20px;
+        margin-bottom: 20px;
         display: inline-block;
     }
 
@@ -33,7 +34,7 @@
     }  
     </style>
 
-
+<div class="container">
     <div class="row">
         <div class="col-6 offset-3">
             <form action="{{url_for('creation_utilisateur')}}" method="post" name="creation_utilisateur">
@@ -43,13 +44,10 @@
                 {{ form.pseudo(class_="form-control", placeholder_="Insérez votre nom d'utilisateur") }}
                 <label for="password"><br><p class="mdp">Mot de passe</p></label>
                 {{ form.password(class_="form-control", placeholder_="Insérez un mot de passe de plus de 6 caractères") }}
-                <br>
                 <input type="submit" class="btn btn-success btn-lg singin" value="M'inscrire">
-                <br>
-                <br>
             </form>
         </div>
     </div>
-
+</div>
 
 {% endblock %}

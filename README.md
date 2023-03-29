@@ -7,7 +7,7 @@ Cette application a été réalisée avec Flask et SQLAlchemy par [Clara Hermant
 
 Pour l'installation, vous aurez besoin de vous inscrire et de générer une clé d'API Pl@ntNet : https://my.plantnet.org/
 
-- Cloner le dépôt : ```git clone [AJOUTER LIEN QUAND FINI]```
+- Cloner le dépôt : ```git clone https://github.com/jnorindr/herbier-app```
 - Vérifier que la version de Python installée correspond à Python 3.X : ```python --version```. Sinon, l'installer avec la commande ```sudo apt-get install python3 python3-pip python3-virtualenv``` (vous aurez besoin des droits administrateur pour lancer cette commande).
 - Se déplacer dans le dossier de l'application : ```cd herbier-app```
 - Installer la base de données à la racine de l'application
