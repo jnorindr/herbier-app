@@ -54,7 +54,8 @@ Sur les pages indivuelles des poèmes, une vue du poème et une version texte de
 ![vue_info_poeme](https://user-images.githubusercontent.com/119687553/228839644-06eac33e-93e1-47b7-8490-42a552f1e0a6.png)
 
 Ces fonctionnalités d'intégration ou de modification proposées à l'utilisateur s'ajoutent à la base de données en SQLite reliée à l'application, dont nous proposons ici le modèle physique : 
-![MCD_API drawio](https://user-images.githubusercontent.com/119687553/228843015-2f14ad8d-c206-48ae-94b3-52c6ba8512cf.png)
+
+![MCD_API drawio](https://user-images.githubusercontent.com/119687553/228890165-08185174-ca13-4694-870d-680f4895cc84.png)
 
 
 
