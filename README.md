@@ -41,12 +41,16 @@ Dans le premier cas, il est proposé à l'utilisateur de :
 
 Une fois la plante séléctionnée, une page individuelle s'affiche à l'utilisateur. Celle-ci propose une vue individuelle de la planche botanique choisie, les métadonnées apportées par l'API Pl@ntNet sur celle-ci, et la possibilité pour l'utilisateur d'ajouter sa propre identification qui sera rendue visible à la prochaine consultation de cette même planche botanique.
 Enfin, une route conduisant au poème associé a été créée pour que l'utilisateur puisse naviguer entre les illustrations et les poèmes du manuscrit.
+
+
 ![vue_info_plante](https://user-images.githubusercontent.com/119687553/228597504-eac9a30c-0710-488f-bc39-d99e1590b019.png)
   
   
   - Le coin poèmes du site a été pensé de la même façon que le coin herbier. Un sommaire propose à l'utilisateur une liste des poèmes du recueil de référence appelés par leur titre et les numéros de folio correspondant.
 
 Sur les pages indivuelles des poèmes, une vue du poème et une version texte de la transcription automatique de celui-ci fournie par eScriptorium. L'utilisateur peut découvrir la plante associée au poème, et exporter la version texte en format PDF. Enfin, il peut choisir de corriger la transcription de celui-ci. Pour cela, il doit se connecter à son compte ou s'enregistrer, et pourra laisser un commentaire pour apporter des précisions sur ses modifications. Une fois le travail soumis, la nouvelle transcription apparaitra à la prochaine consultation du poème. 
+
+
 ![vue_info_poeme](https://user-images.githubusercontent.com/119687553/228839644-06eac33e-93e1-47b7-8490-42a552f1e0a6.png)
 
 Ces fonctionnalités d'intégration ou de modification proposées à l'utilisateur s'ajoutent à la base de données en SQLite reliée à l'application, dont nous proposons ici le modèle physique : 
