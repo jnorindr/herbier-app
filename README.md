@@ -57,6 +57,6 @@ Sur les pages indivuelles des poèmes, une vue du poème et une version texte de
 
 ![vue_info_poeme](https://user-images.githubusercontent.com/119687553/228839644-06eac33e-93e1-47b7-8490-42a552f1e0a6.png)
 
-Ces fonctionnalités d'intégration ou de modification proposées à l'utilisateur s'ajoutent à la base de données en SQLite reliée à l'application, dont nous proposons ici le modèle physique : 
+Ces fonctionnalités d'intégration ou de modification proposées à l'utilisateur s'ajoutent à la base de données en SQLite reliée à l'application, dont nous proposons ici le modèle : 
 
 ![modele_donnees_herbier](https://user-images.githubusercontent.com/106514875/228983692-5db417f0-ffac-4cef-b354-e48adb1cb40d.png)
