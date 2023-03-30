@@ -14,3 +14,4 @@ class Config():
     SECRET_KEY = os.environ.get("SECRET_KEY")
     PLANTE_PER_PAGE = int(os.environ.get("PLANTE_PER_PAGE"))
     POEME_PER_PAGE = int(os.environ.get("POEME_PER_PAGE"))
+    FLASK_ADMIN_SWATCH = 'yeti'

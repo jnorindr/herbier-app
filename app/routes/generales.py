@@ -1,6 +1,6 @@
 from ..app import app, db
 from flask import render_template, abort, request
-from sqlalchemy import or_, text
+from sqlalchemy import or_
 from flask_weasyprint import HTML, render_pdf
 from ..models.iiif_api import IIIF
 from ..models.database import Herbier, Poemes

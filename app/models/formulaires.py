@@ -31,7 +31,7 @@ class InsertionPlante(FlaskForm):
     commentaire : wtforms.TextAreaField
         Champs de texte libre permettant à l'utilisateur d'ajouter un commentaire dans la table.
     """
-    famille2 = SelectField("famille2", choices=[('', ''), ('Acanthaceae', 'Acanthaceae'), ('Apocynaceae', 'Apocynaceae'), ('Asteraceae', 'Asteraceae'), ('Cyperaceae', 'Cyperaceae'),
+    famille2 = SelectField("famille2", choices=[('Acanthaceae', 'Acanthaceae'), ('Apocynaceae', 'Apocynaceae'), ('Asteraceae', 'Asteraceae'), ('Cyperaceae', 'Cyperaceae'),
                                                 ('Euphorbiaceae', 'Euphorbiaceae'), ('Fabaceae', 'Fabaceae'), ('Lamiaceae', 'Lamiaceae'), ('Malvaceae', 'Malvaceae'),
                                                 ('Melastomataceae', 'Melastomataceae'), ('Myrtaceae', 'Myrtaceae'), ('Orchidaceae', 'Orchidaceae'), ('Poaceae', 'Poaceae'),
                                                 ('Rosaceae', 'Rosaceae'), ('Rubiaceae', 'Rubiaceae')])

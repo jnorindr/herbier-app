@@ -281,7 +281,7 @@ p + button {
 /* Apparence des éléments après la requête média */
 @media print {
     /* Ces éléments n'apparaissent pas */
-    nav, nav>ul>li, .suggestion, button.btn, button>a, form { 
+    nav, nav>ul>li, .suggestion, button.btn, button>a, form, footer { 
         display: none;
     }
 

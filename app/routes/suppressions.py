@@ -1,5 +1,5 @@
 from ..app import app, db
-from flask import render_template, request, flash
+from flask import render_template, flash
 from flask_login import login_required
 from ..models.database import Herbier, Poemes
 

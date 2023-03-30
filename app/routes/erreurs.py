@@ -1,6 +1,24 @@
 from ..app import app, db
 from flask import render_template
 
+# Route en cas d'erreur 403 avec affichage d'un template
+@app.errorhandler(403)
+def page_not_found(erreur):
+    """
+        Route permettant l'affichage d'une page d'erreur personnalisée en cas d'accès non autorisé
+
+        Parameters
+        ----------
+        erreur : required
+            L'erreur retournée en cas d'exception sur la route
+
+        Returns
+        -------
+        template
+            Retourne le template error403.html
+    """
+    return render_template('pages/erreurs/error403.html'), 403
+
 # Route en cas d'erreur 404 avec affichage d'un template
 @app.errorhandler(404)
 def page_not_found(erreur):

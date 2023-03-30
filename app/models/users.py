@@ -1,4 +1,4 @@
-from ..app import app, db, login
+from ..app import db, login
 from flask_login import UserMixin
 from werkzeug.security import generate_password_hash, check_password_hash
 
@@ -77,6 +77,11 @@ class Users(UserMixin, db.Model):
         except Exception as erreur:
             return False, [str(erreur)]
     
+    def __init__(self, id, pseudo, password):
+        self.id = id
+        self.pseudo = pseudo
+        self.password = password
+
     # Méthodes de classe pour la connexion
     def get_id(self):
         return self.id
@@ -85,7 +90,7 @@ class Users(UserMixin, db.Model):
     @login.user_loader
     def get_user_by_id(id):
         return Users.query.get(int(id))
-    
+
     @staticmethod
     def identification(pseudo, password):
         """

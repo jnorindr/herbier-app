@@ -1,4 +1,4 @@
-from ..app import app, db, login
+from ..app import app, login
 from flask import url_for, render_template, request, redirect, flash
 from flask_login import login_user, logout_user, current_user
 from ..models.users import Users
