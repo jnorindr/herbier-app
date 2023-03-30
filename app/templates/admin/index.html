@@ -1,5 +1,7 @@
 {% extends 'admin/master.html' %}
 
 {% block body %}
-  <p>Bienvenue sur le tableau de bord de l'application <u>Le poète à la main verte</u> !</p>
+  <h2>Bienvenue sur le tableau de bord de l'application <a href="{{ url_for('accueil')}}">Le poète à la main verte</a> !</h2>
+  <p>Depuis cette interface graphique, vous pouvez administrer votre base de données, afin d'ajouter, modifier ou supprimer des entrées dans chacune des tables. 
+    <br>Vous pouvez également créer et supprimer des utilisateurs, ainsi que modifier leur pseudonyme.</p>
 {% endblock %}

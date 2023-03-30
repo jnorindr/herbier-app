@@ -77,11 +77,6 @@ class Users(UserMixin, db.Model):
         except Exception as erreur:
             return False, [str(erreur)]
     
-    def __init__(self, id, pseudo, password):
-        self.id = id
-        self.pseudo = pseudo
-        self.password = password
-
     # Méthodes de classe pour la connexion
     def get_id(self):
         return self.id
