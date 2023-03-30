@@ -28,7 +28,7 @@
                 <!-- Itération sur le résultat de la requête dans la table Herbier définie dans la route -->
                 {% for plante in donnees2.items %}
                 <a class="list-group-item" href="{{ url_for('info_plante', folio=plante.id) }}" onclick="loading();">
-                    <li><img src="https://gallica.bnf.fr/iiif/ark%3A%2F12148%2Fbtv1b8451620k/{{plante.id}}/full/full/0/native.jpg" class="mini"/>
+                    <li><img src="{{url}}3A%2F12148%2Fbtv1b8451620k/{{plante.id}}/full/full/0/native.jpg" class="mini"/>
                         {{plante.poems[0].titre}}</li>
                 </a>
                 {% endfor %}

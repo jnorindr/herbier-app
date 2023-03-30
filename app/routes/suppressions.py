@@ -32,12 +32,12 @@ def suppression_poeme(folio):
 
         # Retourner un message confirmant la suppression et le template du poème concerné
         flash(f"La transcription du poème {folio} a bien été supprimée.", "info")
-        return render_template("/pages/info_poeme.html", donnees=donnees, folio=folio)
+        return render_template("/pages/info_poeme.html", url=app.config['IIIF_BASEURL'], sous_titre=donnees.titre, donnees=donnees, folio=folio)
 
     # Sinon, renvoyer un message d'erreur et retourner le template
     except Exception as erreur:
         flash(f"Une erreur s'est produite lors de la suppression de la transcription {folio} ({str(erreur)}).", "warning")
-    return render_template("/pages/info_poeme.html", donnees=donnees, folio=folio)
+    return render_template("/pages/info_poeme.html", url=app.config['IIIF_BASEURL'], sous_titre=donnees.titre, donnees=donnees, folio=folio)
 
 
 @app.route("/suppression/herbier/<string:folio>", methods=["GET", "POST"])
@@ -70,10 +70,10 @@ def suppression_plante(folio):
 
         # Retourner un message confirmant la suppression et le template de la planche concernée
         flash(f"L'identification {folio} a bien été supprimée.", "info")
-        return render_template("/pages/info_plante.html", donnees=donnees, folio=folio)
+        return render_template("/pages/info_plante.html", url=app.config['IIIF_BASEURL'], sous_titre=donnees.poems[0].titre, donnees=donnees, folio=folio)
 
     # Sinon, renvoyer un message d'erreur et retourner le template
     except Exception as erreur:
         flash(f"Une erreur s'est produite lors de la suppression de l'identification {folio} ({str(erreur)}).", "warning")
-    return render_template("/pages/info_plante.html", donnees=donnees, folio=folio)
+    return render_template("/pages/info_plante.html", url=app.config['IIIF_BASEURL'], sous_titre=donnees.poems[0].titre, donnees=donnees, folio=folio)
 

@@ -1,6 +1,7 @@
 import requests
 import shutil
 import os
+from ..app import app
 
 # Full documentation for this API can be found on Gallica's site : http://api.bnf.fr/api-iiif-de-recuperation-des-images-de-gallica
 
@@ -27,7 +28,7 @@ class IIIF(object):
     @staticmethod
     def iiif(id, region, size, rotation, quality, format):
         # URL de base pour les requêtes à l'API IIIF de Gallica
-        IIIF_BASEURL = 'https://gallica.bnf.fr/iiif/ark%'
+        IIIF_BASEURL = app.config['IIIF_BASEURL']
 
         # Constitution de l'URL complète à partir d'une liste de variables définies dans la route
         url = "".join([IIIF_BASEURL, id, '/', region, '/', size, '/', rotation, '/', quality, '.', format])

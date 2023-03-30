@@ -15,6 +15,7 @@ Pour l'installation, vous aurez besoin de vous inscrire et de générer une clé
 - À la racine de l'application, créer un fichier ```.env``` contenant les variables suivantes :
 ```
 DEBUG = True
+IIIF_BASEURL = 'https://gallica.bnf.fr/iiif/ark%'
 API_KEY = "[votre_clé_API]"
 PROJECT = "weurope"
 SQLALCHEMY_DATABASE_URI = sqlite:////[chemin du répertoire home jusqu'au dépôt cloné]/herbier-app/appli.sqlite

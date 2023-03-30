@@ -18,7 +18,8 @@ def accueil():
         Retourne le template accueil.html
     """
     # Récupération des métadonnées de l'ouvrage via l'API Présentation de Gallica
-    req = requests.get("https://gallica.bnf.fr/iiif/ark%3A%2F12148%2Fbtv1b8451620k/manifest.json")
+    IIIF_BASEURL = app.config['IIIF_BASEURL']
+    req = requests.get(IIIF_BASEURL+"3A%2F12148%2Fbtv1b8451620k/manifest.json")
 
     # Conversion du résultat de la requête précédente au format JSON
     biblio = req.json()
@@ -64,7 +65,8 @@ def info_poeme(folio):
         if Poemes.query.filter(Poemes.id==folio).first():
             # Création d'une variable associée aux données requêtées dans la base
             donnees=Poemes.query.filter(Poemes.id == folio).first()
-            return render_template("/pages/info_poeme.html", sous_titre=donnees.titre+' '+donnees.id, donnees=donnees, folio=folio)
+            return render_template("/pages/info_poeme.html", url=app.config['IIIF_BASEURL'], sous_titre=donnees.titre+' '+donnees.id, 
+                                   donnees=donnees, folio=folio)
 
         # Une erreur 404 est renvoyée si la page n'existe pas
         else:
@@ -112,7 +114,7 @@ def herbier(page=1):
     template
         Retourne le template sommaire_herbier.html
     """
-    return render_template("pages/sommaire_herbier.html", 
+    return render_template("pages/sommaire_herbier.html", url=app.config['IIIF_BASEURL'], 
         sous_titre="Sommaire de l'herbier", donnees=Herbier.query.paginate(page=page, per_page=app.config["PLANTE_PER_PAGE"]))
 
 @app.route("/herbier/<string:folio>", methods=["POST", "GET"])
@@ -138,7 +140,7 @@ def info_plante(folio):
 
             # Vérifier que les données n'ont pas déjà été importées pour éviter d'appeler l'API à chaque chargement de la page
             if not donnees.famille:
-                # Import depuis le fichier config.py de la clé d'API et de la zone géographique
+                # Import depuis le fichier config.py de l'URL de l'API IIIF, de la clé d'API et de la zone géographique
                 API_KEY = app.config['API_KEY']
                 PROJECT = app.config['PROJECT']
 
@@ -196,12 +198,14 @@ def info_plante(folio):
                     update({"famille": 'Espèce inconnue'})
 
                 # Enfin, renvoyer le template info_plante.html qui utilisera comme données la requête ci-dessous
-                return render_template("/pages/info_plante.html", sous_titre=donnees.poems[0].titre, donnees=donnees, folio=folio)
+                return render_template("/pages/info_plante.html", url=app.config['IIIF_BASEURL'], sous_titre=donnees.poems[0].titre, 
+                                       donnees=donnees, folio=folio)
             
             # Sinon, si l'identification est déjà faite, retourner directement le template avec les données
             else:
                 # Cette route renvoie le template info_plante.html qui utilisera comme données la requête ci-dessous
-                return render_template("/pages/info_plante.html", sous_titre=donnees.poems[0].titre, donnees=donnees, folio=folio)
+                return render_template("/pages/info_plante.html", url=app.config['IIIF_BASEURL'], sous_titre=donnees.poems[0].titre, 
+                                       donnees=donnees, folio=folio)
             
         # Une erreur 404 est renvoyée si l'illustration n'existe pas
         else:
@@ -255,5 +259,5 @@ def recherche_rapide(page=1):
     else:
         resultats_poemes=None
         resultats_plantes=None
-    return render_template("pages/resultats_recherche.html", sous_titre=f"Recherche | {chaine}", donnees=resultats_poemes, 
-                           donnees2=resultats_plantes, requete=chaine)
+    return render_template("pages/resultats_recherche.html", url=app.config['IIIF_BASEURL'], sous_titre=f"Recherche | {chaine}", 
+                           donnees=resultats_poemes, donnees2=resultats_plantes, requete=chaine)

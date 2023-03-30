@@ -41,14 +41,18 @@ def insertion_poeme(folio):
             
             # Afficher un message confirmant la réussite de la mise à jour des informations et retourner la page du poème
             flash("La transcription a bien été modifiée", "success")
-            return render_template("/pages/info_poeme.html", donnees=donnees, folio=folio)
+            return render_template("/pages/info_poeme.html", url=app.config['IIIF_BASEURL'], sous_titre=donnees.titre,
+                                   donnees=donnees, folio=folio)
 
     # En cas d'exception, afficher un message d'erreur
     except Exception as erreur:
         flash("Une erreur s'est produite : " + str(erreur), "warning")
+        # Annulation de toutes les modifications faites à la base
+        db.session.rollback()
     
     # Retourner le template correspondant à la page d'insertion
-    return render_template("/partials/formulaires/insertion_poeme.html", sous_titre=donnees.titre, donnees=donnees, form=form, folio=folio)
+    return render_template("/partials/formulaires/insertion_poeme.html", url=app.config['IIIF_BASEURL'], sous_titre=donnees.titre, 
+                           donnees=donnees, form=form, folio=folio)
 
 @app.route("/insertion/plante/<string:folio>", methods=['GET', 'POST'])
 @login_required
@@ -87,11 +91,15 @@ def insertion_plante(folio):
             
             # Afficher un message confirmant la réussite de la mise à jour des informations et retourner la page de la planche
             flash("L'identification " + nom_latin4 + " a bien été ajoutée", "success")
-            return render_template("/pages/info_plante.html", donnees=donnees, folio=folio)
+            return render_template("/pages/info_plante.html", url=app.config['IIIF_BASEURL'], sous_titre=donnees.poems[0].titre, 
+                                   donnees=donnees, folio=folio)
 
     # En cas d'exception, afficher un message d'erreur
     except Exception as erreur:
         flash("Une erreur s'est produite lors de l'insertion de l'identification " + nom_latin4 + " : " + str(erreur), "warning")
+        # Annulation de toutes les modifications faites à la base
+        db.session.rollback()
     
     # Retourner le template correspondant à la page d'insertion
-    return render_template("/partials/formulaires/insertion_plante.html", sous_titre=donnees.poems[0].titre, donnees=donnees, form=form, folio=folio)
+    return render_template("/partials/formulaires/insertion_plante.html", url=app.config['IIIF_BASEURL'], sous_titre=donnees.poems[0].titre, 
+                           donnees=donnees, form=form, folio=folio)

@@ -7,6 +7,7 @@ dotenv.load_dotenv(os.path.join(BASE_DIR, '.env'))
 # Configuration des variables d'environnement à partir du .env
 class Config():
     DEBUG = os.environ.get("DEBUG")
+    IIIF_BASEURL = os.environ.get("IIIF_BASEURL")
     API_KEY = os.environ.get("API_KEY")
     PROJECT = os.environ.get("PROJECT")
     SQLALCHEMY_DATABASE_URI = os.environ.get("SQLALCHEMY_DATABASE_URI")
