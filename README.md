@@ -8,7 +8,7 @@ Cette application a été réalisée avec Flask et SQLAlchemy par [Clara Hermant
 Pour l'installation, vous aurez besoin de vous inscrire et de générer une clé d'API Pl@ntNet : https://my.plantnet.org/
 
 - Cloner le dépôt : ```git clone https://github.com/jnorindr/herbier-app```
-- Vérifier que la version de Python installée correspond à Python 3.X : ```python --version```. Sinon, l'installer avec la commande ```sudo apt-get install python3 python3-pip python3-virtualenv``` (vous aurez besoin des droits administrateur pour lancer cette commande).
+- Vérifier que la version de Python installée correspond à Python 3.X : ```python3 --version```. Sinon, l'installer avec la commande ```sudo apt-get install python3 python3-pip python3-virtualenv``` (vous aurez besoin des droits administrateur pour lancer cette commande).
 - Se déplacer dans le dossier de l'application : ```cd herbier-app```
 - Installer la base de données à la racine de l'application
 - Créer un environnement virtuel : ```virtualenv env -p python3```
@@ -17,7 +17,7 @@ Pour l'installation, vous aurez besoin de vous inscrire et de générer une clé
 DEBUG = True
 API_KEY = "[votre_clé_API]"
 PROJECT = "weurope"
-SQLALCHEMY_DATABASE_URI = sqlite:////[chemin]/appli.sqlite
+SQLALCHEMY_DATABASE_URI = sqlite:////[chemin du répertoire home jusqu'au dépôt cloné]/herbier-app/appli.sqlite
 WTF_CSRF_ENABLE = True
 SECRET_KEY = [clé_secrète_personnelle]
 PLANTE_PER_PAGE = 5
@@ -31,7 +31,10 @@ POEME_PER_PAGE = 10
 
 ## Lancement de l'application
 
-Après la première installation, pour lancer l'application, il faut activer l'environnement ```source env/bin/activate``` et le lancer l'application ```python run.py```
+Pour lancer l'application après la première installation :
+- Se déplacer dans le dossier de l'application
+- Activer l'environnement : ```source env/bin/activate```
+- Lancer l'application : ```python run.py```
 
 ## Fonctionnalités proposées par l'application 
 
