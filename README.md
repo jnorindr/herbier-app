@@ -59,4 +59,4 @@ Sur les pages indivuelles des poèmes, une vue du poème et une version texte de
 
 Ces fonctionnalités d'intégration ou de modification proposées à l'utilisateur s'ajoutent à la base de données en SQLite reliée à l'application, dont nous proposons ici le modèle physique : 
 
-![MCD_API drawio](https://user-images.githubusercontent.com/119687553/228890165-08185174-ca13-4694-870d-680f4895cc84.png)
+![modele_donnees_herbier](https://user-images.githubusercontent.com/106514875/228983692-5db417f0-ffac-4cef-b354-e48adb1cb40d.png)
