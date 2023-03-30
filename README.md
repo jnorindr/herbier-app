@@ -1,4 +1,4 @@
-# herbier-app
+# Le poète à la main verte
 Cette application permet de récupérer via l'API IIIF de Gallica les images du recueil de poèmes _[La Guirlande de Julie](https://gallica.bnf.fr/ark:/12148/btv1b8451620k)_. Appuyée sur l'[API Pl@ntNet](https://my.plantnet.org/), elle propose d'identifier les fleurs représentées dans les planches botaniques du recueil. Pour les poèmes du recueil, une transcription automatique réalisée avec [eScriptorium](https://traces6.paris.inria.fr/) est mise à disposition de l'utilisateur, qui peut également ajouter ses propres transcriptions et identifications, et exporter aux format PDF les images accompagnées de ses annotations.
 
 Cette application a été réalisée avec Flask et SQLAlchemy par [Clara Hermant-Bertoni](https://github.com/ClaraHB98) et Jade Norindr dans le cadre du cours de Python du master Technologies numériques appliquées à l'histoire de l'École des chartes.
@@ -27,7 +27,7 @@ POEME_PER_PAGE = 10
 - Installer les packages nécessaires au fonctionnement de l'application : ```pip install -r requirements.txt```
 - Lancer l'application : ```python run.py```
 
-- Pour arrêter l'application : ```Ctrl + c```, puis désactivez l'environnement avec la commande ```deactivate```
+- Pour arrêter l'application : ```Ctrl + C```, puis désactivez l'environnement avec la commande ```deactivate```
 
 ## Lancement de l'application
 
@@ -56,9 +56,3 @@ Sur les pages indivuelles des poèmes, une vue du poème et une version texte de
 Ces fonctionnalités d'intégration ou de modification proposées à l'utilisateur s'ajoutent à la base de données en SQLite reliée à l'application, dont nous proposons ici le modèle physique : 
 
 ![MCD_API drawio](https://user-images.githubusercontent.com/119687553/228890165-08185174-ca13-4694-870d-680f4895cc84.png)
-
-
-
-
-
-  
