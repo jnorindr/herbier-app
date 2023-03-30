@@ -27,6 +27,7 @@ POEME_PER_PAGE = 10
 - Installer les packages nécessaires au fonctionnement de l'application : ```pip install -r requirements.txt```
 - Lancer l'application : ```python run.py```
 
+- L'application dispose d'une interface d'administration graphique : pour y accéder, créer un compte avant pour nom d'utilisateur ```Administrateur``` et se rendre à l'URL ```/admin```
 - Pour arrêter l'application : ```Ctrl + C```, puis désactivez l'environnement avec la commande ```deactivate```
 
 ## Lancement de l'application
