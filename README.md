@@ -36,6 +36,7 @@ Pour lancer l'application après la première installation :
 - Se déplacer dans le dossier de l'application
 - Activer l'environnement : ```source env/bin/activate```
 - Lancer l'application : ```python run.py```
+- Pour accéder à l'interface administrateur, se créer un compte "Administrateur" et se rendre à l'adresse ```/admin```.
 
 ## Fonctionnalités proposées par l'application 
 
